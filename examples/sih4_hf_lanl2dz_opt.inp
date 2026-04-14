@@ -1,0 +1,14 @@
+%method  hf
+%basis   LANL2DZ
+%ecp     LANL2DZ
+%job     opt
+%boys_cook
+%grid    fine
+%ecp_method  analytical
+
+%geo
+Si  0.000  0.000  0.000
+H   0.862  0.862  0.862
+H  -0.862 -0.862  0.862
+H  -0.862  0.862 -0.862
+H   0.862 -0.862 -0.862

@@ -1,0 +1,15 @@
+! O2 triplet
+%method   b3lyp3
+%basis    6-31G(d,p)
+%job      opt+freq
+%charge   0
+%mult     3
+%grid     fine
+%boys_cook
+
+%geo
+O      0.0000    0.0000    0.60000
+O      0.0000    0.0000   -0.60000
+
+
+

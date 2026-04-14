@@ -1,0 +1,15 @@
+! OH radical
+%method   b3lyp3
+%basis    6-31G(d,p)
+%job      opt
+%charge   0
+%mult     2
+%spin     unrestricted
+%grid     ultrafine
+%boys_cook
+
+%geo
+O     0.795568    0.974962    0.000000
+H     1.568868    0.538864    0.285142
+
+

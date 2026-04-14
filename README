@@ -1,0 +1,24 @@
+# StudDFT
+
+Scientific-educational quantum chemistry program implementing HF and DFT
+(RHF/RKS/UHF/UKS) with ECP support, analytical gradients, and
+Hessians. Written in Fortran 2008, built with Intel Fortran.
+
+## Features
+- RHF / RKS / UHF / UKS with optional ECPs
+- Obara-Saika and McMurchie-Davidson integral recurrences
+- Analytical energy gradients and Hessians
+- Geometry optimization, frequency analysis
+- LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
+
+## Build
+Open `StudDFT.sln` in Visual Studio 2019 with Intel Fortran
+(oneAPI HPC Toolkit). Build Release x64.
+
+## Usage
+    studdft input.dat
+
+See `tests/` for example inputs.
+
+## Documentation
+See `docs/` for TeX/PDF descriptions of each section.

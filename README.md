@@ -15,7 +15,7 @@ Current build is StudDFT.exe, release x64 for Win7/10/11
 
 ## Setting Up (Windows)
 Download directory tree (at least `/basis_data` and `/windows`) with all their content to you location.
-Place `sd.bat` to your working directory and edit it as described inside.
+Copy `sd.bat` from `/windows` to your working directory (or to any dir within PATH) and edit it as described inside.
 
 ## Run program (Windows)
     sd <yourfile>.inp

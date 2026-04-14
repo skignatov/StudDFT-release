@@ -1,0 +1,8 @@
+# =====================================================
+# StudDFT .gitignore: whitelist approach
+# Repo root = solution folder (D:\Projects\StudDFT)
+# =====================================================
+
+# Step 1: ignore everything at repo root
+/git_commands.txt
+

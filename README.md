@@ -3,7 +3,8 @@
 Scientific-educational quantum chemistry program implementing HF and DFT
 (RHF/RKS/UHF/UKS) with ECP support, analytical gradients, and
 Hessians. Written in Fortran 2008, built with Intel Fortran.
-Current build is StudDFT, release x64 for Win7/10/11
+Parallelization with OpenMP.
+Current build is StudDFT.exe, release x64 for Win7/10/11
 
 ## Features
 - RHF / RKS / UHF / UKS with optional ECPs

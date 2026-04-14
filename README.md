@@ -13,8 +13,8 @@ Current build is StudDFT, release x64 for Win7/10/11
 - LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
 
 ## Setting Up (Windows)
-Download directory tree (at least /basis_data and /windows) with all their content to you location.
-Place sd.bat to your working directory and edit it as described inside.
+Download directory tree (at least `/basis_data` and `/windows`) with all their content to you location.
+Place `sd.bat` to your working directory and edit it as described inside.
 
 ## Run program (Windows)
     sd <yourfile>.inp

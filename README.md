@@ -19,7 +19,7 @@ Place `sd.bat` to your working directory and edit it as described inside.
 ## Run program (Windows)
     sd <yourfile>.inp
 
-See `tests/` for example inputs.
+See `examples/` for example inputs.
 
 ## Documentation
-See `docs/` for TeX/PDF descriptions of each section.
+See `docs/` for short manual.

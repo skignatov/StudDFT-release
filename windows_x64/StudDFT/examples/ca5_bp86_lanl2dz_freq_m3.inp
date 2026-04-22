@@ -1,0 +1,25 @@
+%method  bp86
+%basis   LANL2DZ
+%ecp     LANL2DZ
+
+%mult    3
+%LEVEL_SHIFT  0.5
+
+%job     opt+freq
+%boys_cook
+%grid    fine
+%ecp_method  analytical
+%geom_maxiter   200
+%scf_maxiter    500
+%print_time
+
+%geo
+Ca        0.19955801  -2.39170553   2.55669820
+Ca        3.70382507  -1.74432814   0.55289261
+Ca        1.97112041   1.36920677   2.55676640
+Ca       -2.17103988   1.02251195   2.55652955
+Ca       -3.36279517  -2.33527423   0.55240483
+
+
+
+

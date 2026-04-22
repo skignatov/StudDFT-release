@@ -1,0 +1,16 @@
+%method  hf
+%basis mixed
+  Si  LANL2DZ
+  *   6-31G(d,p)
+
+%ecp     LANL2DZ
+%job     opt
+%boys_cook
+%grid    fine
+
+%geo
+Si  0.000  0.000  0.000
+H   0.862  0.862  0.862
+H  -0.862 -0.862  0.862
+H  -0.862  0.862 -0.862
+H   0.862 -0.862 -0.862

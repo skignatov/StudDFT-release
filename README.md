@@ -13,7 +13,7 @@ Current build is StudDFT.exe, release x64 for Win7/10/11
 - Geometry optimization, frequency analysis
 - LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
 
-## SetUp and start calculations (Windows)
+## Start calculations (Windows)
 1. Download StudDFT.zip from `/windows_x64` to your local disk (say c:\) and unzip. Do not put it to the secured Windows directories like "Program Files" etc.!
 2. Assuming you have the folder `c:\StudDFT` , enter it and open the batch-file sd.bat with any ASCII text editor (far, wordpad, notepad ...)
 3. Check that the variable STUDDFT points to your sirectory:
@@ -29,7 +29,7 @@ Current build is StudDFT.exe, release x64 for Win7/10/11
 
 5. Save corrected sd.bat and copy it to your work directory where your input files are stored. Alternatively, put it to any folder indicated in the PATH system variable.
 
-6. Run program from your working directory with the input file yourfile.inp using the command. See `examples/` for example inputs.
+6. Run program from your working directory with the input file yourfile.inp using the command:
 
     sd yourfile.inp
 
@@ -38,3 +38,4 @@ Current build is StudDFT.exe, release x64 for Win7/10/11
 
 ## Documentation
 See `docs/` for short manual.
+See `examples/` for example inputs.

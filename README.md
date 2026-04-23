@@ -28,8 +28,8 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
 3. Correct the OMP variables for your computer: 
 
-      set OMP_NUM_THREADS=4  	<-- set number of cores on your processor
-      set OMP_STACKSIZE=64M     <-- set reasonable OMP stack size (32M, 64M, 128M ...)
+   set OMP_NUM_THREADS=4  	<-- set number of cores on your processor.
+   set OMP_STACKSIZE=64M	<-- set reasonable OMP stack size (32M, 64M, 128M ...).
 
 4. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. Alternatively, put it to any folder indicated in the `PATH` system variable.
 

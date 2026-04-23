@@ -14,9 +14,11 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 - LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
 
 ## Start calculations (Windows)
-1. Click StudDFT_win_x64.zip and push the button `Downoad raw file` on the right. Place the file to your local disk and unzip it. 
-   You will have directory like `c:\StudDFT` with programs inside. 
+1. Click on the file `StudDFT_win_x64.zip` to get inside and push the button `Downoad raw file` on the right. 
+   Place the file to your local disk and unzip it. 
+   You will have directory like `c:\StudDFT` on your computer with programs inside. 
    Do not put this directory to the secured Windows folders like "Program Files" etc.
+
 2. Assuming you have the folder `c:\StudDFT` , enter it and open the batch-file `sd.bat` using any ASCII text editor (far, wordpad, notepad ...)
    Check that the variable `STUDDFT` points to the StudDFT root directory:
 
@@ -29,13 +31,13 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
       set OMP_NUM_THREADS=6  	<-- set number of cores on your processor
       set OMP_STACKSIZE=128M    <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
-5. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. Alternatively, put it to any folder indicated in the `PATH` system variable.
+4. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. Alternatively, put it to any folder indicated in the `PATH` system variable.
 
-6. Run program from your working directory with the input file `yourfile.inp` using the command:
+5. Run program from your working directory with the input file `yourfile.inp` using the command:
 
     sd yourfile.inp
 
-7. After successful run the output file `yourfile.log` will be created.
+6. After successful run the output file `yourfile.log` will be created.
 
 
 ## Documentation

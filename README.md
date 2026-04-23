@@ -28,8 +28,8 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
 3. Correct the OMP variables for your runs: 
 
-      set OMP_NUM_THREADS=6  	<-- set number of cores on your processor
-      set OMP_STACKSIZE=128M    <-- set reasonable OMP stack size (32M, 64M, 128M ...)
+      set OMP_NUM_THREADS=4  	<-- set number of cores on your processor
+      set OMP_STACKSIZE=64M     <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
 4. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. Alternatively, put it to any folder indicated in the `PATH` system variable.
 
@@ -37,7 +37,36 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
     sd yourfile.inp
 
-6. After successful run the output file `yourfile.log` will be created.
+   After successful run the output file `yourfile.log` will be created.
+
+
+
+## Instruction in Russian: Чтобы начать расчеты (Windows)
+1. Щелкните файл `StudDFT_win_x64.zip`, чтобы открыть его, и нажмите кнопку `Download raw file` справа.
+загрузите файл на локальный диск и распакуйте его.
+На вашем компьютере появится папка `c:\StudDFT` с программами внутри.
+Не размещайте эту папку в защищенных папках Windows, таких как «Program Files» и т. д.
+
+2. Предположим, что вы создали папку `c:\StudDFT`. Войдите в нее и откройте пакетный файл `sd.bat` с помощью любого текстового редактора ASCII (например, Wordpad, Notepad и т. д.).
+
+Убедитесь, что переменная `STUDDFT` указывает на корневой каталог StudDFT:
+
+set STUDDFT=c:\StudDFT
+
+(каталог `/basis_data` должен присутствовать в этом месте, например, c:\StudDFT\basis_data).
+
+3. Исправьте переменные OMP для ваших запусков:
+
+OMP_NUM_THREADS=4     <-- задайте количество ядер вашего процессора
+OMP_STACKSIZE=64M     <-- задайте разумный размер стека OMP (32M, 64M, 128M ...)
+
+4. Сохраните исправленный файл `sd.bat` и скопируйте его в вашу рабочую директорию, где хранятся ваши входные файлы. Как вариант, поместите его в любую папку, указанную в системной переменной `PATH`.
+
+5. Запустите программу из вашей рабочей директории с входным файлом `yourfile.inp`, используя команду:
+
+sd yourfile.inp
+
+   После успешного запуска будет создан выходной файл `yourfile.log`.
 
 
 ## Documentation

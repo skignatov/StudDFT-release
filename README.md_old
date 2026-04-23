@@ -14,9 +14,8 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 - LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
 
 ## Start calculations (Windows)
-1. Click StudDFT_win_x64.zip and push the button `Downoad raw file` on the right. Place the file to your local disk and unzip it. 
-   You will have directory like `c:\StudDFT` with programs inside. 
-   Do not put this directory to the secured Windows folders like "Program Files" etc.
+1. Download StudDFT.zip from `/windows_x64` to your local disk and unzip it. You will have directory like `c:\StudDFT` with programs inside. 
+   Do not put it to the secured Windows directories like "Program Files" etc.
 2. Assuming you have the folder `c:\StudDFT` , enter it and open the batch-file `sd.bat` using any ASCII text editor (far, wordpad, notepad ...)
    Check that the variable `STUDDFT` points to the StudDFT root directory:
 

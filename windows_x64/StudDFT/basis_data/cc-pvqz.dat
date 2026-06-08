@@ -1,5 +1,6 @@
 ! cc-pVQZ Correlation-Consistent Polarized Valence Quadruple-Zeta
-! Generated from PySCF basis library
+! Reference: T.H. Dunning Jr., JCP 90, 1007 (1989)
+! Source: Basis Set Exchange (https://www.basissetexchange.org)
 !
 H  0
 S  3  1.00

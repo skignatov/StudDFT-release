@@ -1,5 +1,6 @@
 ! 3-21G Split-Valence Basis Set
-! Generated from PySCF basis library
+! Reference: J.S. Binkley, J.A. Pople, W.J. Hehre, JACS 102, 939 (1980)
+! Source: Basis Set Exchange (https://www.basissetexchange.org)
 !
 H  0
 S  2  1.00

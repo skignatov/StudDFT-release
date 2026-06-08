@@ -1,5 +1,6 @@
 ! 6-31G(d,p) = 6-31G** Split-Valence + d,p Polarization
-! Generated from PySCF basis library
+! Reference: P.C. Hariharan, J.A. Pople, Theor. Chim. Acta 28, 213 (1973)
+! Source: Basis Set Exchange (https://www.basissetexchange.org)
 !
 H  0
 S  3  1.00

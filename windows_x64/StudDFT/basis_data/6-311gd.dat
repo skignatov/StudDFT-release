@@ -1,5 +1,6 @@
 ! 6-311G(d) Triple-Zeta + d Polarization
-! Generated from PySCF basis library
+! Reference: R. Krishnan, J.S. Binkley, R. Seeger, J.A. Pople, JCP 72, 650 (1980); M.J. Frisch, J.A. Pople, J.S. Binkley, JCP 80, 3265 (1984)
+! Source: Basis Set Exchange (https://www.basissetexchange.org)
 !
 H  0
 S  3  1.00

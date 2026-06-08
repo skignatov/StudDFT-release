@@ -44,3 +44,4 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 ## Documentation
 See `docs/` for short manual.
 See `examples/` for example inputs.
+

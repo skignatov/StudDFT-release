@@ -5,5 +5,5 @@
 
 # Step 1: ignore everything at repo root
 /git_commands.txt
-/.gitignore
+.gitignore
 

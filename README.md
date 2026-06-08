@@ -32,7 +32,9 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
       set OMP_STACKSIZE=64M       <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
-4. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. Alternatively, put it to any folder indicated in the `PATH` system variable.
+4. Save corrected `sd.bat` and copy it to your working directory where your input files are stored. 
+   Alternatively, put it to any folder indicated in the `PATH` system variable. 
+   You can also run `add_to_user_path.bat` to set the per-user `PATH` automatically.
 
 5. Run program from your working directory with the input file `yourfile.inp` using the command:
 

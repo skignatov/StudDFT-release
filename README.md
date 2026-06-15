@@ -29,11 +29,33 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
       set OMP_STACKSIZE=64M       <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
-5. Go to your working directory (with your input file `yourfile.inp` ) and run the program:
+5. Go to your working directory (with your input file `your_molecule.inp` ) and run the program:
 
     sd yourfile.inp
 
-   After successful run the output file `yourfile.log` will appear.
+   After successful run the output file `your_molecule.log` will appear.
+
+### Начало расчетов (Windows)
+
+1. Щелкните по файлу `StudDFT_win_x64.zip`, чтобы открыть его, и нажмите кнопку `Download raw file` справа.
+   Скопируйте zip-файл на локальный диск и распакуйте его в папку с простым именем, например, `c:\StudDFT`.
+   Не размещайте этот каталог в защищенных папках Windows, таких как «Program Files», папках с русскими символами в названиях и т. д.
+
+2. Запустите `set_user_environment.bat`, чтобы настроить переменные среды PATH и STUDDFT для текущего пользователя.
+  (Вы также можете задать PATH и STUDDFT вручную в настройках Windows, указав имя каталога, где находится программа. 
+   Возможно, потребуется открыть новое окно терминала, чтобы изменения вступили в действие.
+
+3. При необходимости откройте sd.bat в любом текстовом редакторе ASCII (Far, Notepad, WordPad и т. д.) и отредактируйте переменные OMP для вашего компьютера:
+
+   set OMP_NUM_THREADS=4 <-- установите количество ядер на вашем процессоре (1, 4, 8,...)
+
+   set OMP_STACKSIZE=64M <-- установите разумный размер стека OpenMP (32M, 64M, 128M, ...)
+
+5. Перейдите в свой рабочий каталог (с вашим входным файлом `your_molecule.inp`) и запустите программу:
+
+   sd your_molecule.inp
+
+После успешного выполнения появится файл c результатами расчета `your_molecule.log`.
 
 
 ## Documentation

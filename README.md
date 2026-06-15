@@ -7,11 +7,11 @@ Parallelization with OpenMP. Current build is StudDFT.exe, release x64 for Win7/
 See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further detail.
 
 ## Features
-- RHF / RKS / UHF / UKS with optional ECPs
-- Obara-Saika and McMurchie-Davidson integral recurrences
+- RHF/UHF / RKS/UKS / MP2/UMP2/PUMP2 
+- LDA and GGA functionals (SVWN, BLYP, BP86, BPW91, PBE, B3LYP, PBE0)
+- Cartesian and spherical basis sets with optional ECPs
+- SP energy, geometry optimization, frequency calculations, PES scanning
 - Analytical energy gradients and Hessians
-- Geometry optimization, frequency analysis
-- LDA and GGA functionals (SVWN, BLYP, B3LYP, PBE, BP86, ...)
 
 ## Start calculations (Windows)
 

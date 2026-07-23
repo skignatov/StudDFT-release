@@ -6,6 +6,10 @@ Hessians. Written in Fortran 2008, built with Intel Fortran.
 Parallelization with OpenMP. Current build is StudDFT.exe, release x64 for Win7/10/11
 See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further detail.
 
+NOTE: older StudDFT version 0.82.1 is placed in the root directory for the compatibility with the original article: 
+S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and research purposes", Zhurn.Fiz.Khimii (rus.), (accepted in June, 2026)
+Version 1.08.3 is the newer release having much more capabilities and appropriate corrections. See `Short Manual_v_1_08_3.pdf` for new capabilities.
+
 ## Features
 - RHF/UHF, RKS/UKS, MP2/UMP2/PUMP2 calculations
 - LDA and GGA functionals (SVWN, BLYP, BP86, BPW91, PBE, B3LYP, PBE0)
@@ -41,9 +45,4 @@ See `Short Manual_v_1_08_3.pdf` for the keyword list of StudDFT.
 See `../docs/` for additional documentation.
 See `../examples/` for sample inputs.
 Download and unpack `tests` to check the test results for 50+ molecules with various methods.
-
-NOTE: StudDFT cersion 0.82.1 corresponds to the article: 
-S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and scientific purposes" Zhurn.Fiz.Khimii, (accepted in June, 2026)
-It is placed here for the compatibility with the above paper.
-The version 1.08.3 is the newer version having much more capabilities. 
 

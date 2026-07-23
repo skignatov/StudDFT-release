@@ -4,11 +4,11 @@
 
 2. Untar it to any convenient dir, e.g. to home/student/studdft :
 
-         `tar -xzvf studdft_linux_portable_v.1.08.3.tar.gz -C /home/student/studdft`
+         tar -xzvf studdft_linux_portable_v.1.08.3.tar.gz -C /home/student/studdft
 
 3. Add path to this place to your PATH:
 
-         `export PATH=/home/student/studdft:$PATH'
+         export PATH=/home/student/studdft:$PATH
 
    (To make this path permanent, add this line to the end of your .bashrc and run the command:  `source ./.bashrc`) 
 
@@ -16,7 +16,7 @@
 
 5. Go to dir with your tasks (e.g. `h2o.inp`) and run:
   
-         `sdft h2o.inp`
+         sdft h2o.inp
 
    or (for background calculation)
 

@@ -1,0 +1,68 @@
+                        StudDFT BINARY FREEWARE LICENSE
+                                Version 1.0
+
+Copyright (C) 2024-2026 Stanislav K. Ignatov.  All rights reserved.
+
+This license governs the StudDFT binary distribution: the executable
+program, the accompanying manual, the basis-set and parameter library,
+the example/test inputs, and the installation scripts (together, the
+"Software"), EXCEPT for the third-party and LGPL-licensed components
+identified in Section 6 and in the file THIRD_PARTY_NOTICES.md, which
+are governed by their own licenses.
+
+1. GRANT.  Permission is hereby granted, free of charge, to any person
+   or organization to install and use the Software for educational,
+   academic, research, personal, and internal evaluation purposes.
+   Any other use, including commercial production use, requires prior
+   written permission from the authors.
+
+2. REDISTRIBUTION.  Redistribution of the Software is permitted only
+   as the complete, unmodified distribution archive, free of charge,
+   and retaining this license, THIRD_PARTY_NOTICES.md, and all
+   third-party license files included in the archive.  Redistribution
+   of modified archives, or of individual files extracted from the
+   archive, requires prior written permission, except where a
+   component's own license (Section 6) grants broader rights for that
+   component.
+
+3. NO SOURCE CODE.  The Software is provided in binary form only.
+   This license does not grant any right to receive the source code
+   of the Software, except for the LGPL-licensed components listed in
+   Section 6, for which source availability is governed by the GNU
+   Lesser General Public License.
+
+4. RESTRICTIONS.  You may not modify, decompile, disassemble, or
+   reverse-engineer the Software, except (a) to the extent such
+   restriction is prohibited by applicable law, and (b) as expressly
+   permitted by the licenses of the components listed in Section 6,
+   to which the restrictions of this Section do not apply.
+
+5. CITATION REQUEST (not a license condition).  If you use the
+   Software in published scientific work, the authors kindly request
+   a citation of the StudDFT program and version, as described in the
+   manual.
+
+6. THIRD-PARTY AND LGPL COMPONENTS.  The distribution contains
+   components licensed under their own terms, enumerated in
+   THIRD_PARTY_NOTICES.md.  In particular, the D3 dispersion
+   REFERENCE DATA FILES (basis_data/d3_atomic.dat,
+   basis_data/d3_c6ref.dat) are licensed under the GNU Lesser
+   General Public License v3.0 or later and are distributed
+   alongside the Software as replaceable run-time inputs; the
+   dispersion program code itself is part of the Software.  Nothing
+   in this license limits, and in case of conflict this license
+   yields to, the rights granted to you by those licenses with
+   respect to those components.
+
+7. NO WARRANTY.  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY
+   OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+   WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE,
+   ACCURACY OF RESULTS, AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+   AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY,
+   WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+   FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+   Scientific results produced by the Software require independent
+   verification; the Software is an educational tool.
+
+8. TERMINATION.  This license terminates automatically upon any
+   breach of its terms.  Sections 6 and 7 survive termination.

@@ -20,7 +20,7 @@ Version 1.08.3 is the newer release having much more capabilities and appropriat
 
 ## Start calculations (Windows)
 
-1. Click on the file `StudDFT_v1_17_1_win64.zip` to get inside and push the button `Downoad raw file` on the right. 
+1. Click on the file `StudDFT_v1_25_3_win64.zip` to get inside and push the button `Downoad raw file` on the right. 
    Place the file to your local disk and unzip it. 
    You will have directory like `c:\StudDFT` on your computer with programs inside. 
    Do not put this directory to the secured Windows folders like "Program Files", folders with cyrillic symbols in their names etc.

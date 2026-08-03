@@ -1,8 +1,6 @@
 ### StudDFT
 
-This is the new release (v.1.17.1) of scientific-educational quantum chemistry program StudDFT.
-The older version 0.82.1 is placed in the root directory for the compatibility with the original article: 
-S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and research purposes", Zhurn.Fiz.Khimii (rus.), (accepted in June, 2026)
+This is the new release (v.1.25.3) of scientific-educational quantum chemistry program StudDFT.
 
 ### Features (see full list in StudDFT_Short_Manual_<version>.pdf)
 - RHF/UHF, RKS/UKS, MP2/UMP2/PUMP2 calculations

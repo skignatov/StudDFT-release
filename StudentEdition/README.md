@@ -20,8 +20,8 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
    You will have directory like `c:\StudDFT` on your computer with programs inside. 
    Do not put this directory to the secured Windows folders like "Program Files", folders with cyrillic symbols in their names etc.
 
-2. Run `set_user_environment.bat` to set up PATH and STUDDFT environment variables for current user
-  (you also can set them up manually with the directory name where the program residues. Probably, new terminal/window should be started to find the changes)
+2. Run `set_user_environment.bat` to set up PATH and STUDDFT environment variables for current user.
+  (You also can set them up manually with the directory name where the program residues. Probably, new terminal/window should be started to find the changes)
 
 3. If needed, open `sd.bat` with any ASCII text editor (Far, Notepad, WordPad, ...) and correct the OMP variables for your computer: 
 
@@ -34,7 +34,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
     `sd h2o.inp`
 
    After successful run the output files `h2o.log`, `h2o.hess`, `h2o.molden` will appear.
-   If you have ChemCraft, Molden or Avogadro on your computer, click on h2o.molden to visualize the geometry and vibrations, click on h2o.molden
+   If you have ChemCraft, Molden or Avogadro on your computer, click twice on h2o.molden to visualize the geometry and vibrations.
 
 ### Начало расчетов (Windows)
 
@@ -44,7 +44,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
 2. Запустите `set_user_environment.bat`, чтобы настроить переменные среды PATH и STUDDFT для текущего пользователя.
   (Вы также можете задать PATH и STUDDFT вручную в настройках Windows, указав имя каталога, где находится программа. 
-   Возможно, потребуется открыть новое окно терминала, чтобы изменения вступили в действие.
+   Возможно, потребуется открыть новое окно терминала, чтобы изменения вступили в действие.)
 
 3. При необходимости откройте `sd.bat` в любом текстовом редакторе ASCII (Far, Notepad, WordPad и т.д.) и отредактируйте переменные OpenMP 
    для параллельной работы программы на вашем компьютере:
@@ -58,7 +58,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
    `sd h2o.inp`
 
 После успешного выполнения появятся файлы c результатами расчета `h2o.log`, `h2o.hess`, `h2o.molden`.
-Если на вашем компьютере установлены ChemCraft, Molden или Avogadro, щелкните h2o.molden чтобы увидеть оптимизированную геометрию и молекулярные колебания.
+Если на вашем компьютере установлены ChemCraft, Molden или Avogadro, щелкните дважды h2o.molden чтобы ыизуализировать оптимизированную геометрию и молекулярные колебания.
 
 ## Documentation
 See `Short Manual_v_<version>.pdf` for the keyword list of StudDFT.

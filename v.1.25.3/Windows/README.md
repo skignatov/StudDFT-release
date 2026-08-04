@@ -4,7 +4,6 @@ Scientific-educational quantum chemistry program implementing HF and DFT
 (RHF/RKS/UHF/UKS) with ECP support, analytical gradients, and
 Hessians. Written in Fortran 2008, built with Intel Fortran.
 Parallelization with OpenMP. Current build is StudDFT.exe, release x64 for Win7/10/11
-See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further detail.
 
 NOTE: older StudDFT version 0.82.1 is placed in the root directory for the compatibility with the original article: 
 S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and research purposes", Zhurn.Fiz.Khimii (rus.), (accepted in June, 2026)
@@ -16,11 +15,11 @@ Version 1.08.3 is the newer release having much more capabilities and appropriat
 - Cartesian and spherical basis sets with optional ECPs
 - SP energy, geometry optimization, frequency calculations, PES scanning
 - Analytical energy gradients and Hessians
-- RI-DFT, TD-DFT, CDFT
+- RI-DFT, TD-DFT, CDFT, RT-TDDFT, Ehrenfest MD (FullEdition)
 
 ## Start calculations (Windows)
 
-1. Click on the file `StudDFT_v1_25_3_win64.zip` to get inside and push the button `Downoad raw file` on the right. 
+1. Click on the file `StudDFT_<version>_Win64.zip` to get inside and push the button `Downoad raw file` on the right. 
    Place the file to your local disk and unzip it. 
    You will have directory like `c:\StudDFT` on your computer with programs inside. 
    Do not put this directory to the secured Windows folders like "Program Files", folders with cyrillic symbols in their names etc.

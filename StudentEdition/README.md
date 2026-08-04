@@ -15,7 +15,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
 ## Start calculations (Windows)
 
-1. Click on the file `StudDFT_<version>_Winx64.zip` to get inside and push the button `Downoad raw file` on the right. 
+1. Click on the file `StudDFT_<version>_Win64.zip` to get inside and push the button `Downoad raw file` on the right. 
    Place the file to your local disk and unzip it. 
    You will have directory like `c:\StudDFT` on your computer with programs inside. 
    Do not put this directory to the secured Windows folders like "Program Files", folders with cyrillic symbols in their names etc.
@@ -38,7 +38,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 
 ### Начало расчетов (Windows)
 
-1. Щелкните по файлу `StudDFT_<версия>_winx64.zip`, чтобы открыть его, и нажмите кнопку `Download raw file` справа.
+1. Щелкните по файлу `StudDFT_<версия>_Win64.zip`, чтобы открыть его, и нажмите кнопку `Download raw file` справа.
    Скопируйте zip-файл на локальный диск и распакуйте его в папку с простым именем, например, `c:\StudDFT`.
    Не размещайте этот каталог в защищенных папках Windows, таких как "Program Files", папках с русскими символами в названиях и т. д.
 

@@ -19,8 +19,11 @@ S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and r
 - Ehrenfest dynamics
 
 ### Full Edition vs Student Edition
-The current version comes in two releases - Full Edition and Student Edition. Student Edition is more compact, robust, and less demanding on hardware.
+The current version comes in two releases - Full Edition and Student Edition. 
+
+Student Edition is more compact, robust, and less demanding on hardware.
 It is recommended to use Student Edition for teachning.
+
 Full edition contains additionally the advanced DFT methods: RI-K, CDFT, RT-TDDFT, and Ehrenfest MD. It requires more memory and disk space. 
 
 

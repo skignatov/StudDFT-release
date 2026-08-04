@@ -1,0 +1,564 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:04/08/2026                        Time:11:49:44.84
+
+ Host           : Q10
+ Work directory : D:\tmp
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: h2o.inp
+
+ --- Input file echo ---------------------------------------
+   | %method  b3lyp
+   | %basis   6-31G(d,p)
+   | %job     opt+freq
+   | %charge  0
+   | %mult    1
+   | 
+   | %geo
+   | O   0.000000   0.000000   0.117370
+   | H   0.000000   0.756950  -0.469483
+   | H   0.000000  -0.756950  -0.469483
+   | 
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Opt + Freq
+   Method:           b3lyp
+   Basis set:        6-31G(d,p)
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               3
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        50
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1         0.00000000   0.00000000   0.11737000
+    H2         0.00000000   0.75695000  -0.46948300
+    H3         0.00000000  -0.75695000  -0.46948300
+
+ Setting up method...
+   Functional:       B3LYP
+   Class:            Hybrid
+   HF exchange:       20.00 %
+   XC components:
+     id= 101  weight=  0.0800
+     id= 102  weight=  0.7200
+     id= 201  weight=  0.1900
+     id= 203  weight=  0.8100
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            3
+   Number of shells:          12
+   Number of basis fns:       25
+   Primitive Gaussians:       25
+   Total electrons:           10
+   Alpha electrons:            5
+   Beta electrons:             5
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     6    1       1
+       2     1   s     3    1       2
+       3     1   s     1    1       3
+       4     1   p     3    3       4
+       5     1   p     1    3       7
+       6     1   d     1    6      10
+       7     2   s     3    1      16
+       8     2   s     1    1      17
+       9     2   p     1    3      18
+      10     3   s     3    1      21
+      11     3   s     1    1      22
+      12     3   p     1    3      23
+ =============================================
+   Point group: C2v   (atom-match deviation  1.75E-16 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing:  88.4 % contraction-first,  11.6 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.016 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =    23.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    74.2122240986
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -222.5369605149
+     V max |el|  =    62.5861922063
+     V min diag  =   -62.5861922063
+     V max diag  =    -2.3593142041
+   Assembling H_core = T + V_nuc...
+     H trace     =  -148.3247364163
+     H max |el|  =    33.0460524123
+     H min diag  =   -33.0460524123
+     H max diag  =    -1.4259808708
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.017 s
+ =======================================================
+
+ --- Building DFT integration grid ---
+   Grid               : standard (default)
+   Radial scheme      : Mura-Knowles Log3
+   Radial points/atom : 75
+   Angular scheme     : Lebedev, pruned (3 tiers, r/R_BS)
+   Angular sizes      : 110 / 302 / 590
+   Becke size adj.    : none (standard Becke)
+   Grid points (total): 48654
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      3
+   Bonds:                           2
+   Angles:                          1
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   1.809969
+       1 -   3  R =   1.809969
+   Angles (degrees):
+       2 -   1 -   3  theta =   104.4281
+   Initial Hessian: Lindh diagonal model
+
+   Geometry Optimization (RFO / Internal Coordinates)
+   =========================================================================
+                                     max|g|    rms(g)    max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:       3081 shell quartets,        0.5 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     181235 quartets/s  (  6 threads,     0.017 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   2.737E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   2.487E+009)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.665E+009)
+   Checkpoint written: h2o.chk
+   SCF converged in   10 iter  (dE=-5.116E-13, dP= 1.944E-08, |g|= 7.051E-08)
+     ERI gradient:   6 threads,     78 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -76.38614890  -7.64E+01  1.02E-02  5.22E-03  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1          0.00000000    0.00000000    0.11737000
+     H2          0.00000000    0.75695000   -0.46948300
+     H3          0.00000000   -0.75695000   -0.46948300
+
+   --- Step    2 ---
+   Conventional SCF:       3081 shell quartets,        0.5 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   9.463E+009)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   4.194E+008)
+   Checkpoint written: h2o.chk
+   SCF converged in    8 iter  (dE= 2.842E-14, dP= 5.287E-09, |g|= 1.451E-08)
+     ERI gradient:   6 threads,     78 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -76.38624044  -9.15E-05  4.03E-03  2.49E-03  1.92E-02  9.87E-03
+                                      no        no        no        no 
+     [geo0002]
+     O1          0.00000000   -0.00000000    0.12242839
+     H2          0.00000000    0.76712658   -0.47201220
+     H3          0.00000000   -0.76712658   -0.47201220
+
+   --- Step    3 ---
+   Conventional SCF:       3081 shell quartets,        0.5 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     181235 quartets/s  (  6 threads,     0.017 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.744E+009)
+   Checkpoint written: h2o.chk
+   SCF converged in    7 iter  (dE=-3.553E-13, dP= 2.039E-08, |g|= 4.396E-08)
+     ERI gradient:   6 threads,     78 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -76.38628084  -4.04E-05  1.47E-04  7.73E-05  9.74E-03  4.59E-03
+                                      yes       yes       no        no 
+     [geo0003]
+     O1          0.00000000   -0.00000000    0.12233707
+     H2          0.00000000    0.76197466   -0.47196653
+     H3          0.00000000   -0.76197466   -0.47196653
+
+   --- Step    4 ---
+   Conventional SCF:       3081 shell quartets,        0.5 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   7.676E+009)
+   Checkpoint written: h2o.chk
+   SCF converged in    7 iter  (dE= 1.137E-13, dP= 1.205E-09, |g|= 1.542E-09)
+     ERI gradient:   6 threads,     78 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4    -76.38628087  -3.07E-08  1.95E-06  1.10E-06  1.78E-04  9.63E-05
+                                      yes       yes       yes       yes
+     [geo0004]
+     O1          0.00000000   -0.00000000    0.12227577
+     H2          0.00000000    0.76188049   -0.47193588
+     H3          0.00000000   -0.76188049   -0.47193588
+
+   ======================================================
+   Optimization converged in    4 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000  -0.00000000   0.23106771
+   H2         0.00000000   1.43974547  -0.89182957
+   H3         0.00000000  -1.43974547  -0.89182957
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000  -0.00000000   0.12227577
+   H2         0.00000000   0.76188049  -0.47193588
+   H3         0.00000000  -0.76188049  -0.47193588
+   -----------------------------------------------
+   Final energy:     -76.386280865860
+   Optimization time:      1.150 s
+
+   Point group after optimization: C2v  (unchanged)
+
+ --- Section 6: Hessian & Frequencies ---
+   Computing overlap integrals (S)...
+     S trace     =    23.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    74.2122240986
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -222.0792243644
+     V max |el|  =    62.5765748854
+     V min diag  =   -62.5765748854
+     V max diag  =    -2.3573750286
+   Assembling H_core = T + V_nuc...
+     H trace     =  -147.8670002658
+     H max |el|  =    33.0364350914
+     H min diag  =   -33.0364350914
+     H max diag  =    -1.4240416952
+   Grid               : standard (default)
+   Radial scheme      : Mura-Knowles Log3
+   Radial points/atom : 75
+   Angular scheme     : Lebedev, pruned (3 tiers, r/R_BS)
+   Angular sizes      : 110 / 302 / 590
+   Becke size adj.    : none (standard Becke)
+   Grid points (total): 48654
+   NOTE: Grid 3 may not be accurate enough for analytical Hessian
+         calculations. Use %grid 6 or higher for frequencies.
+   Method: Analytical RKS Hessian
+   NOTE: Grid 3 may not be accurate
+         enough for analytical Hessian calculations.
+         Use %grid 6 or higher for frequencies.
+   Conventional SCF:       3081 shell quartets,        0.5 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   2.386E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   2.193E+009)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.671E+009)
+   Checkpoint written: h2o.chk
+   SCF converged in   10 iter  (dE=-4.832E-13, dP= 2.323E-08, |g|= 8.601E-08)
+   Analytical RHF/RKS Hessian (v0.50.1)
+   Basis functions:      25
+   Occupied MOs:          5
+   Virtual MOs:          20
+   Hessian dimension:     9
+   XC functional:    B3LYP
+   HF exchange:       20.00 %
+ 
+   Step 1: Nuclear repulsion Hessian...
+           done (   0.000 s)
+     [TI Nuclear  ] max |row sum| =   3.8858E-16
+   Step 2: Skeleton 1e second derivatives...
+           done (   0.050 s)
+     [TI Skel 1e  ] max |row sum| =   6.8834E-13
+   Step 3: Skeleton 2e second derivatives...
+           done (   0.084 s)
+     [TI Skel +2e ] max |row sum| =   7.6628E-13
+   Step 3b: XC skeleton second derivatives...
+     XC skeleton: v0.60 (OpenMP, meta-GGA)
+     1e+2e skel H(1,1) =      2.112949
+     XC skel    H(1,1) =      0.518460
+     1e+2e skel H(2,2) =     -1.860862
+     XC skel    H(2,2) =      0.042196
+     [TI XC alone ] max |row sum| =   8.0936E-03
+           done (   0.816 s)
+     [TI Skel +XC ] max |row sum| =   8.0936E-03
+     [TI Skel proj] max |row sum| =   2.8126E-16
+   Step 4: Solving CPHF equations...
+     [Step4] dS build:            0.00 s
+     dVxc: standard form (v_ip + vmat + Becke wt deriv)
+     [dVxc-sub] v_ip:     0.32 s
+     [dVxc-sub] vmat(per-atom):     0.58 s
+     [dVxc-sub] Becke wt deriv:     0.13 s
+     [Step4] dF build (dH+dG+dVxc):    1.07 s
+     XC cache:    48643 active pts of    48654, avg sig bfs:   24/  25
+     [xc-split] cache/apply/free:     0.05    0.13    0.03 s
+     Iterative CPKS (PCG):    100 unknowns,    9 perturbations
+     XC cache:    48643 active pts of    48654, avg sig bfs:   24/  25
+     [Step4] CPKS cache build:     0.07 s
+     Computing initial A*U (JK)...
+     JK done. Adding XC kernel...
+     XC A-product done. Transforming...
+     [Step4] CPKS initial A*U:      0.13 s
+     CPKS initial: coord ||B||       ||D*U0||    ||A*U0||    ||R0||
+                      1    0.230223    0.230223    0.022989    0.022989
+                      2    0.298420    0.298420    0.049564    0.049564
+                      3    0.275949    0.275949    0.178251    0.178251
+                      4    0.158530    0.158530    0.014707    0.014707
+                      5    0.217924    0.217924    0.097538    0.097538
+                      6    0.198184    0.198184    0.089864    0.089864
+     CPKS iter    1  max|R|=  5.04E-03  act=   9  JK=  0.0s XC=  0.1s
+     CPKS iter    2  max|R|=  1.64E-03  act=   9  JK=  0.0s XC=  0.1s
+     CPKS iter    3  max|R|=  1.31E-04  act=   9  JK=  0.0s XC=  0.1s
+     CPKS iter    5  max|R|=  1.20E-06  act=   5  JK=  0.0s XC=  0.2s
+     CPKS converged in    7 iterations, max|R| =   8.11E-09
+           done (   2.417 s)
+   Step 5: Building density response...
+     XC cache:    48643 active pts of    48654, avg sig bfs:   24/  25
+     [xc-split] cache/apply/free:     0.08    0.13    0.03 s
+           done (   0.250 s)
+   Step 6: Response contributions...
+           done (   0.000 s)
+
+   Hessian component analysis (selected elements):
+   Component       H(1,1)       H(3,3)       H(3,6)       H(1,4)
+   Nuclear      -2.628557     0.353965    -0.176983     1.314279
+   Skeleton      2.629463     0.002484    -0.001242    -1.314732
+   Response      0.005984     0.098240    -0.049318    -0.003589
+   Total         0.006890     0.454690    -0.227543    -0.004042
+   Component       H(2,2)       H(5,5)       H(2,5)
+   Nuclear       2.274592     1.221065    -1.137296
+   Skeleton     -1.826760    -0.975339     0.913380
+   Response      0.222037     0.120076    -0.110709
+   Total         0.669869     0.365802    -0.334625
+ 
+   TI violation before fix: max|row sum| =   1.49E-03
+   TI enforced via Newton sum rule on full Hessian.
+   ||Nuc||,||Skel||,||Resp||=       8.6606      7.9390      0.5202
+   Diag: Nuc      Skel      Resp      Total
+    1   -2.62856    2.62946    0.00598    0.00808
+    2    2.27459   -1.82676    0.22204    0.66925
+    3    0.35397    0.00248    0.09824    0.45509
+    4   -1.35616    1.35081    0.01089    0.00500
+    5    1.22106   -0.97534    0.12008    0.36611
+    6    0.13510    0.01705    0.06533    0.21731
+    7   -1.35616    1.35081    0.01089    0.00500
+    8    1.22106   -0.97534    0.12008    0.36611
+    9    0.13510    0.01705    0.06533    0.21731
+   Analytical Hessian assembled.
+   === Full Analytical Hessian (Hartree/Bohr^2) ===
+                 1           2           3           4           5           6
+   1      0.008083   -0.000000   -0.000000   -0.004042   -0.000000    0.000000
+   2     -0.000000    0.669251    0.000000   -0.000000   -0.334625    0.258372
+   3     -0.000000    0.000000    0.455086    0.000000    0.196276   -0.227543
+   4     -0.004042   -0.000000    0.000000    0.005005    0.000000   -0.000000
+   5     -0.000000   -0.334625    0.196276    0.000000    0.366113   -0.227324
+   6      0.000000    0.258372   -0.227543   -0.000000   -0.227324    0.217306
+   7     -0.004042    0.000000    0.000000   -0.000963    0.000000   -0.000000
+   8      0.000000   -0.334625   -0.196276    0.000000   -0.031488   -0.031898
+   9      0.000000   -0.258372   -0.227543    0.000000    0.031898    0.010237
+ 
+                 7           8           9
+   1     -0.004042    0.000000    0.000000
+   2      0.000000   -0.334625   -0.258372
+   3      0.000000   -0.196276   -0.227543
+   4     -0.000963    0.000000    0.000000
+   5      0.000000   -0.031488    0.031898
+   6     -0.000000   -0.031898    0.010237
+   7      0.005005   -0.000000   -0.000000
+   8     -0.000000    0.366113    0.227324
+   9     -0.000000    0.227324    0.217306
+   === End Hessian ===
+
+   Cartesian Hessian (Ha/Bohr^2):
+                     1           2           3           4           5           6
+     1        0.008083   -0.000000   -0.000000   -0.004042   -0.000000    0.000000
+     2       -0.000000    0.669251    0.000000   -0.000000   -0.334625    0.258372
+     3       -0.000000    0.000000    0.455086    0.000000    0.196276   -0.227543
+     4       -0.004042   -0.000000    0.000000    0.005005    0.000000   -0.000000
+     5       -0.000000   -0.334625    0.196276    0.000000    0.366113   -0.227324
+     6        0.000000    0.258372   -0.227543   -0.000000   -0.227324    0.217306
+     7       -0.004042    0.000000    0.000000   -0.000963    0.000000   -0.000000
+     8        0.000000   -0.334625   -0.196276    0.000000   -0.031488   -0.031898
+     9        0.000000   -0.258372   -0.227543    0.000000    0.031898    0.010237
+ 
+                     7           8           9
+     1       -0.004042    0.000000    0.000000
+     2        0.000000   -0.334625   -0.258372
+     3        0.000000   -0.196276   -0.227543
+     4       -0.000963    0.000000    0.000000
+     5        0.000000   -0.031488    0.031898
+     6       -0.000000   -0.031898    0.010237
+     7        0.005005   -0.000000   -0.000000
+     8       -0.000000    0.366113    0.227324
+     9       -0.000000    0.227324    0.217306
+   Computing dipole derivatives for IR intensities...
+   Dipole derivatives computed.
+     Projected out  6 TR modes.
+
+   Vibrational Frequency Analysis
+   ======================================================
+ 
+   Mode   Freq (cm^-1)   IR int (km/mol)   Type
+   ----   -----------   ---------------   ------
+     1         -0.00                   TR      
+     2          0.00                   TR      
+     3          0.00                   TR      
+     4          0.00                   TR      
+     5          0.00                   TR      
+     6          0.00                   TR      
+     7       1680.49         67.7258   vib     
+     8       3783.73          1.2233   vib     
+     9       3898.38         20.1817   vib     
+ 
+   Vibrational modes:    3
+   TR modes:             6
+ 
+   ZPVE:       4681.30 cm^-1
+              0.021330 Eh
+               13.3845 kcal/mol
+               56.0008 kJ/mol
+
+   Normal Modes (Cartesian displacements):
+
+   Mode   1:     1680.49 cm^-1,  IR:    67.7258 km/mol
+     Atom       dx         dy         dz
+       1   0.000000   0.000000  -0.070773
+       2  -0.000000   0.426597   0.561703
+       3   0.000000  -0.426597   0.561703
+
+   Mode   2:     3783.73 cm^-1,  IR:     1.2233 km/mol
+     Atom       dx         dy         dz
+       1  -0.000000   0.000000  -0.049758
+       2  -0.000000  -0.585498   0.394911
+       3  -0.000000   0.585498   0.394911
+
+   Mode   3:     3898.38 cm^-1,  IR:    20.1817 km/mol
+     Atom       dx         dy         dz
+       1  -0.000000  -0.070080  -0.000000
+       2  -0.000000   0.556204  -0.433799
+       3   0.000000   0.556204   0.433799
+   Hessian written to: h2o.hess
+   Molden file written to: h2o.molden
+   Hessian & Frequencies time:      3.850 s
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =    23.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    74.2122240986
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -222.0792243644
+     V max |el|  =    62.5765748854
+     V min diag  =   -62.5765748854
+     V max diag  =    -2.3573750286
+   Assembling H_core = T + V_nuc...
+     H trace     =  -147.8670002658
+     H max |el|  =    33.0364350914
+     H min diag  =   -33.0364350914
+     H max diag  =    -1.4240416952
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -85.496557593185
+     Nuclear repulsion:       9.110276727325
+     Total energy:          -76.386280865860
+
+   Grid-quality check (density integration):
+     Integrated N_e:         10.0245144927   (exact = 10.0)
+     Deviation:           2.45145E-02   (   2.451E-01 %)
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.611586   -0.611586
+       2      H       0.694207    0.305793
+       3      H       0.694207    0.305793
+   ------------------------------------------------
+   Total electrons:    10.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000   -0.000000    0.064883
+   Electronic (au):     0.000000    0.000000   -0.867623
+   Total      (au):     0.000000    0.000000   -0.802741
+   |mu|       (au):     0.802741
+   |mu|    (Debye):     2.040363
+   ================================================
+   Section 7 time:      0.017 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      5.050 seconds
+ =======================================================
+
+
+ Date:04/08/2026                        Time:11:49:49.89
+

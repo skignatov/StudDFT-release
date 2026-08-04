@@ -23,17 +23,18 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 2. Run `set_user_environment.bat` to set up PATH and STUDDFT environment variables for current user
   (you also can set them up manually with the directory name where the program residues. Probably, new terminal/window should be started to find the changes)
 
-3. If needed, open sd.bat with any ASCII text editor (Far, Notepad, WordPad, ...) and correct the OMP variables for your computer: 
+3. If needed, open `sd.bat` with any ASCII text editor (Far, Notepad, WordPad, ...) and correct the OMP variables for your computer: 
 
       set OMP_NUM_THREADS=4       <-- set number of cores on your processor
 
       set OMP_STACKSIZE=64M       <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
-5. Go to your working directory (with your input file `your_molecule.inp` ) and run the program:
+5. Go to your working directory (e.g. with the input file `h2o.inp` ) and run the program:
 
-    sd yourfile.inp
+    `sd h2o.inp`
 
-   After successful run the output file `your_molecule.log` will appear.
+   After successful run the output files `h2o.log`, `h2o.hess`, `h2o.molden` will appear.
+   If you have ChemCraft, Molden or Avogadro on your computer, click on h2o.molden to visualize the geometry and vibrations, click on h2o.molden
 
 ### Начало расчетов (Windows)
 
@@ -45,19 +46,19 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
   (Вы также можете задать PATH и STUDDFT вручную в настройках Windows, указав имя каталога, где находится программа. 
    Возможно, потребуется открыть новое окно терминала, чтобы изменения вступили в действие.
 
-3. При необходимости откройте sd.bat в любом текстовом редакторе ASCII (Far, Notepad, WordPad и т.д.) и отредактируйте переменные OpenMP 
+3. При необходимости откройте `sd.bat` в любом текстовом редакторе ASCII (Far, Notepad, WordPad и т.д.) и отредактируйте переменные OpenMP 
    для параллельной работы программы на вашем компьютере:
 
    set OMP_NUM_THREADS=4 <-- установите количество ядер на вашем процессоре (1, 4, 8,...)
 
    set OMP_STACKSIZE=64M <-- установите разумный размер стека OpenMP (32M, 64M, 128M, ...)
 
-5. Перейдите в свой рабочий каталог (с вашим входным файлом `your_molecule.inp`) и запустите программу:
+5. Перейдите в свой рабочий каталог (с вашим входным файлом `h2o.inp`) и запустите программу:
 
-   sd your_molecule.inp
+   `sd h2o.inp`
 
-После успешного выполнения появится файл c результатами расчета `your_molecule.log`.
-
+После успешного выполнения появятся файлы c результатами расчета `h2o.log`, `h2o.hess`, `h2o.molden`.
+Если на вашем компьютере установлены ChemCraft, Molden или Avogadro, щелкните h2o.molden чтобы увидеть оптимизированную геометрию и молекулярные колебания.
 
 ## Documentation
 See `Short Manual_v_<version>.pdf` for the keyword list of StudDFT.

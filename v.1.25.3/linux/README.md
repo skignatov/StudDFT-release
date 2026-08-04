@@ -15,11 +15,11 @@ Full features list see in `Short_Manual_<version>.pdf`
 
 ## Start calculations (Linux)
 
-1. Download studdft_v1_25_3-FE-openblas_static.tar.gz to your system and untar it to the specified directory (say, to /home/student):
+1. Download studdft_v1_25_3-FE-openblas_static.tar.gz to your system and untar it to the specified existing directory (say, to /home/student):
 
    `tar -xzvf studdft_v1_25_3-FE-openblas_static.tar.gz -C /home/student`
 
-   The directory /home/student/studdft_v1_25_3-FE-openblas_static will appear
+   The directory /home/student/studdft_v1_25_3-FE-openblas_static will appear. 
    You can rename it to the shorter name if you wish:
 
    `mv /home/student/studdft_v1_25_3-FE-openblas_static  /home/student/studdft`
@@ -42,11 +42,11 @@ Full features list see in `Short_Manual_<version>.pdf`
    
    `source ./.bashrc`
 
-3. Go to your work directory (say, /home/student/work) and run calculations with your input file (say, h2o.inp):
+3. Go to your work directory (e.g. /home/student/work) and run calculations with your input file, say, h2o.inp (you can copy the sample file h2o.inp from this site):
 
    `sdft h2o.inp`
 
-   After successful run the output files `h2o.log`, `h2o.hess`, `h2o.molden` will appear.
+   After successful run the output files `h2o.log`, `h2o.hess`, `h2o.molden` will appear in your work directory.
    If you have Molden or Avogadro software on your system, you can visualize the optimized geometry and vibrational frequencies saved in the `h2o.molden` file.
 
 

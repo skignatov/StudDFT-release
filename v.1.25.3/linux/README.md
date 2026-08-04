@@ -15,11 +15,11 @@ Full features list see in `Short_Manual_<version>.pdf`
 
 ## Start calculations (Linux)
 
-1. Download `studdft_v1_25_3-FE-openblas_static.tar.gz` to your system and untar it to the specified directory (say, to /home/student):
+1. Download studdft_v1_25_3-FE-openblas_static.tar.gz to your system and untar it to the specified directory (say, to /home/student):
 
    `tar -xzvf studdft_v1_25_3-FE-openblas_static.tar.gz -C /home/student`
 
-   The directory `/home/student/studdft_v1_25_3-FE-openblas_static` will appear
+   The directory /home/student/studdft_v1_25_3-FE-openblas_static will appear
    You can rename it to the shorter name if you wish:
 
    `mv /home/student/studdft_v1_25_3-FE-openblas_static  /home/student/studdft`
@@ -27,12 +27,15 @@ Full features list see in `Short_Manual_<version>.pdf`
 2. Go to the new directory and make files sdft and studdft executable:
 
    `cd /home/student/studdft`
+
    `chmod 777 sdft`
+
    `chmod 777 studdft`
 
 2. Open your .bashrc with any text editor and add two lines (after the line with your current PATH):
 
    `export STUDDFT=/home/student/studdft`
+
    `export PATH=$STUDDFT:$PATH`
 
    Actualize your .bashrc to make the new variables in action:
@@ -50,6 +53,7 @@ Full features list see in `Short_Manual_<version>.pdf`
 3. If needed, you may edit `sdft` file with any ASCII text editor to correct the OMP variables for your computer: 
 
       `set OMP_NUM_THREADS=4`       <-- set number of cores on your processor (1, 2, 4, 8...) (set to 4 by default)
+
       `set OMP_STACKSIZE=64M`       <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
 ## Documentation

@@ -1,0 +1,22 @@
+! Test v1.09.2 (2/2): always-on point-group detection and the
+! post-optimization re-detection / change notice.
+! A deliberately distorted water seed (Cs -- any triatomic is at
+! least planar) optimizes back toward the C2v minimum; with the
+! LOOSened %symmetry_tol below, the optimizer's residual asymmetry
+! (~1e-2 bohr at the default convergence thresholds) falls inside
+! the detection tolerance and the group change is reported:
+!   startup:  "Point group: Cs"
+!   post-opt: "Point group after optimization: C2v  (was Cs)"
+! With the default %symmetry_tol (1e-3 bohr) the same run honestly
+! reports Cs (unchanged): recovering the EXACT group needs the
+! residual asymmetry below the tolerance.  The re-detection itself
+! runs for EVERY optimization job, with no keyword required.
+%method  HF
+%basis   sto-3g
+%job     opt
+%symmetry_tol 0.08
+*geometry angstrom
+ O   0.000000    0.000000    0.121300
+ H   0.000000    0.900000   -0.429200
+ H   0.000000   -0.620000   -0.489200
+*end

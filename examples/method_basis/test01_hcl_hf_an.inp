@@ -1,0 +1,11 @@
+! Test 01: HCl HF/LANL2DZ - analytical hessian with ECP
+! Expected: ~3047.6 cm-1 (should match numerical within ~1 cm-1)
+%method  HF
+%basis   lanl2dz
+%ecp     lanl2dz
+%job     freq
+%hess_method analytical
+*geometry angstrom
+ H    0.000000    0.000000    0.000000
+ Cl   0.000000    0.000000    1.274500
+*end

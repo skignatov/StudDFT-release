@@ -1,0 +1,17 @@
+! TDDFT mode matrix 03/16 -- pure LDA kernel  (SVWN)
+!
+! c_hf = 0, so the OOVV block is never built (have_exch = .false.) and
+! the memory forecast takes its phase-1 branch.  The XC kernel is the
+! LDA one: no gradient terms, the simplest quadrature path.
+%method  SVWN
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity singlet
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

@@ -1,0 +1,22 @@
+! TDDFT mode matrix 07/16 -- range-separated hybrid  (wB97X-D)
+!
+! The only case that builds the erf-attenuated MO blocks OVOV_X /
+! OOVV_X (v0.88.2) on top of the full-range ones, and the only one
+! whose memory forecast takes the phase-3 branch.  For wB97X-D the
+! short-range fraction is nonzero AND rs_beta > 0, so both weights
+! are exercised.
+!
+! Also covers the v1.13.1 clean-room CHG dispersion tail riding along
+! in the ground state.
+%method  WB97X-D
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity singlet
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

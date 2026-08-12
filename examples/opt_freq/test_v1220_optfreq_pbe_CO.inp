@@ -1,0 +1,30 @@
+! Oracle anchor, v1.22.0.  OPTIMIZATION AND FREQUENCIES.
+!
+! Three quantities, and they are not equally comparable.
+!
+!   geometry    the interatomic distances.  Insensitive to the
+!               integration grid and directly checkable.
+!   frequencies likewise, and the more searching of the two: a
+!               curvature is a second derivative and shows an
+!               error a bond length absorbs.
+!   energy      NOT asserted.  ORCA had to use defgrid3 here --
+!               Grid5+IntAcc6 makes its Hessian fail -- and that
+!               grid is denser than StudDFT's grid 8, which puts a
+!               systematic 90-145 uHa between the two optimized
+!               energies.  A tolerance wide enough to swallow that
+!               would swallow a real failure with it, so the
+!               difference is explained in a footnote instead.
+!
+%method  PBE
+%basis   cc-pVDZ
+%job     opt+freq
+%charge  0
+%mult    1
+%spherical
+%grid    8
+%scf_etol 1e-10
+%scf_ptol 1e-8
+%geom angstrom
+C  0. 0. 0.
+O  0. 0. 1.13
+*end

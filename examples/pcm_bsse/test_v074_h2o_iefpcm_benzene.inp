@@ -1,0 +1,21 @@
+! v0.74.0 PCM test 3:  water in benzene (HF/STO-3G, IEFPCM).
+!
+! Low-eps solvent test:  benzene has eps = 2.27, where the conductor
+! approximation behind C-PCM is least accurate.  At this eps:
+!   alpha = 2pi(eps+1)/(eps-1) = 2pi * 3.27/1.27 = 16.18 (vs 2pi = 6.28
+!     for the conductor limit -- big difference)
+!   f_CPCM = (eps-1)/eps = 0.5595 (whereas the conductor limit is 1.0)
+!
+! So C-PCM and IEFPCM should give noticeably DIFFERENT G_pol here.
+! This test simply checks that the IEFPCM build runs to convergence
+! and that |G_pol| < |G_pol_water| (less polar -> smaller stabilization).
+%method  HF
+%basis   sto-3g
+%job     energy
+%pcm     iefpcm
+%eps     2.2706
+%geom angstrom
+O  0.000000   0.000000   0.119262
+H  0.000000   0.755453  -0.477047
+H  0.000000  -0.755453  -0.477047
+*end

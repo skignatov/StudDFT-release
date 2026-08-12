@@ -1,0 +1,27 @@
+! TDDFT mode matrix 06/16 -- global hybrid, full RPA, BOTH multiplicities
+!                              + the XC-kernel self-tests
+!
+! The densest single case in the matrix: singlet and triplet blocks are
+! assembled and diagonalized in the same run, and %tddft_selftest
+! cross-checks the assembled (A+B) column against an independent
+! CPKS-style build (~1e-14) and the kernel routes against finite
+! differences of V_xc.
+!
+! This duplicates tests/test_v087_h2o_tddft.inp on purpose: that file
+! is the NUMERICAL anchor (its header carries hand-verified eV values),
+! this one is the MODE-COVERAGE entry.  Keep both.
+!
+! Physics check: every triplet must lie below its singlet partner.
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity both
+%tddft_selftest on
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

@@ -1,0 +1,33 @@
+! v0.73.0 PCM test 4:  fluoride anion F- in water (HF/STO-3G, C-PCM).
+!
+! Single-atom CHARGED solute.  This is the cleanest possible Gauss-
+! law check: for a net charge Q sitting fully inside the cavity, the
+! total apparent surface charge satisfies
+!
+!     sum(q) = -Q * (eps - 1) / eps
+!
+! exactly in the continuum limit.  For F- (Q = -1) in water
+! (eps = 78.36, f = 0.987), the prediction is
+!
+!     sum(q) = -(-1) * 0.987 = +0.987
+!
+! The discretized sum will differ from this by terms of order
+! (1/N_tess) and (a/R)^L for partial-wave moments above L = 0;
+! agreement to within ~1 % at lebedev_n = 110 is a good sanity
+! check on the cavity discretization and the C-PCM solver.
+!
+! Solvation free energy is also expected to be large and negative
+! (small ions in water are deeply stabilized): rough estimate from
+! Born model G_solv ~ -Q^2 / (2 R_F) * f, with R_F ~ 1.47 A * 1.20 =
+! 1.764 A, so G_solv ~ -0.157 Ha = -98.5 kcal/mol.  HF/STO-3G with
+! Bondi radii will overestimate that magnitude considerably.
+%method  HF
+%basis   sto-3g
+%charge  -1
+%mult    1
+%job     energy
+%pcm     cpcm     ! v0.74+ default is iefpcm; v0.73 tests pin cpcm explicitly
+%solvent water
+%geom angstrom
+F  0.000000   0.000000   0.000000
+*end

@@ -1,0 +1,13 @@
+! Test 12: OH radical UHF/LANL2DZ - analytical hessian (UHF + ECP)
+! Open-shell system with ECP on O
+%method  HF
+%basis   lanl2dz
+%ecp     lanl2dz
+%job     freq
+%hess_method analytical
+%spin    unrestricted
+%mult    2
+*geometry angstrom
+ O    0.000000    0.000000    0.000000
+ H    0.000000    0.000000    0.970000
+*end

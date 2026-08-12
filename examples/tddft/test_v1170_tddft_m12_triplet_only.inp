@@ -1,0 +1,19 @@
+! TDDFT mode matrix 12/16 -- triplet block alone
+!
+! Cases 01-05 request singlets, case 06 requests both; this one asks
+! for triplets ONLY, which is the branch where first_block is still
+! .true. when the triplet assembly starts.  A bug that initializes
+! shared state in the singlet pass would survive cases 01-06 and die
+! only here.
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity triplet
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

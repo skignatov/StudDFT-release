@@ -61,7 +61,7 @@ See manual \StudDFT\docs\StudDFT_MANUAL.md for input file format and further det
 Если на вашем компьютере установлены ChemCraft, Molden или Avogadro, щелкните дважды h2o.molden чтобы визуализировать оптимизированную геометрию и молекулярные колебания.
 
 ## Documentation
-See `Short Manual_v_<version>.pdf` for the keyword list of StudDFT.
+See `StudDFT_Short_Manual_<version>.pdf` for the keyword list of StudDFT.
 See `docs/` for additional documentation.
 See `examples/` for sample inputs.
 Download and unpack `tests` to check the test results for 50+ molecules with various methods.

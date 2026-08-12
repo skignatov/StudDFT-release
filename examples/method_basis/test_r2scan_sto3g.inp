@@ -1,0 +1,11 @@
+! Test: H2O r2SCAN/STO-3G
+! (Original used "%grid reference"; that token was retired -- use a
+!  valid built-in grid. Independent-impl ref at its own grid: -75.28691)
+%method R2SCAN
+%basis STO-3G
+%grid ultrafine
+*geometry angstrom
+ O 0.0000000 0.0000000 0.1173000
+ H 0.0000000 0.7572000 -0.4692000
+ H 0.0000000 -0.7572000 -0.4692000
+*end

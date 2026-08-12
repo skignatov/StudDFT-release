@@ -1,0 +1,32 @@
+! v0.72.0 test: HOOH torsion barrier transition state.
+!
+! H2O2 (hydrogen peroxide) has two equivalent skew minima around
+! a torsion angle of +/- 113 deg, with two distinct rotational
+! barriers between them:
+!   * trans barrier: TS at HOOH dihedral = 180 deg  (lower; ~ 1 kcal/mol
+!     at HF/STO-3G; experimentally ~1.1 kcal/mol)
+!   * cis barrier:   TS at HOOH dihedral =   0 deg  (higher; ~ 8-10 kcal/mol
+!     at HF/STO-3G; experimentally ~ 7 kcal/mol)
+!
+! This input targets the TRANS barrier (HOOH = 180 deg).  At the
+! TS the four atoms are coplanar.  Imaginary mode is the torsion
+! rotation around the O-O axis (~ 250-350i cm^-1 at HF/STO-3G).
+!
+! Initial guess: planar trans geometry (HOOH dihedral exactly 180);
+! we sit ON the saddle by symmetry, so P-RFO has very little work
+! to do but the test exercises the full pipeline.  The
+! displacement-criterion alternate exit catches this case quickly.
+%method  HF
+%basis   sto-3g
+%job     ts+freq
+%charge  0
+%mult    1
+%hess_method  analytical
+%ts_mode 1
+%geom_maxiter 60
+%geom angstrom
+O   0.000   0.000   0.737
+O   0.000   0.000  -0.737
+H   0.945   0.000   1.012
+H  -0.945   0.000  -1.012
+*end

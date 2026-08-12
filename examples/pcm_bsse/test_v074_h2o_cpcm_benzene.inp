@@ -1,0 +1,24 @@
+! v0.74.0 PCM test 6:  three-model comparison on water in benzene.
+!
+! Same molecule, same geometry, same basis, three solvent models.
+! Benzene (eps = 2.27) is the cleanest case to see the conductor-
+! approximation breakdown: C-PCM treats it as a near-conductor
+! (f = 0.5595) which is way off, while IEFPCM keeps the full
+! dielectric law.  COSMO's empirical (eps-1)/(eps+0.5) = 0.4496
+! sits in between.
+!
+! Reference numbers harvested in v0.74.0 commit:
+!   IEFPCM:  G_pol = -0.002629800277
+!
+! This test runs the C-PCM half; the runner pairs it with the
+! IEFPCM benzene test for the divergence assertion.
+%method  HF
+%basis   sto-3g
+%job     energy
+%pcm     cpcm
+%eps     2.2706
+%geom angstrom
+O  0.000000   0.000000   0.119262
+H  0.000000   0.755453  -0.477047
+H  0.000000  -0.755453  -0.477047
+*end

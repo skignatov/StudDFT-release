@@ -1,0 +1,14 @@
+! v0.76.0 acceptance test: O2 triplet at equilibrium / BPW91 /
+! cc-pVDZ.  Default-everything (SAD on, AUTO occupation, no level
+! shift): must converge with |g| < 1e-5 to E ~ -150.33 Ha.
+%method  BPW91
+%basis   cc-pVDZ
+%job     energy
+%grid    tm
+%charge  0
+%mult    3
+%spherical
+
+%geo
+O  0.0  0.0  0.0
+O  0.0  0.0  1.21

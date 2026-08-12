@@ -1,0 +1,20 @@
+! v1.19.0: fills a cell of the capability matrix that no test
+! reached.  The Hybrid column had ScanOpt at
+! `not run`: B3LYP is the functional class most users actually
+! run, and its relaxed PES scan path was verified nowhere.
+!
+! This is a TRIPWIRE, not an oracle: the pinned value was recorded
+! from this build.  It proves the path keeps producing what it
+! produces today, which is what the empty cell was missing.
+%method B3LYP
+%basis sto-3g
+%grid 3
+%job scanopt
+%gz
+H1
+O2 H1 0.95
+O3 O2 1.45 H1 105.
+H4 O3 0.95 O2 105. H1 0.0
+
+%scan
+D 4 from 0.0 to 180.0 step 30.0

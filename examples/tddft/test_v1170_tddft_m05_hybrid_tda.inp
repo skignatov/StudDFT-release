@@ -1,0 +1,18 @@
+! TDDFT mode matrix 05/16 -- global hybrid + TDA  (B3LYP)
+!
+! First case where BOTH the XC kernel and the exact-exchange OOVV
+! block are present (c_hf = 0.20).  The peak-memory forecast switches
+! to its phase-2 branch here.
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_tda on
+%tddft_multiplicity singlet
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

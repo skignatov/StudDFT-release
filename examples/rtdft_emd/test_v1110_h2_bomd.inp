@@ -1,0 +1,22 @@
+! v1.11.0 Ehrenfest regression 1: the BOMD-limit oracle in time.
+! H2/PBE/STO-3G stretched +0.02 A off the optimizer minimum
+! (R_eq = 0.73659 A), released at rest.  Full run (240 x 5 au)
+! anchors: period 279.28 au vs harmonic 277.25 au (-0.73%, correct
+! anharmonic sign); this SHORT version (60 x 5 au ~ one period)
+! anchors the conservation and the monitors:
+!   max |E_tot - E_tot(0)|  ~ 9.8e-7 Ha
+!   |sum p|                 ~ 1e-13
+!   self-check |dE| at t=0  ~ 2e-15
+%method  PBE
+%basis   sto-3g
+%grid    1
+%job     energy
+%scf_ptol 1e-9
+%ehrenfest 60
+%eh_dt   5.0
+%eh_esub 24
+%eh_print_every 20
+%geom angstrom
+H 0.0 0.0 0.0
+H 0.0 0.0 0.75659070
+*end

@@ -1,0 +1,30 @@
+! Test v1.07.4: the SMEARED-SCF STABILISER on a genuinely metallic
+! d-cluster -- the class of system %smearing exists for, and the class
+! every earlier revision failed on (see version.inc for the saga).
+! Cu3 doublet, HF/LANL2DZ ECP, SAD guess, Fermi sigma = 0.01, and a
+! deliberately requested %level_shift 1.0 that MUST be reported as
+! disabled ("NOTE: %smearing active -- ... level shift is disabled").
+! Checks: (a) the two-phase self-tuning density damping + DIIS
+! machinery converges where undamped DIIS diverges by iteration ~6;
+! (b) the SAD atomic Cu SCF (d10s1 near-degeneracy) passes under the
+! v1.07.4 atomic settings isolation.  PBE analogues: Cu3 38 iters,
+! Cu5 59 iters in the validation runs.
+! Expected: Total energy (F=E-TS) = -584.99172 +- 2e-5 Ha
+! (soft-convergence stop; trajectory-level variation across BLAS and
+! stabiliser revisions -- v1.08.0 reference: -584.991716 in 73 iter).
+%method  hf
+%basis   lanl2dz
+%ecp     lanl2dz
+%job     energy
+%ecp_method   analytical
+%initial_guess  sad
+%level_shift 1.0
+%scf_maxiter    300
+%smearing       fermi
+%smearing_sigma 0.01
+%charge 0
+%mult   2
+%geo
+Cu   0.000000    1.360000    0.000000
+Cu   1.177800   -0.680000    0.000000
+Cu  -1.177800   -0.680000    0.000000

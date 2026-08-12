@@ -1,0 +1,37 @@
+! HCN -> HNC isomerization, HF/STO-3G transition state.
+!
+! Classic textbook system: H migrates around the rigid C-N axis.
+! The TS is a bent geometry near R(CH) ~ R(NH) ~ 1.2 A, H about
+! halfway between the two heavy atoms (a 3-membered "T" arrangement).
+! At HF/STO-3G the barrier is ~50 kcal/mol from HCN; the precise
+! number is not the point of this test -- the point is that:
+!
+!   * the optimizer converges in a reasonable number of steps
+!     (typically 8-15) starting from a sensible TS guess geometry,
+!   * the located stationary point has exactly ONE imaginary
+!     frequency (the HCN <-> HNC mode, ~ 1300i cm^-1 at this level),
+!   * energy at the TS is intermediate between HCN minimum and
+!     HNC minimum.
+!
+! Job: ts+freq.  The Hessian is computed in-place at the input
+! geometry (we did NOT supply %read_hess), so this exercises Path
+! B of the JOB_OPT_TS dispatcher (auto-Hessian).  After convergence
+! a freq pass at the located TS produces <stem>_ts.hess /
+! <stem>_ts.molden (the second .hess pair, with the "_ts" label).
+!
+! Initial geometry: T-shape with H displaced perpendicularly from
+! the C-N midpoint -- close to the known HF/STO-3G saddle, which
+! sits at ~ 60-70 degree HCN/HNC opening.
+%method  HF
+%basis   sto-3g
+%job     ts+freq
+%charge  0
+%mult    1
+%hess_method  analytical
+%ts_mode 1
+%geom_maxiter 80
+%geom angstrom
+C   -0.55  -0.20   0.00
+N    0.55  -0.20   0.00
+H    0.00   0.95   0.00
+*end

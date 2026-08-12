@@ -1,0 +1,49 @@
+! v1.10.3: CDFT release on a HETERO donor-acceptor pair (Delta /= 0):
+! the Li ... ethylene ... F "harpooning" model on STO-3G (~4 min).
+!
+! The relaxed RKS Becke charge of Li is +0.250 (found by probing:
+! a +0.25 constraint converges with V = 8.5e-4 Ha and the release
+! stays put -- the equilibrium-detection trick).  This test prepares
+! the partially harpooned diabat q_Li = +0.38 (0.13 e displaced),
+! releases it, and the charge sloshes back through the pi bridge.
+!
+! ORACLES (companion Casida run: same geometry, %tddft 8 + dipmom):
+!  * dominant beat of q_Li(t) = 0.06306 Ha vs the bright z-polarized
+!    CT state 4 at 0.06427 Ha (f = 0.070, mu_tr,z = 1.279) -- the
+!    -1.9 % offset is the amplitude-dependent mean-field shift
+!    (0.126 e oscillation; the +0.25 probe run beats at 0.0653);
+!  * oscillation amplitude 0.126 e (partial back-transfer: GMH gives
+!    H_04 = 0.0114, Delta = 0.060 -> Rabi weight 4H^2/Omega^2 = 13%);
+!  * t = 0 self-check 5.2e-11; released-run conservation 4.3e-9 Ha.
+! GEOMETRY NOTE: at larger separations (Li 2.00 / F -2.30 A) the
+! restricted reference has a SINGLET INSTABILITY (diradical
+! Li*/F* character; Casida refuses with the (A-B) message) -- kept
+! closer here so the closed-shell reference is stable.  A textbook
+! lesson shipped as a test.
+%method  PBE
+%basis   sto-3g
+%grid    1
+%job     energy
+%charge  0
+%mult    1
+%scf_ptol 1e-6
+%scf_maxiter 200
+%cdft    becke
+LiDonor  1  charge  +0.38
+%cdft_tol 1.0e-6
+%cdft_maxiter 25
+%rt_tddft 1100
+%rt_dt    0.2
+%rt_gamma 0.015
+%rt_pc_maxiter 4
+%rt_print_every 500
+%geom angstrom
+Li   0.0000   0.0000   1.85
+F    0.0000   0.0000  -2.00
+C    0.6695   0.0000   0.00
+C   -0.6695   0.0000   0.00
+H    1.2321   0.9289   0.00
+H    1.2321  -0.9289   0.00
+H   -1.2321   0.9289   0.00
+H   -1.2321  -0.9289   0.00
+*end

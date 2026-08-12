@@ -1,0 +1,57 @@
+! HCN <-> HNC intrinsic reaction coordinate, HF/STO-3G  (v0.86.0)
+!
+! TWO-STAGE test.  Stage 1 (run FIRST, from this tests/ directory):
+!
+!     ./studdft tests/test_v072_hcn_tsfreq.inp
+!
+! locates the HCN <-> HNC transition state with P-RFO and writes the
+! TS Hessian file  test_v072_hcn_tsfreq_ts.hess  (geometry, energy,
+! Cartesian Hessian, frequencies, normal modes).  Stage 2 -- THIS
+! input -- follows the reaction path from that saddle with the
+! Gonzalez-Schlegel second-order (GS2) predictor-corrector
+! [C. Gonzalez, H.B. Schlegel, J. Chem. Phys. 90, 2154 (1989);
+!  J. Phys. Chem. 94, 5523 (1990)].
+!
+! What to check (HF/STO-3G reference values, %irc_step 0.15,
+! %irc_maxpoints 40):
+!
+!   * The stored TS is re-verified: E_TS = -91.564914657 Ha, exactly
+!     one imaginary mode, nu = -1256.5 cm^-1 (the recomputed and the
+!     stored frequency must agree); the "SCF at TS" line must report
+!     consistency with the stored $energy to ~1e-11 Ha.
+!   * REVERSE branch: monotonic descent over ~23 points to the HCN
+!     minimum, last energy ~ -91.67520 Ha, i.e. ~69.2 kcal/mol below
+!     the TS; the final frame of the trajectory file has C-H ~ 1.07 A,
+!     C-N ~ 1.15 A, N...H ~ 2.2 A (linear HCN being approached).
+!   * FORWARD branch: monotonic descent over ~29 points to the HNC
+!     minimum, last energy ~ -91.64442 Ha (~49.9 kcal/mol below the
+!     TS); final frame N-H ~ 1.01 A, C-N ~ 1.17 A.
+!   * Each branch must terminate cleanly with either "minimum region
+!     reached" (max Cartesian gradient below %irc_gtol) or "energy
+!     increased (basin floor)" -- on the very flat tail of the HCN
+!     valley the two are separated by ~1e-8 Ha, so OpenMP reduction
+!     noise can select either; the endpoint energy is the same.  The
+!     two trajectory files *_irc_forward.xyz / *_irc_reverse.xyz must
+!     contain npoints+1 frames each (frame 0 = the TS).
+!
+! The energies above make the textbook profile: HNC lies ~19.3
+! kcal/mol above HCN, the barrier from HCN is ~69 kcal/mol at this
+! (deliberately crude) level of theory.
+!
+! The geometry block below only defines the atom list / basis
+! assignment; the coordinates themselves are REPLACED by the TS
+! geometry stored in the .hess file (a notice is printed).
+%method  HF
+%basis   sto-3g
+%job     irc
+%charge  0
+%mult    1
+%read_hess test_v072_hcn_tsfreq_ts.hess
+%irc_step      0.15
+%irc_maxpoints 40
+%irc_direction both
+%geom angstrom
+C   -0.55  -0.20   0.00
+N    0.55  -0.20   0.00
+H    0.00   0.95   0.00
+*end

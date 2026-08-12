@@ -1,0 +1,18 @@
+! Test 18: H2 dimer BP86-D3(BJ) / 6-31G  [D3 gradient test]
+! Two H2 molecules at large separation.  D3(BJ) should give a small
+! but nonzero attractive energy and a nonzero force along the
+! intermolecular axis.  This test exercises the full C6 interpolation
+! + CN-derivative machinery for the simplest nontrivial case.
+%method     BP86
+%basis      6-31gd
+%dispersion D3BJ
+%job        opt+freq
+%charge     0
+%mult       1
+%grid       3
+%geo
+ H   0.000000  0.000000  0.000000
+ H   0.740000  0.000000  0.000000
+ H   4.000000  0.000000  0.000000
+ H   4.740000  0.000000  0.000000
+

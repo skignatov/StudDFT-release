@@ -1,0 +1,3131 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:29:52.44
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\opt_freq
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_pump2_oh_opt.inp
+
+ --- Input file echo ---------------------------------------
+   | # Test: OH radical PUMP2 geometry optimization / 6-31G(d,p)
+   | # Open-shell doublet, starting from a slightly stretched geometry.
+   | #
+   | # Optimizer: Cartesian BFGS (diatomic).
+   | # Gradient:  numerical PUMP2 (central FD, h=1e-3 Bohr).
+   | #
+   | # Expected outcome: r(OH) -> ~0.974 A (PUMP2/6-31G(d,p) equilibrium).
+   | #
+   | %method  MP2
+   | %basis   6-31G(d,p)
+   | %job     optimize
+   | %charge  0
+   | %mult    2
+   | %spin    unrestricted
+   | %pump2   yes
+   | %frozen_core 1
+   | %geom_maxiter 30
+   | 
+   | *geometry angstrom
+   | O   0.000000   0.000000   0.000000
+   | H   0.000000   0.000000   0.969000
+   | *end
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Optimization
+   Method:           MP2
+   Basis set:        6-31G(d,p)
+   Spin treatment:   Unrestricted
+   Charge:              0
+   Multiplicity:        2
+   Atoms:               2
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        30
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1         0.00000000   0.00000000   0.00000000
+    H2         0.00000000   0.00000000   0.96900000
+
+ Setting up method...
+   Functional:       MP2
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            2
+   Number of shells:           9
+   Number of basis fns:       20
+   Primitive Gaussians:       20
+   Total electrons:            9
+   Alpha electrons:            5
+   Beta electrons:             4
+   Charge:                   0
+   Multiplicity:             2
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     6    1       1
+       2     1   s     3    1       2
+       3     1   s     1    1       3
+       4     1   p     3    3       4
+       5     1   p     1    3       7
+       6     1   d     1    6      10
+       7     2   s     3    1      16
+       8     2   s     1    1      17
+       9     2   p     1    3      18
+ =============================================
+   Point group: C*v   (atom-match deviation  0.00E+00 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing:  90.5 % contraction-first,   9.5 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.004 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565785494
+     V max |el|  =    62.0273072583
+     V min diag  =   -62.0273072583
+     V max diag  =    -2.1827733897
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319494321
+     H max |el|  =    32.4871674643
+     H min diag  =   -32.4871674643
+     H max diag  =    -1.2494400564
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.003 s
+ =======================================================
+
+ --- Section 5: Geometry Optimization ---
+
+   Geometry Optimization (Cartesian BFGS)
+   ======================================================
+   Step    Energy          dE         max|g|    rms(g)     max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.801E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-5.826E-13, dP= 8.016E-08, |g|= 2.030E-07)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565785494
+     V max |el|  =    62.0273072583
+     V min diag  =   -62.0273072583
+     V max diag  =    -2.1827733897
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319494321
+     H max |el|  =    32.4871674643
+     H min diag  =   -32.4871674643
+     H max diag  =    -1.2494400564
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.801E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.111E-13, dP= 8.016E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700768892
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323522834
+   Alpha-beta channel...
+     E(ab) =      -0.108924386867
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-5.826E-13, dP= 5.782E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.537E-13, dP= 5.782E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.884E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 9.592E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 5.258E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8701796412
+     V max |el|  =    62.0276056535
+     V min diag  =   -62.0276056535
+     V max diag  =    -2.1828300728
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5455505239
+     H max |el|  =    32.4874658596
+     H min diag  =   -32.4874658596
+     H max diag  =    -1.2494967394
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.007E-09 1.024E-05 2.122E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.327E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.884E-10 1.891E-06 5.936E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.953E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.913E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.679E-13, dP= 9.774E-08, |g|= 2.023E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023698785037
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011322195798
+   Alpha-beta channel...
+     E(ab) =      -0.108909850118
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8429889857
+     V max |el|  =    62.0270091887
+     V min diag  =   -62.0270091887
+     V max diag  =    -2.1827167354
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5183598684
+     H max |el|  =    32.4868693947
+     H min diag  =   -32.4868693947
+     H max diag  =    -1.2493834021
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.143E-09 1.031E-05 2.131E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.323E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.902E-10 1.892E-06 5.980E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.932E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.046E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 9.709E-08, |g|= 2.037E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023702750526
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011324848425
+   Alpha-beta channel...
+     E(ab) =      -0.108938921673
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.105E-13, dP= 5.252E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.892E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 5.252E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.390E-13, dP= 5.681E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565748022
+     V max |el|  =    62.0273071768
+     V min diag  =   -62.0273071768
+     V max diag  =    -2.1827733826
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319456849
+     H max |el|  =    32.4871673829
+     H min diag  =   -32.4871673829
+     H max diag  =    -1.2494400492
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.749E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.821E-13, dP= 5.257E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700769433
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323523196
+   Alpha-beta channel...
+     E(ab) =      -0.108924390836
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8429889857
+     V max |el|  =    62.0270091887
+     V min diag  =   -62.0270091887
+     V max diag  =    -2.1827167354
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5183598684
+     H max |el|  =    32.4868693947
+     H min diag  =   -32.4868693947
+     H max diag  =    -1.2493834021
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.144E-09 1.031E-05 2.131E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.323E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.901E-10 1.871E-06 5.980E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.932E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.046E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.679E-13, dP= 9.298E-08, |g|= 2.037E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023702750526
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011324848425
+   Alpha-beta channel...
+     E(ab) =      -0.108938921673
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8701796412
+     V max |el|  =    62.0276056535
+     V min diag  =   -62.0276056535
+     V max diag  =    -2.1828300728
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5455505239
+     H max |el|  =    32.4874658596
+     H min diag  =   -32.4874658596
+     H max diag  =    -1.2494967394
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.007E-09 1.024E-05 2.122E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.327E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.885E-10 1.903E-06 5.936E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.953E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.913E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.821E-13, dP= 9.991E-08, |g|= 2.023E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023698785037
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011322195798
+   Alpha-beta channel...
+     E(ab) =      -0.108909850118
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8565785494
+     V max |el|  =    62.0273072583
+     V min diag  =   -62.0273072583
+     V max diag  =    -2.1827733897
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.5319494321
+     H max |el|  =    32.4871674643
+     H min diag  =   -32.4871674643
+     H max diag  =    -1.2494400564
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.075E-09 1.027E-05 2.126E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.325E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.893E-10 1.801E-06 5.958E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.943E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   8.979E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 8.016E-08, |g|= 2.030E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023700768892
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011323522834
+   Alpha-beta channel...
+     E(ab) =      -0.108924386867
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -75.53358945  -7.55E+01  3.81E-03  2.20E-03  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1          0.00000000    0.00000000    0.00000000
+     H2          0.00000000    0.00000000    0.96900000
+
+   --- Step    2 ---
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   1 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   1 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   1 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   1 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 9.630E-10 3.923E-06 9.373E-06
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   18 iter  (dE=-1.378E-12, dP= 8.175E-08, |g|= 2.457E-07)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048924987
+     V max |el|  =    62.0261739785
+     V min diag  =   -62.0261739785
+     V max diag  =    -2.1825578093
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802633814
+     H max |el|  =    32.4860341845
+     H min diag  =   -32.4860341845
+     H max diag  =    -1.2492244760
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.847E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 8.702E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708302883
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328562788
+   Alpha-beta channel...
+     E(ab) =      -0.108979723462
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.784E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.390E-13, dP= 7.477E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.821E-13, dP= 5.322E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-5.684E-13, dP= 6.346E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.532E-13, dP= 6.108E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8184497495
+     V max |el|  =    62.0264711362
+     V min diag  =   -62.0264711362
+     V max diag  =    -2.1826143832
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4938206322
+     H max |el|  =    32.4863313423
+     H min diag  =   -32.4863313423
+     H max diag  =    -1.2492810498
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.269E-09 1.037E-05 2.139E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.320E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.918E-10 1.921E-06 6.018E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.914E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.171E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 1.020E-07, |g|= 2.049E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023706327475
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011327241271
+   Alpha-beta channel...
+     E(ab) =      -0.108965194104
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7913467356
+     V max |el|  =    62.0258771444
+     V min diag  =   -62.0258771444
+     V max diag  =    -2.1825012641
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4667176183
+     H max |el|  =    32.4857373504
+     H min diag  =   -32.4857373504
+     H max diag  =    -1.2491679308
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.411E-09 1.044E-05 2.148E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.317E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.936E-10 1.878E-06 6.061E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.894E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.315E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.105E-13, dP= 9.277E-08, |g|= 2.063E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023710276076
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011329882848
+   Alpha-beta channel...
+     E(ab) =      -0.108994250881
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.926E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.537E-13, dP= 5.307E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.928E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.532E-13, dP= 5.305E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.532E-13, dP= 5.802E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048887716
+     V max |el|  =    62.0261738976
+     V min diag  =   -62.0261738976
+     V max diag  =    -2.1825578021
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802596543
+     H max |el|  =    32.4860341036
+     H min diag  =   -32.4860341036
+     H max diag  =    -1.2492244688
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.927E-10 1.783E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 6.957E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708303421
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328563148
+   Alpha-beta channel...
+     E(ab) =      -0.108979727420
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7913467356
+     V max |el|  =    62.0258771444
+     V min diag  =   -62.0258771444
+     V max diag  =    -2.1825012641
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4667176183
+     H max |el|  =    32.4857373504
+     H min diag  =   -32.4857373504
+     H max diag  =    -1.2491679308
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.411E-09 1.044E-05 2.148E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.317E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.936E-10 1.861E-06 6.061E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.894E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.315E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.821E-13, dP= 8.933E-08, |g|= 2.063E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023710276076
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011329882848
+   Alpha-beta channel...
+     E(ab) =      -0.108994250881
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8184497495
+     V max |el|  =    62.0264711362
+     V min diag  =   -62.0264711362
+     V max diag  =    -2.1826143832
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4938206322
+     H max |el|  =    32.4863313423
+     H min diag  =   -32.4863313423
+     H max diag  =    -1.2492810498
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.269E-09 1.037E-05 2.139E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.320E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.918E-10 1.904E-06 6.018E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.914E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.171E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.679E-13, dP= 9.866E-08, |g|= 2.049E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023706327475
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011327241271
+   Alpha-beta channel...
+     E(ab) =      -0.108965194104
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.8048924987
+     V max |el|  =    62.0261739785
+     V min diag  =   -62.0261739785
+     V max diag  =    -2.1825578093
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4802633814
+     H max |el|  =    32.4860341845
+     H min diag  =   -32.4860341845
+     H max diag  =    -1.2492244760
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.340E-09 1.040E-05 2.143E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.318E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.926E-10 1.847E-06 6.040E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.904E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.243E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.537E-13, dP= 8.702E-08, |g|= 2.056E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023708302883
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011328562788
+   Alpha-beta channel...
+     E(ab) =      -0.108979723462
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -75.53360008  -1.06E-05  1.78E-03  1.03E-03  1.90E-03  1.10E-03
+                                      no        no        no        yes
+     [geo0002]
+     O1          0.00000000    0.00000000   -0.00100752
+     H2          0.00000000    0.00000000    0.97000752
+
+   --- Step    3 ---
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** Suspicious dE-only convergence at iter=   5   (|dE|,dP,|g|)= 4.059E-09 1.849E-05 3.872E-05
+   *** Suspicious dE-only convergence at iter=   6   (|dE|,dP,|g|)= 9.811E-10 8.309E-06 1.948E-05
+   *** Suspicious dE-only convergence at iter=   7   (|dE|,dP,|g|)= 2.673E-10 5.788E-06 9.614E-06
+   *** Suspicious dE-only convergence at iter=   8   (|dE|,dP,|g|)= 9.094E-11 3.019E-06 3.473E-06
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   10 iter  (dE=-1.279E-13, dP= 1.671E-08, |g|= 4.508E-08)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597145502
+     V max |el|  =    62.0251842542
+     V min diag  =   -62.0251842542
+     V max diag  =    -2.1823691441
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350854329
+     H max |el|  =    32.4850444603
+     H min diag  =   -32.4850444603
+     H max diag  =    -1.2490358108
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.919E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.963E-13, dP= 9.977E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714881779
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964126
+   Alpha-beta channel...
+     E(ab) =      -0.109028215906
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.821E-13, dP= 6.588E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 6.197E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.960E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.963E-13, dP= 7.602E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.537E-13, dP= 5.994E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7732334913
+     V max |el|  =    62.0254803333
+     V min diag  =   -62.0254803333
+     V max diag  =    -2.1824256223
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4486043740
+     H max |el|  =    32.4853405394
+     H min diag  =   -32.4853405394
+     H max diag  =    -1.2490922890
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.507E-09 1.048E-05 2.154E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.315E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.949E-10 1.893E-06 6.090E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.881E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.415E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-5.969E-13, dP= 9.517E-08, |g|= 2.072E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023712913760
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011331647483
+   Alpha-beta channel...
+     E(ab) =      -0.109013693015
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7462070610
+     V max |el|  =    62.0248884971
+     V min diag  =   -62.0248884971
+     V max diag  =    -2.1823126946
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4215779437
+     H max |el|  =    32.4847487031
+     H min diag  =   -32.4847487031
+     H max diag  =    -1.2489793613
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.652E-09 1.056E-05 2.163E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.312E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.969E-10 1.933E-06 6.132E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.862E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.568E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.395E-13, dP= 1.024E-07, |g|= 2.085E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023716847589
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011334279302
+   Alpha-beta channel...
+     E(ab) =      -0.109042736861
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.958E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.395E-13, dP= 5.900E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-7.105E-13, dP= 7.071E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.958E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 5.989E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597108405
+     V max |el|  =    62.0251841737
+     V min diag  =   -62.0251841737
+     V max diag  =    -2.1823691370
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350817232
+     H max |el|  =    32.4850443798
+     H min diag  =   -32.4850443798
+     H max diag  =    -1.2490358036
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.814E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.679E-13, dP= 7.384E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714882314
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964484
+   Alpha-beta channel...
+     E(ab) =      -0.109028219856
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7462070610
+     V max |el|  =    62.0248884971
+     V min diag  =   -62.0248884971
+     V max diag  =    -2.1823126946
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4215779437
+     H max |el|  =    32.4847487031
+     H min diag  =   -32.4847487031
+     H max diag  =    -1.2489793613
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.652E-09 1.056E-05 2.163E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.312E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.968E-10 1.823E-06 6.132E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.862E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.568E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-5.969E-13, dP= 5.878E-08, |g|= 2.085E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023716847589
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011334279302
+   Alpha-beta channel...
+     E(ab) =      -0.109042736861
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7732334913
+     V max |el|  =    62.0254803333
+     V min diag  =   -62.0254803333
+     V max diag  =    -2.1824256223
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4486043740
+     H max |el|  =    32.4853405394
+     H min diag  =   -32.4853405394
+     H max diag  =    -1.2490922890
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.507E-09 1.048E-05 2.154E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.315E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.949E-10 1.911E-06 6.090E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.881E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.415E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.253E-13, dP= 9.857E-08, |g|= 2.072E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023712913760
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011331647483
+   Alpha-beta channel...
+     E(ab) =      -0.109013693015
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597145502
+     V max |el|  =    62.0251842542
+     V min diag  =   -62.0251842542
+     V max diag  =    -2.1823691441
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350854329
+     H max |el|  =    32.4850444603
+     H min diag  =   -32.4850444603
+     H max diag  =    -1.2490358108
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.004; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.003; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  16   (|dE|,dP,|g|)= 8.579E-09 1.052E-05 2.158E-05
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.314E+008)
+   *** Suspicious dE-only convergence at iter=  17   (|dE|,dP,|g|)= 1.959E-10 1.919E-06 6.111E-06
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   1.871E+009)
+   DIIS-UHF: pruned  1 oldest vector(s) (B cond ratio   9.491E+009)
+   Checkpoint written: test_pump2_oh_opt.chk
+   SCF converged in   19 iter  (dE=-6.537E-13, dP= 9.977E-08, |g|= 2.078E-07)
+   Basis functions:           20
+   Alpha occupied/virtual:   5 /  15
+   Beta  occupied/virtual:   4 /  16
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    15 ket virtuals
+     E(aa) =      -0.023714881779
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    16 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.011332964126
+   Alpha-beta channel...
+     E(ab) =      -0.109028215906
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Conventional SCF:       1035 shell quartets,        0.2 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -75.53360308  -3.00E-06  2.36E-05  1.36E-05  1.67E-03  9.64E-04
+                                      yes       yes       yes       yes
+     [geo0003]
+     O1         -0.00000000   -0.00000000   -0.00189086
+     H2          0.00000000    0.00000000    0.97089086
+
+   ======================================================
+   Optimization converged in    3 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1        -0.00000000  -0.00000000  -0.00357320
+   H2         0.00000000   0.00000000   1.83471782
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1        -0.00000000  -0.00000000  -0.00189086
+   H2         0.00000000   0.00000000   0.97089086
+   -----------------------------------------------
+   Final energy:     -75.533603082059
+   Optimization time:      1.981 s
+
+   Point group after optimization: C*v  (unchanged)
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =    18.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    64.3246291173
+     T max |el|  =    29.5401397940
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397940
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -184.7597145502
+     V max |el|  =    62.0251842542
+     V min diag  =   -62.0251842542
+     V max diag  =    -2.1823691441
+   Assembling H_core = T + V_nuc...
+     H trace     =  -120.4350854329
+     H max |el|  =    32.4850444603
+     H min diag  =   -32.4850444603
+     H max diag  =    -1.2490358108
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -79.885471152148
+     Nuclear repulsion:       4.351868070089
+     UMP2 correlation:        0.001518815838
+     PUMP2 correction:       -0.001518815838
+     PUMP2 correlation:       0.000000000000
+     Total energy:          -75.533603082059
+
+   <S**2> =   0.755228   (exact =   0.750000)
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.353837   -0.353837
+       2      H       0.646163    0.353837
+   ------------------------------------------------
+   Total electrons:     9.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):    -0.000000   -0.000000    1.806132
+   Electronic (au):     0.000000    0.000000   -1.066725
+   Total      (au):     0.000000    0.000000    0.739407
+   |mu|       (au):     0.739407
+   |mu|    (Debye):     1.879386
+   ================================================
+   Section 7 time:      0.002 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      1.993 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:29:54.43
+

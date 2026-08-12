@@ -1,0 +1,29 @@
+! Performance anchor: CHF2OH, HF/6-31G(d,p), single point.
+!
+! This input exists to be TIMED, not to be believed. It is the system
+! on which the July 2026 /heap-arrays0 regression was finally pinned
+! down: 30 shells, 102265 stored shell quartets, 24.9 MB of ERI
+! storage -- big enough that the integral engine dominates the wall
+! clock, small enough to run in seconds on a correct build.
+!
+! The manifest asserts a FLOOR on the "ERI throughput: N quartets/s"
+! line that v1.17.0 added after the precompute. See
+! tests/manifest/30_performance.mf for why the tolerance is so wide,
+! and docs/BUILD_WINDOWS_VS2019.md for what a low value means.
+!
+! The energy is asserted too, so that a build which is fast because it
+! is wrong does not pass.
+%method   hf
+%basis    6-31G(d,p)
+%job      energy
+%charge   0
+%mult     1
+%print_time
+
+%geo
+H    -1.156124    0.826560    0.000000
+C    -0.250166    0.202668    0.000000
+F    -0.250166   -0.600957    1.146380
+F    -0.250166   -0.600957   -1.146380
+O     0.795568    0.974962    0.000000
+H     1.568868    0.538864    0.285142

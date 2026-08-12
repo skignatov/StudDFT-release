@@ -1,0 +1,20 @@
+# Test: H2O MP2/cc-pVDZ single point with spherical harmonics
+# Reference values (independent implementation):
+#   HF energy:       -76.026763787333
+#   MP2 correlation:  -0.204019508148
+#   MP2 total:       -76.230783295480
+# StudDFT agreement: dE(MP2) < 2e-8 Ha
+#
+%method  MP2
+%basis   cc-pVDZ
+%job     energy
+%charge  0
+%mult    1
+%spherical
+%print_time
+
+*geometry angstrom
+O   0.000000   0.000000   0.117369
+H   0.000000   0.757160  -0.469476
+H   0.000000  -0.757160  -0.469476
+*end

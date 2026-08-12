@@ -1,0 +1,1285 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:16:10.38
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\dft-d3
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test16_water_dimer_bp86_d3bj.inp
+
+ --- Input file echo ---------------------------------------
+   | %method     BP86
+   | %basis      6-31++G(d,p)
+   | %dispersion D3BJ
+   | %job        optfreq
+   | %charge     0
+   | %mult       1
+   | %grid       fine
+   | %hess_method numerical
+   | %geo
+   |  O   -1.551000   -0.114000    0.000000
+   |  H   -1.934000    0.762000    0.000000
+   |  H   -0.599000    0.040000    0.000000
+   |  O    1.350000    0.111000    0.000000
+   |  H    1.680000   -0.373000    0.74000
+   |  H    1.680000   -0.373000   -0.84000
+   | 
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Opt + Freq
+   Method:           BP86
+   Dispersion:       D3BJ
+   Basis set:        6-31++G(d,p)
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               6
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        50
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1        -1.55100000  -0.11400000   0.00000000
+    H2        -1.93400000   0.76200000   0.00000000
+    H3        -0.59900000   0.04000000   0.00000000
+    O4         1.35000000   0.11100000   0.00000000
+    H5         1.68000000  -0.37300000   0.74000000
+    H6         1.68000000  -0.37300000  -0.84000000
+
+ Setting up method...
+   Functional:       BP86
+   Class:            GGA
+   HF exchange:        0.00 %
+   XC components:
+     id= 102  weight=  1.0000
+     id= 206  weight=  1.0000
+   Dispersion correction:
+     Model:          D3(BJ)
+     Fit-to:         BP86
+     s6:             1.000000
+     s8:             3.282200
+     a1:             0.394600
+     a2:             4.851600
+     Implementation: StudDFT clean reimplementation (v1.13.0) from
+                     JCP 132, 154104 (2010); JCC 32, 1456 (2011).
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            6
+   Number of shells:          32
+   Number of basis fns:       62
+   Primitive Gaussians:       58
+   Total electrons:           20
+   Alpha electrons:           10
+   Beta electrons:            10
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     6    1       1
+       2     1   s     3    1       2
+       3     1   s     1    1       3
+       4     1   s     1    1       4
+       5     1   p     3    3       5
+       6     1   p     1    3       8
+       7     1   p     1    3      11
+       8     1   d     1    6      14
+       9     2   s     3    1      20
+      10     2   s     1    1      21
+      11     2   s     1    1      22
+      12     2   p     1    3      23
+      13     3   s     3    1      26
+      14     3   s     1    1      27
+      15     3   s     1    1      28
+      16     3   p     1    3      29
+      17     4   s     6    1      32
+      18     4   s     3    1      33
+      19     4   s     1    1      34
+      20     4   s     1    1      35
+      21     4   p     3    3      36
+      22     4   p     1    3      39
+      23     4   p     1    3      42
+      24     4   d     1    6      45
+      25     5   s     3    1      51
+      26     5   s     1    1      52
+      27     5   s     1    1      53
+      28     5   p     1    3      54
+      29     6   s     3    1      57
+      30     6   s     1    1      58
+      31     6   s     1    1      59
+      32     6   p     1    3      60
+ =============================================
+   Point group: C1   (atom-match deviation  0.00E+00 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing:  77.7 % contraction-first,  22.3 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.067 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =    58.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =   150.1614482074
+     T max |el|  =    29.5401397978
+     T min diag  =     0.0540000000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -588.0004141523
+     V max |el|  =    64.4429406402
+     V min diag  =   -64.4429406402
+     V max diag  =    -2.9415171135
+   Assembling H_core = T + V_nuc...
+     H trace     =  -437.8389659449
+     H max |el|  =    34.9028008423
+     H min diag  =   -34.9028008423
+     H max diag  =    -2.0081837802
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.019 s
+ =======================================================
+
+ --- Building DFT integration grid ---
+   Grid               : Gaussian Fine / NWchem
+   Radial scheme      : Euler-Maclaurin (Murray-Handy-Laming)
+   Radial points/atom : 39 (H/He 20)
+   Angular scheme     : Lebedev, pruned (5 zones, NWChem)
+   Angular sizes      : 50 / 86 / 266 / 302 / 266
+   Becke size adj.    : Becke (chi = R/R)
+   Grid points (total): 57204
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      6
+   Bonds:                           4
+   Angles:                          2
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   1.806706
+       1 -   3  R =   1.822405
+       4 -   5  R =   1.783521
+       4 -   6  R =   1.935246
+   Angles (degrees):
+       2 -   1 -   3  theta =   104.4268
+       5 -   4 -   6  theta =   106.7434
+   Too few internal coordinates, falling back to Cartesian BFGS
+
+   Geometry Optimization (Cartesian BFGS)
+   ======================================================
+   Step    Energy          dE         max|g|    rms(g)     max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1698446 quartets/s  (  6 threads,     0.074 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   3.933E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.301E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.004E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in   13 iter  (dE=-4.292E-12, dP= 1.294E-07, |g|= 1.060E-06)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1   -152.87827159  -1.53E+02  5.94E-02  2.02E-02  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1         -1.55100000   -0.11400000    0.00000000
+     H2         -1.93400000    0.76200000    0.00000000
+     H3         -0.59900000    0.04000000    0.00000000
+     O4          1.35000000    0.11100000    0.00000000
+     H5          1.68000000   -0.37300000    0.74000000
+     H6          1.68000000   -0.37300000   -0.84000000
+
+   --- Step    2 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1571050 quartets/s  (  6 threads,     0.080 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   9.010E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.535E-12, dP= 4.033E-08, |g|= 2.904E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2   -152.88096152  -2.69E-03  2.62E-02  9.65E-03  2.97E-02  1.01E-02
+                                      no        no        no        no 
+     [geo0002]
+     O1         -1.55356063   -0.11832749   -0.00003283
+     H2         -1.93624802    0.76599442    0.00000987
+     H3         -0.59390809    0.04037258    0.00003645
+     O4          1.34948002    0.11118149   -0.01570543
+     H5          1.68339789   -0.37791757    0.74631361
+     H6          1.67683882   -0.36830343   -0.83062167
+
+   --- Step    3 ---
+   Conventional SCF:     125683 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1632247 quartets/s  (  6 threads,     0.077 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.456E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.734E-12, dP= 3.154E-08, |g|= 2.327E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3   -152.88179755  -8.36E-04  5.82E-03  2.10E-03  2.57E-02  9.44E-03
+                                      no        no        no        no 
+     [geo0003]
+     O1         -1.55611158   -0.12248470   -0.00003231
+     H2         -1.93907305    0.77017474    0.00002114
+     H3         -0.58795525    0.04041663   -0.00000407
+     O4          1.34994036    0.10939058   -0.02932668
+     H5          1.68572740   -0.38119007    0.74929939
+     H6          1.67347213   -0.36330717   -0.81995747
+
+   --- Step    4 ---
+   Conventional SCF:     125683 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1653724 quartets/s  (  6 threads,     0.076 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-1.421E-12, dP= 2.903E-08, |g|= 2.449E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4   -152.88183200  -3.44E-05  4.53E-03  1.66E-03  2.67E-03  1.07E-03
+                                      no        no        no        yes
+     [geo0004]
+     O1         -1.55615809   -0.12256392   -0.00000229
+     H2         -1.93981232    0.77061729    0.00002373
+     H3         -0.58683067    0.04008786   -0.00007909
+     O4          1.34971333    0.10909214   -0.02900951
+     H5          1.68562874   -0.38095928    0.74788620
+     H6          1.67345901   -0.36327408   -0.81881904
+
+   --- Step    5 ---
+   Conventional SCF:     125683 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1428216 quartets/s  (  6 threads,     0.088 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-1.938E-11, dP= 6.878E-08, |g|= 6.967E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      5   -152.88190094  -6.89E-05  3.10E-03  1.37E-03  1.04E-02  4.09E-03
+                                      no        no        no        no 
+     [geo0005]
+     O1         -1.55560729   -0.12200646    0.00013752
+     H2         -1.94278123    0.77184309    0.00003631
+     H3         -0.58281253    0.03847217   -0.00043004
+     O4          1.34795547    0.10868264   -0.02754751
+     H5          1.68552277   -0.38039820    0.74237022
+     H6          1.67372281   -0.36359324   -0.81456649
+
+   --- Step    6 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1721699 quartets/s  (  6 threads,     0.073 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-3.126E-13, dP= 1.682E-08, |g|= 1.379E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      6   -152.88192034  -1.94E-05  3.02E-03  1.34E-03  3.06E-03  1.54E-03
+                                      no        no        no        no 
+     [geo0006]
+     O1         -1.55488786   -0.12124322    0.00020500
+     H2         -1.94389941    0.77195374    0.00004345
+     H3         -0.58159814    0.03769072   -0.00060326
+     O4          1.34659521    0.10913898   -0.02739106
+     H5          1.68583345   -0.38064212    0.74075019
+     H6          1.67395675   -0.36389810   -0.81300432
+
+   --- Step    7 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1632260 quartets/s  (  6 threads,     0.077 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-6.168E-12, dP= 5.730E-08, |g|= 3.568E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      7   -152.88196009  -3.97E-05  1.68E-03  6.86E-04  9.21E-03  4.52E-03
+                                      no        no        no        no 
+     [geo0007]
+     O1         -1.55212332   -0.11836671    0.00042273
+     H2         -1.94690206    0.77171227    0.00006830
+     H3         -0.57868221    0.03537790   -0.00116821
+     O4          1.34172184    0.11120174   -0.02736088
+     H5          1.68717384   -0.38190186    0.73698740
+     H6          1.67481191   -0.36502334   -0.80894935
+
+   --- Step    8 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1675787 quartets/s  (  6 threads,     0.075 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-9.095E-13, dP= 1.933E-08, |g|= 1.576E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      8   -152.88196496  -4.88E-06  9.93E-04  3.71E-04  2.33E-03  8.38E-04
+                                      no        no        no        yes
+     [geo0008]
+     O1         -1.55137392   -0.11769613    0.00047701
+     H2         -1.94715489    0.77139693    0.00007568
+     H3         -0.57849839    0.03512423   -0.00131250
+     O4          1.34048871    0.11169910   -0.02752744
+     H5          1.68755721   -0.38228164    0.73695111
+     H6          1.67498129   -0.36524249   -0.80866385
+
+   --- Step    9 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1770197 quartets/s  (  6 threads,     0.071 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    7 iter  (dE=-1.407E-11, dP= 8.670E-08, |g|= 7.326E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      9   -152.88196681  -1.84E-06  8.43E-04  3.48E-04  1.16E-03  4.11E-04
+                                      no        no        yes       yes
+     [geo0009]
+     O1         -1.55102022   -0.11753154    0.00051537
+     H2         -1.94700516    0.77117509    0.00008161
+     H3         -0.57852847    0.03526835   -0.00141590
+     O4          1.33987688    0.11168048   -0.02762569
+     H5          1.68769969   -0.38236833    0.73732003
+     H6          1.67497729   -0.36522405   -0.80887542
+
+   --- Step   10 ---
+   Conventional SCF:     125684 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1632260 quartets/s  (  6 threads,     0.077 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-1.137E-13, dP= 8.452E-09, |g|= 6.386E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     10   -152.88196927  -2.47E-06  1.18E-03  4.44E-04  1.85E-03  6.35E-04
+                                      no        no        no        yes
+     [geo0010]
+     O1         -1.55050790   -0.11744378    0.00059228
+     H2         -1.94675750    0.77090827    0.00009345
+     H3         -0.57835185    0.03561985   -0.00162239
+     O4          1.33889769    0.11131845   -0.02767181
+     H5          1.68783070   -0.38232708    0.73776909
+     H6          1.67488884   -0.36507571   -0.80916063
+
+   --- Step   11 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1532744 quartets/s  (  6 threads,     0.082 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-9.095E-13, dP= 2.101E-08, |g|= 1.528E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     11   -152.88197566  -6.38E-06  1.65E-03  6.90E-04  5.63E-03  1.90E-03
+                                      no        no        no        no 
+     [geo0011]
+     O1         -1.54901117   -0.11733044    0.00084294
+     H2         -1.94617066    0.77027003    0.00013201
+     H3         -0.57738729    0.03669662   -0.00229440
+     O4          1.33592091    0.10986772   -0.02762598
+     H5          1.68810334   -0.38198366    0.73864677
+     H6          1.67454487   -0.36452028   -0.80970134
+
+   --- Step   12 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1745625 quartets/s  (  6 threads,     0.072 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-4.150E-12, dP= 4.041E-08, |g|= 3.298E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     12   -152.88198614  -1.05E-05  1.92E-03  9.04E-04  1.07E-02  3.66E-03
+                                      no        no        no        no 
+     [geo0012]
+     O1         -1.54621867   -0.11726285    0.00133773
+     H2         -1.94527228    0.76925410    0.00020872
+     H3         -0.57504750    0.03871977   -0.00362123
+     O4          1.33027328    0.10671904   -0.02731983
+     H5          1.68846521   -0.38108047    0.73968432
+     H6          1.67379995   -0.36334958   -0.81028971
+
+   --- Step   13 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1632273 quartets/s  (  6 threads,     0.077 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-4.718E-12, dP= 8.239E-08, |g|= 5.162E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     13   -152.88199838  -1.22E-05  1.72E-03  8.24E-04  1.39E-02  4.92E-03
+                                      no        no        no        no 
+     [geo0013]
+     O1         -1.54258258   -0.11732915    0.00200797
+     H2         -1.94429344    0.76811032    0.00031476
+     H3         -0.57144304    0.04136708   -0.00542189
+     O4          1.32289318    0.10211588   -0.02667901
+     H5          1.68873577   -0.37959994    0.74035817
+     H6          1.67269011   -0.36166419   -0.81058000
+
+   --- Step   14 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1795500 quartets/s  (  6 threads,     0.070 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-5.542E-12, dP= 5.451E-08, |g|= 4.100E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     14   -152.88200592  -7.54E-06  8.86E-04  4.01E-04  8.44E-03  3.21E-03
+                                      no        no        no        no 
+     [geo0014]
+     O1         -1.54034316   -0.11749996    0.00243708
+     H2         -1.94383632    0.76755337    0.00038731
+     H3         -0.56876068    0.04299459   -0.00658448
+     O4          1.31842765    0.09880964   -0.02606621
+     H5          1.68866809   -0.37839171    0.74012448
+     H6          1.67184441   -0.36046592   -0.81029819
+
+   --- Step   15 ---
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1611346 quartets/s  (  6 threads,     0.078 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-3.979E-13, dP= 1.555E-08, |g|= 1.626E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+     15   -152.88200759  -1.66E-06  2.17E-04  1.03E-04  1.21E-03  5.97E-04
+                                      yes       yes       yes       yes
+     [geo0015]
+     O1         -1.54007164   -0.11756548    0.00248616
+     H2         -1.94388984    0.76757870    0.00040306
+     H3         -0.56816367    0.04311762   -0.00673555
+     O4          1.31804321    0.09817054   -0.02585757
+     H5          1.68846480   -0.37806381    0.73958509
+     H6          1.67161715   -0.36023756   -0.80988119
+
+   ======================================================
+   Optimization converged in   15 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1        -2.91031362  -0.22216656   0.00469817
+   H2        -3.67341941   1.45051352   0.00076167
+   H3        -1.07367374   0.08148048  -0.01272835
+   O4         2.49074069   0.18551543  -0.04886373
+   H5         3.19073605  -0.71443707   1.39761326
+   H6         3.15889859  -0.68075033  -1.53045364
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1        -1.54007164  -0.11756548   0.00248616
+   H2        -1.94388984   0.76757870   0.00040306
+   H3        -0.56816367   0.04311762  -0.00673555
+   O4         1.31804321   0.09817054  -0.02585757
+   H5         1.68846480  -0.37806381   0.73958509
+   H6         1.67161715  -0.36023756  -0.80988119
+   -----------------------------------------------
+   Final energy:    -152.882007588711
+   Optimization time:     14.637 s
+
+   Point group after optimization: C1  (unchanged)
+
+ --- Section 6: Hessian & Frequencies ---
+   Computing overlap integrals (S)...
+     S trace     =    58.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =   150.1614482074
+     T max |el|  =    29.5401397978
+     T min diag  =     0.0540000000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -588.8856431351
+     V max |el|  =    64.4833652180
+     V min diag  =   -64.4833652180
+     V max diag  =    -2.9438716686
+   Assembling H_core = T + V_nuc...
+     H trace     =  -438.7241949277
+     H max |el|  =    34.9432254202
+     H min diag  =   -34.9432254202
+     H max diag  =    -2.0105383352
+   Grid               : Gaussian Fine / NWchem
+   Radial scheme      : Euler-Maclaurin (Murray-Handy-Laming)
+   Radial points/atom : 39 (H/He 20)
+   Angular scheme     : Lebedev, pruned (5 zones, NWChem)
+   Angular sizes      : 50 / 86 / 266 / 302 / 266
+   Becke size adj.    : Becke (chi = R/R)
+   Grid points (total): 57204
+   Method: Numerical Hessian (gradient FD)
+   Computing numerical Hessian (gradient FD)...
+   Hessian dimension:        18
+   Gradient evaluations:     36
+   Displacement (bohr):      5.00E-03
+   Grid               : Gaussian Fine / NWchem
+   Radial scheme      : Euler-Maclaurin (Murray-Handy-Laming)
+   Radial points/atom : 39 (H/He 20)
+   Angular scheme     : Lebedev, pruned (5 zones, NWChem)
+   Angular sizes      : 50 / 86 / 266 / 302 / 266
+   Becke size adj.    : Becke (chi = R/R)
+   Grid points (total): 57204
+   Running reference SCF...
+   Nuclear repulsion energy:         36.6080933881
+   XC functional:             BP86
+   Initial Fock matrix:       core Hamiltonian
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1351452 quartets/s  (  6 threads,     0.093 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+
+   Starting SCF iterations...
+   ------------------------------------------------------------------------
+    Iter       E(total)         dE          max(dP)     ||FPS-SPF||  DIIS
+   ------------------------------------------------------------------------
+      1     -136.9469913915    1.347E+02    2.019E+01    5.386E+00   no
+      2     -129.1284533636    7.819E+00    2.021E+01    3.826E+00   yes
+      3     -150.0038580002   -2.088E+01    1.851E-01    2.638E+00   yes
+      4     -151.9510833091   -1.947E+00    1.415E-01    1.543E+00   yes
+      5     -152.7733603094   -8.223E-01    8.804E-02    5.301E-01   yes
+      6     -152.8629472800   -8.959E-02    3.631E-02    2.191E-01   yes
+      7     -152.8762473417   -1.330E-02    1.320E-02    1.029E-01   yes
+      8     -152.8801085705   -3.861E-03    1.687E-03    8.194E-03   yes
+      9     -152.8801364467   -2.788E-05    2.843E-04    2.398E-03   yes
+     10     -152.8801387704   -2.324E-06    2.690E-05    1.336E-04   yes
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   4.162E+009)
+     11     -152.8801387775   -7.087E-09    5.397E-06    4.415E-05   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.873E+009)
+     12     -152.8801387783   -7.551E-10    5.158E-07    3.674E-06   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.282E+008)
+     13     -152.8801387783   -4.718E-12    1.382E-07    9.065E-07   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.075E+008)
+     14     -152.8801387783   -2.274E-13    5.546E-08    4.455E-07   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   5.323E+007)
+     15     -152.8801387783    1.705E-13    5.772E-09    3.763E-08   yes
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in   15 iter  (dE= 1.705E-13, dP= 5.772E-09, |g|= 3.763E-08)
+   ----------------------------------------------------------
+
+   Final energies:
+     Electronic energy:    -189.488232166391
+     XC energy:             -18.604724489083
+     Nuclear repulsion:      36.608093388134
+     Total energy:         -152.880138778257
+
+   Orbital energies:
+        1:  -18.84386397 occ
+        2:  -18.77865324 occ
+        3:   -0.96288481 occ
+        4:   -0.89780637 occ
+        5:   -0.51448191 occ
+        6:   -0.45738395 occ
+        7:   -0.37696219 occ
+        8:   -0.31397918 occ
+        9:   -0.29276925 occ
+       10:   -0.23709723 occ
+       11:   -0.04471228 vir
+       12:    0.00367434 vir
+       13:    0.01607147 vir
+       14:    0.06612202 vir
+       15:    0.12081648 vir
+       16:    0.12631393 vir
+       17:    0.14282340 vir
+       18:    0.15766054 vir
+       19:    0.17840989 vir
+       20:    0.17870127 vir
+       21:    0.20510916 vir
+       22:    0.21583896 vir
+       23:    0.22507655 vir
+       24:    0.26022582 vir
+       25:    0.30768979 vir
+       26:    0.33713559 vir
+       27:    0.84276715 vir
+       28:    0.90445485 vir
+       29:    0.94321296 vir
+       30:    1.04275590 vir
+       31:    1.08083919 vir
+       32:    1.08435477 vir
+       33:    1.09739372 vir
+       34:    1.12004924 vir
+       35:    1.12280498 vir
+       36:    1.16478841 vir
+       37:    1.32534770 vir
+       38:    1.40539425 vir
+       39:    1.40695682 vir
+       40:    1.45215315 vir
+       41:    1.47612141 vir
+       42:    1.52051592 vir
+       43:    1.59491389 vir
+       44:    1.72703495 vir
+       45:    2.12501773 vir
+       46:    2.13561062 vir
+       47:    2.19947386 vir
+       48:    2.28021301 vir
+       49:    2.37561091 vir
+       50:    2.46685561 vir
+       51:    2.49921829 vir
+       52:    2.54602627 vir
+       53:    2.57469037 vir
+       54:    2.60596453 vir
+       55:    2.90273766 vir
+       56:    2.95540170 vir
+       57:    3.22566023 vir
+       58:    3.33671011 vir
+       59:    3.44150792 vir
+       60:    3.55551676 vir
+       61:    3.94384659 vir
+       62:    4.08770633 vir
+   Reference energy:    -152.880138778257
+   FD Hessian:    36 displaced gradients (2 per coordinate).
+   FD coordinate    1 /  18
+   Conventional SCF:     125687 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1337096 quartets/s  (  6 threads,     0.094 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.719E+008)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   2.619E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.842E-13, dP= 1.294E-09, |g|= 1.430E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1256850 quartets/s  (  6 threads,     0.100 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.639E+008)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   2.596E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 2.842E-14, dP= 1.322E-09, |g|= 1.447E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   1/ 18 done (    2.1 s total)
+   FD coordinate    2 /  18   elapsed      0.0 min, ETA      0.6 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1396500 quartets/s  (  6 threads,     0.090 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.274E-13, dP= 3.234E-09, |g|= 2.862E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1337074 quartets/s  (  6 threads,     0.094 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-8.527E-14, dP= 3.273E-09, |g|= 2.908E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   2/ 18 done (    4.2 s total)
+   FD coordinate    3 /  18   elapsed      0.1 min, ETA      0.6 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1366141 quartets/s  (  6 threads,     0.092 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.009E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-5.684E-14, dP= 1.003E-08, |g|= 8.355E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1323000 quartets/s  (  6 threads,     0.095 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    7 iter  (dE=-3.979E-13, dP= 5.637E-08, |g|= 2.334E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   3/ 18 done (    6.2 s total)
+   FD coordinate    4 /  18   elapsed      0.1 min, ETA      0.5 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1269545 quartets/s  (  6 threads,     0.099 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   4.863E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.842E-14, dP= 2.495E-09, |g|= 1.639E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1244406 quartets/s  (  6 threads,     0.101 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   4.851E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.842E-14, dP= 2.509E-09, |g|= 1.657E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   4/ 18 done (    8.3 s total)
+   FD coordinate    5 /  18   elapsed      0.1 min, ETA      0.5 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1256850 quartets/s  (  6 threads,     0.100 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   4.054E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.137E-13, dP= 4.337E-09, |g|= 3.236E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1323000 quartets/s  (  6 threads,     0.095 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   4.058E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 5.684E-14, dP= 4.296E-09, |g|= 3.214E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   5/ 18 done (   10.4 s total)
+   FD coordinate    6 /  18   elapsed      0.2 min, ETA      0.5 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1256850 quartets/s  (  6 threads,     0.100 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-5.684E-14, dP= 7.323E-09, |g|= 6.817E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1337074 quartets/s  (  6 threads,     0.094 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    7 iter  (dE=-1.137E-13, dP= 5.016E-08, |g|= 2.663E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   6/ 18 done (   12.4 s total)
+   FD coordinate    7 /  18   elapsed      0.2 min, ETA      0.4 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1295722 quartets/s  (  6 threads,     0.097 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.318E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 2.842E-13, dP= 4.983E-09, |g|= 3.445E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1323000 quartets/s  (  6 threads,     0.095 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.426E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 0.000E+00, dP= 4.896E-09, |g|= 3.419E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   7/ 18 done (   14.5 s total)
+   FD coordinate    8 /  18   elapsed      0.2 min, ETA      0.4 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1244406 quartets/s  (  6 threads,     0.101 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-3.979E-13, dP= 1.261E-08, |g|= 6.053E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1366141 quartets/s  (  6 threads,     0.092 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-3.411E-13, dP= 1.268E-08, |g|= 5.992E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   8/ 18 done (   16.6 s total)
+   FD coordinate    9 /  18   elapsed      0.3 min, ETA      0.3 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1396500 quartets/s  (  6 threads,     0.090 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    7 iter  (dE=-5.684E-14, dP= 5.005E-08, |g|= 2.594E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1396500 quartets/s  (  6 threads,     0.090 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.673E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE= 1.705E-13, dP= 7.690E-09, |g|= 5.462E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord   9/ 18 done (   18.5 s total)
+   FD coordinate   10 /  18   elapsed      0.3 min, ETA      0.3 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1323000 quartets/s  (  6 threads,     0.095 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE= 0.000E+00, dP= 1.827E-08, |g|= 1.084E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1351452 quartets/s  (  6 threads,     0.093 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-2.558E-13, dP= 1.802E-08, |g|= 1.078E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  10/ 18 done (   20.6 s total)
+   FD coordinate   11 /  18   elapsed      0.3 min, ETA      0.3 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1444655 quartets/s  (  6 threads,     0.087 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   7.794E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 5.684E-14, dP= 2.238E-09, |g|= 2.080E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1381154 quartets/s  (  6 threads,     0.091 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   7.455E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 5.684E-14, dP= 2.205E-09, |g|= 2.068E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  11/ 18 done (   22.6 s total)
+   FD coordinate   12 /  18   elapsed      0.4 min, ETA      0.2 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1295722 quartets/s  (  6 threads,     0.097 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.265E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    8 iter  (dE=-2.842E-14, dP= 2.501E-08, |g|= 1.789E-07)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1366141 quartets/s  (  6 threads,     0.092 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.419E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   2.915E+007)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.705E-13, dP= 9.456E-10, |g|= 7.208E-09)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  12/ 18 done (   24.7 s total)
+   FD coordinate   13 /  18   elapsed      0.4 min, ETA      0.2 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1337074 quartets/s  (  6 threads,     0.094 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.953E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.842E-13, dP= 1.286E-09, |g|= 1.112E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1351452 quartets/s  (  6 threads,     0.093 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.815E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-8.527E-14, dP= 1.271E-09, |g|= 1.107E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  13/ 18 done (   26.8 s total)
+   FD coordinate   14 /  18   elapsed      0.4 min, ETA      0.2 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1396500 quartets/s  (  6 threads,     0.090 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.421E-13, dP= 1.664E-09, |g|= 1.516E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1412191 quartets/s  (  6 threads,     0.089 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 1.421E-13, dP= 1.681E-09, |g|= 1.533E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  14/ 18 done (   28.9 s total)
+   FD coordinate   15 /  18   elapsed      0.5 min, ETA      0.1 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1309219 quartets/s  (  6 threads,     0.096 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.364E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 5.684E-14, dP= 3.136E-09, |g|= 2.440E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1309219 quartets/s  (  6 threads,     0.096 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.367E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-1.421E-13, dP= 3.193E-09, |g|= 2.417E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  15/ 18 done (   30.9 s total)
+   FD coordinate   16 /  18   elapsed      0.5 min, ETA      0.1 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1256850 quartets/s  (  6 threads,     0.100 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.764E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 0.000E+00, dP= 1.241E-09, |g|= 1.102E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1381154 quartets/s  (  6 threads,     0.091 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.642E+009)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 1.137E-13, dP= 1.225E-09, |g|= 1.150E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  16/ 18 done (   33.0 s total)
+   FD coordinate   17 /  18   elapsed      0.6 min, ETA      0.1 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1282500 quartets/s  (  6 threads,     0.098 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 0.000E+00, dP= 1.646E-09, |g|= 1.468E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1351452 quartets/s  (  6 threads,     0.093 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 1.137E-13, dP= 1.664E-09, |g|= 1.485E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  17/ 18 done (   35.1 s total)
+   FD coordinate   18 /  18   elapsed      0.6 min, ETA      0.0 min
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1381154 quartets/s  (  6 threads,     0.091 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.650E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE=-2.842E-14, dP= 3.055E-09, |g|= 2.495E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+   Conventional SCF:     125685 shell quartets,       14.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1323000 quartets/s  (  6 threads,     0.095 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.636E+008)
+   Checkpoint written: test16_water_dimer_bp86_d3bj.chk
+   SCF converged in    9 iter  (dE= 5.684E-14, dP= 3.074E-09, |g|= 2.520E-08)
+     ERI gradient:   6 threads,    528 bra pairs
+     coord  18/ 18 done (   37.2 s total)
+     Numerical Hessian complete.
+
+   Cartesian Hessian (Ha/Bohr^2):
+                     1           2           3           4           5           6
+     1        0.562733   -0.102077   -0.004083   -0.117351    0.199820   -0.000259
+     2       -0.102077    0.471426   -0.002022    0.144163   -0.417544    0.001362
+     3       -0.004083   -0.002022    0.004218    0.000090    0.000893   -0.000535
+     4       -0.117351    0.144163    0.000090    0.134054   -0.187550    0.000031
+     5        0.199820   -0.417544    0.000893   -0.187550    0.416991   -0.000993
+     6       -0.000259    0.001362   -0.000535    0.000031   -0.000993    0.000587
+     7       -0.431023   -0.042417    0.003843   -0.015191   -0.011174    0.000195
+     8       -0.098135   -0.057075    0.001145    0.044460    0.000644   -0.000378
+     9        0.004168    0.000675   -0.007155   -0.000152    0.000088   -0.000048
+    10       -0.011957    0.002638    0.000177   -0.001713   -0.001026    0.000021
+    11        0.001164    0.003861   -0.000035   -0.001084   -0.000090    0.000020
+    12        0.000170   -0.000039    0.004819    0.000037    0.000008   -0.000401
+    13       -0.001173   -0.001172    0.001762    0.000113   -0.000038   -0.000092
+    14       -0.000408   -0.000334   -0.000135    0.000005   -0.000001    0.000203
+    15        0.001574   -0.000062   -0.000709    0.000062   -0.000029    0.000196
+    16       -0.001228   -0.001134   -0.001789    0.000089   -0.000032    0.000104
+    17       -0.000364   -0.000334    0.000155    0.000007    0.000000   -0.000214
+    18       -0.001570    0.000088   -0.000638   -0.000068    0.000033    0.000200
+ 
+                     7           8           9          10          11          12
+     1       -0.431023   -0.098135    0.004168   -0.011957    0.001164    0.000170
+     2       -0.042417   -0.057075    0.000675    0.002638    0.003861   -0.000039
+     3        0.003843    0.001145   -0.007155    0.000177   -0.000035    0.004819
+     4       -0.015191    0.044460   -0.000152   -0.001713   -0.001084    0.000037
+     5       -0.011174    0.000644    0.000088   -0.001026   -0.000090    0.000008
+     6        0.000195   -0.000378   -0.000048    0.000021    0.000020   -0.000401
+     7        0.443368    0.053148   -0.003920    0.001209   -0.000133   -0.000123
+     8        0.053148    0.061551   -0.000787   -0.005257   -0.005961    0.000091
+     9       -0.003920   -0.000787    0.014959   -0.000168    0.000039   -0.009456
+    10        0.001209   -0.005257   -0.000168    0.179318   -0.199632    0.002850
+    11       -0.000133   -0.005961    0.000039   -0.199632    0.264416   -0.002273
+    12       -0.000123    0.000091   -0.009456    0.002850   -0.002273    0.655369
+    13        0.000740    0.002941   -0.004510   -0.086282    0.103161   -0.149802
+    14        0.000318    0.000418   -0.000105    0.105075   -0.135064    0.196675
+    15       -0.002602    0.000290    0.000928   -0.116423    0.150195   -0.318309
+    16        0.000897    0.002842    0.004583   -0.080575    0.096524    0.146869
+    17        0.000258    0.000424    0.000091    0.098203   -0.127162   -0.194461
+    18        0.002606   -0.000360    0.000772    0.113543   -0.147946   -0.332023
+ 
+                    13          14          15          16          17          18
+     1       -0.001173   -0.000408    0.001574   -0.001228   -0.000364   -0.001570
+     2       -0.001172   -0.000334   -0.000062   -0.001134   -0.000334    0.000088
+     3        0.001762   -0.000135   -0.000709   -0.001789    0.000155   -0.000638
+     4        0.000113    0.000005    0.000062    0.000089    0.000007   -0.000068
+     5       -0.000038   -0.000001   -0.000029   -0.000032    0.000000    0.000033
+     6       -0.000092    0.000203    0.000196    0.000104   -0.000214    0.000200
+     7        0.000740    0.000318   -0.002602    0.000897    0.000258    0.002606
+     8        0.002941    0.000418    0.000290    0.002842    0.000424   -0.000360
+     9       -0.004510   -0.000105    0.000928    0.004583    0.000091    0.000772
+    10       -0.086282    0.105075   -0.116423   -0.080575    0.098203    0.113543
+    11        0.103161   -0.135064    0.150195    0.096524   -0.127162   -0.147946
+    12       -0.149802    0.196675   -0.318309    0.146869   -0.194461   -0.332023
+    13        0.082618   -0.099926    0.135402    0.003984   -0.004967    0.017241
+    14       -0.099926    0.128630   -0.173945   -0.005063    0.006352   -0.022692
+    15        0.135402   -0.173945    0.344405   -0.018014    0.023552   -0.026513
+    16        0.003984   -0.005063   -0.018014    0.076833   -0.093137   -0.131752
+    17       -0.004967    0.006352    0.023552   -0.093137    0.120720    0.170877
+    18        0.017241   -0.022692   -0.026513   -0.131752    0.170877    0.358204
+     Projected out  6 TR modes.
+
+   Vibrational Frequency Analysis
+   ======================================================
+ 
+   Mode   Freq (cm^-1)   Type
+   ----   -----------   ------
+     1         -0.00   TR      
+     2         -0.00   TR      
+     3         -0.00   TR      
+     4          0.00   TR      
+     5          0.00   TR      
+     6          0.00   TR      
+     7        153.29   vib     
+     8        177.74   vib     
+     9        197.39   vib     
+    10        217.49   vib     
+    11        408.70   vib     
+    12        699.47   vib     
+    13       1579.63   vib     
+    14       1594.13   vib     
+    15       3527.02   vib     
+    16       3694.18   vib     
+    17       3780.42   vib     
+    18       3813.78   vib     
+ 
+   Vibrational modes:   12
+   TR modes:             6
+ 
+   ZPVE:       9921.62 cm^-1
+              0.045206 Eh
+               28.3673 kcal/mol
+              118.6889 kJ/mol
+
+   Normal Modes (Cartesian displacements):
+
+   Mode   1:      153.29 cm^-1
+     Atom       dx         dy         dz
+       1  -0.001557   0.000309   0.059973
+       2  -0.007383  -0.004335  -0.792610
+       3  -0.002143  -0.001616  -0.030480
+       4   0.001755  -0.000444   0.011817
+       5  -0.120426  -0.374308  -0.161255
+       6   0.126811   0.382406  -0.155210
+
+   Mode   2:      177.74 cm^-1
+     Atom       dx         dy         dz
+       1   0.201798   0.000014  -0.000867
+       2  -0.201831  -0.185289  -0.006668
+       3   0.139627   0.399601  -0.007461
+       4  -0.133023   0.021715   0.001333
+       5  -0.527754  -0.287463   0.001668
+       6  -0.501726  -0.271748   0.005060
+
+   Mode   3:      197.39 cm^-1
+     Atom       dx         dy         dz
+       1  -0.001895  -0.000136   0.025973
+       2  -0.004447  -0.000876   0.209606
+       3  -0.006548   0.001462  -0.432108
+       4   0.001469  -0.000050  -0.036571
+       5  -0.574680  -0.068163   0.200937
+       6   0.592445   0.070539   0.189788
+
+   Mode   4:      217.49 cm^-1
+     Atom       dx         dy         dz
+       1   0.113272   0.013755  -0.000343
+       2   0.562346   0.218647  -0.007939
+       3   0.189010  -0.441257  -0.007879
+       4  -0.193818  -0.040950   0.001146
+       5   0.259138   0.325416   0.008275
+       6   0.268031   0.328871  -0.005201
+
+   Mode   5:      408.70 cm^-1
+     Atom       dx         dy         dz
+       1   0.032198   0.018058  -0.000635
+       2  -0.532471  -0.242825   0.006262
+       3  -0.054456   0.507776   0.001963
+       4  -0.040204  -0.067371   0.000425
+       5   0.363561   0.260061   0.003786
+       6   0.350447   0.257751  -0.008689
+
+   Mode   6:      699.47 cm^-1
+     Atom       dx         dy         dz
+       1  -0.000362  -0.000358  -0.026412
+       2   0.002706   0.001153   0.003052
+       3   0.007693   0.003969   0.901463
+       4  -0.000666  -0.000038  -0.041076
+       5  -0.288523  -0.022035   0.086368
+       6   0.294444   0.023201   0.080368
+
+   Mode   7:     1579.63 cm^-1
+     Atom       dx         dy         dz
+       1   0.014855   0.029459  -0.000318
+       2  -0.280389  -0.131979   0.003246
+       3   0.052773  -0.350314   0.002233
+       4  -0.039160   0.050158   0.000943
+       5   0.302284  -0.386462  -0.381585
+       6   0.311146  -0.395043   0.366193
+
+   Mode   8:     1594.13 cm^-1
+     Atom       dx         dy         dz
+       1  -0.024598  -0.053811   0.000545
+       2   0.515506   0.241922  -0.005851
+       3  -0.111692   0.660939  -0.003566
+       4  -0.023767   0.021314   0.000598
+       5   0.180379  -0.191124  -0.205224
+       6   0.183518  -0.195891   0.196498
+
+   Mode   9:     3527.02 cm^-1
+     Atom       dx         dy         dz
+       1   0.052734   0.020717  -0.000574
+       2   0.129301  -0.203911   0.000173
+       3  -0.958863  -0.125470   0.008823
+       4   0.001808  -0.002364  -0.000040
+       5  -0.018447   0.019400  -0.030153
+       6  -0.017760   0.018655   0.030900
+
+   Mode  10:     3694.18 cm^-1
+     Atom       dx         dy         dz
+       1  -0.002014  -0.002101   0.000031
+       2  -0.016617   0.029559  -0.000046
+       3   0.049880   0.001744  -0.000488
+       4   0.030392  -0.038763  -0.000656
+       5  -0.248658   0.315971  -0.580491
+       6  -0.235052   0.301365   0.590945
+
+   Mode  11:     3780.42 cm^-1
+     Atom       dx         dy         dz
+       1   0.040781  -0.050990  -0.000029
+       2  -0.426587   0.872746  -0.001802
+       3  -0.217892  -0.064213   0.002232
+       4  -0.000699   0.000864   0.000009
+       5   0.004275  -0.006615   0.013140
+       6   0.003967  -0.006253  -0.013258
+
+   Mode  12:     3813.78 cm^-1
+     Atom       dx         dy         dz
+       1  -0.000004   0.000002  -0.000003
+       2   0.000026  -0.000043   0.000094
+       3   0.000025   0.000016  -0.001314
+       4  -0.000712   0.000742  -0.070515
+       5   0.268938  -0.343749   0.552520
+       6  -0.257623   0.331959   0.568057
+   Hessian written to: test16_water_dimer_bp86_d3bj_3.hess
+   Molden file written to: test16_water_dimer_bp86_d3bj_3.molden
+   Hessian & Frequencies time:     37.906 s
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =    58.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =   150.1614482074
+     T max |el|  =    29.5401397978
+     T min diag  =     0.0540000000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -588.8856431351
+     V max |el|  =    64.4833652180
+     V min diag  =   -64.4833652180
+     V max diag  =    -2.9438716686
+   Assembling H_core = T + V_nuc...
+     H trace     =  -438.7241949277
+     H max |el|  =    34.9432254202
+     H min diag  =   -34.9432254202
+     H max diag  =    -2.0105383352
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:    -189.488232166391
+     Nuclear repulsion:      36.608093388134
+     Dispersion (D3):        -0.001868810454
+     Total energy:         -152.882007588711
+
+   Grid-quality check (density integration):
+     Integrated N_e:         19.9999975684   (exact = 20.0)
+     Deviation:          -2.43157E-06   (  -1.216E-05 %)
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.732422   -0.732422
+       2      H       0.665745    0.334255
+       3      H       0.613294    0.386706
+       4      O       8.729075   -0.729075
+       5      H       0.629711    0.370289
+       6      H       0.629753    0.370247
+   ------------------------------------------------
+   Total electrons:    20.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):    -1.754042   -0.156402   -0.498131
+   Electronic (au):     2.917165    0.237407    0.474669
+   Total      (au):     1.163123    0.081004   -0.023463
+   |mu|       (au):     1.166177
+   |mu|    (Debye):     2.964126
+   ================================================
+   Section 7 time:      0.037 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:     52.700 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:17:03.08
+

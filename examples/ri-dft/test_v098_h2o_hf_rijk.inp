@@ -1,0 +1,31 @@
+! ======================================================================
+! test_v098_h2o_hf_rijk -- RI-JK: fitted Coulomb AND exchange.
+!
+! Water HF/6-31G(d), %ri jk (def2-universal-JKFIT, Weigend 2008).
+!
+! Reference (v0.98.0, 1 thread, reference BLAS):
+!   RI-JK total energy:     -76.010478687409
+!   conventional (%ri off): -76.010504988271
+!   dE(RI - exact) = +2.63e-5 Ha (8.8 uHa/atom).
+!   %ri_check on: max|dJ| = 8.4e-6 (JKFIT J-fit), max|dK| = 3.5e-4,
+!   dE_K(bare) = -5.7e-5 Ha at the SAD-guess density.
+! Companion numbers (same protocol):
+!   B3LYP water RKS: dE = -2.3e-5 (7.7 uHa/atom);
+!   B3LYP OH UKS:    dE = -1.7e-5 (8.3 uHa/atom);
+!   pyrrole B3LYP/cc-pVDZ: dE = -4.4e-5 (4.4 uHa/atom),
+!   2e phase 8.73 -> 3.61 s (2.4x).
+! %ri jk is gated to %job energy (the RI-K gradient is a later
+! arc stage); range separation is gated (attenuated 3c tensors).
+! ======================================================================
+%method  HF
+%basis   6-31gd
+%job     energy
+%ri      jk
+%ri_check on
+%charge  0
+%mult    1
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

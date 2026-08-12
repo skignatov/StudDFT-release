@@ -1,0 +1,37 @@
+! ======================================================================
+! test_v110_h2o_pbe_rt_stationary -- RT-TDDFT ladder step 1:
+! field-free propagation of the converged ground state must be
+! STATIONARY (the "do-nothing" test).
+!
+! Water PBE/STO-3G, C1, gas phase; 100 exponential-midpoint steps of
+! dt = 0.2 au (4.8 fs is not needed for this test -- 20 au suffice to
+! expose any drift).
+!
+! Reference (v1.10.0, 1 thread, reference BLAS):
+!   Reference SCF energy:        -75.227762250396
+!   RT self-check |E(0)-E_scf|:   ~2e-13  (hard-gated below 1e-6)
+!   Conservation summary over 100 steps:
+!     max |E(t) - E(0)|   ~ 7e-13 Ha
+!     max |N_e(t) - N_e|  ~ 9e-14 e
+!     max idempotency     ~ 2e-14
+!     max |mu(t) - mu(0)| ~ 2e-11 au
+!   All four sit at the SCF-convergence / round-off floor; the dipole
+!   drift is the [F,P] residual of the converged SCF (tightening
+!   %scf_ptol shrinks it further -- demonstrated in
+!   BENCHMARK_NOTES_v1.10.0.md).
+!   The predictor-corrector reports 1.000 iterations/step (a
+!   stationary density converges the midpoint Fock immediately).
+! ======================================================================
+%method  PBE
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%rt_tddft 100
+%rt_dt    0.2
+%rt_print_every 20
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

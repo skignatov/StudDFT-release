@@ -1,0 +1,22 @@
+! Oracle anchor, v1.21.0.  Single point at the EXACT geometry the
+! reference program used, taken from its own input file.
+!
+! ORCA ran with Grid5 GridX5 IntAcc 6.0, TightSCF, NoRI, NoCOSX and
+! SCF tolerances at 1e-10; StudDFT uses grid 8 (Treutler-Ahlrichs
+! M4), which the verification protocol of the paper matches to it.
+!
+! Reference: BP86 / cc-pVDZ, orca-6.0.1
+%method  BP86
+%basis   cc-pVDZ
+%job     energy
+%charge  0
+%mult    1
+%spherical
+%grid    8
+%scf_etol 1e-10
+%scf_ptol 1e-8
+%scf_diis_etol 1e-7
+%geom angstrom
+Cl  0. 0. 0.
+Cl  0. 0. 1.99
+*end

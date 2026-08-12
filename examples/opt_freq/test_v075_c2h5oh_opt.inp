@@ -1,0 +1,25 @@
+! v0.75.0 regression: ethanol (CH3-CH2-OH) opt+freq.
+! Pre-v0.75: stuck at max|g| = 1.51e-03 for 41 iterations because the
+! dihedral enumeration in internal_coords::generate_internals dropped
+! the nine torsions around the C1-C2 bond (the methyl-rotation DOF).
+! v0.75.0 must converge in well under 50 cycles and produce 21 real
+! vibrational modes (no imaginary frequencies).
+%method  HF
+%basis   6-31G(d,p)
+%job     opt+freq
+%grid    fine
+%charge  0
+%mult    1
+%spherical
+%opt_maxiter  100
+
+%geo
+C       0.0000000000      0.0000000000      0.0000000000
+C       0.0000000000      0.0000000000      1.5400000000
+H       1.0306152474      0.0000000000      1.8948692884
+H      -0.5153076237      0.8925389858      1.8948692884
+H      -0.5153076237     -0.8925389858      1.8948692884
+H       0.8925389858     -0.5153076237     -0.3548692884
+H      -0.8925389858     -0.5153076237     -0.3548692884
+O       0.0000000000      1.4182778634     -0.4883522317
+H       0.1593446965      1.3565479116     -1.4228567425

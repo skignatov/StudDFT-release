@@ -1,0 +1,24 @@
+! v1.11.13 demo: OPEN-SHELL CDFT RELEASE (UKS Ehrenfest).  The LiH+
+! doublet with the hole CDFT-constrained toward Li (charge +0.85),
+! then released: coupled charge flow + nuclear motion, spin channels
+! propagated independently.
+%method  PBE
+%basis   3-21g
+%grid    1
+%job     energy
+%charge  1
+%mult    2
+%scf_ptol 1e-8
+%spin unrestricted
+%cdft    becke
+Li  1  charge  +0.85
+%cdft_tol 1.0e-6
+%cdft_maxiter 30
+%rt_tddft 400
+%rt_dt    0.05
+%rt_pc_maxiter 6
+%rt_print_every 100
+%geom angstrom
+Li 0.0 0.0 0.0
+H  0.0 0.0 1.60
+*end

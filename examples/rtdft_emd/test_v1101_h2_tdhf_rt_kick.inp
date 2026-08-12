@@ -1,0 +1,48 @@
+! ======================================================================
+! test_v1101_h2_tdhf_rt_kick -- RT-TDDFT ladder step 3, the two-road
+! oracle at full exact exchange: the weak-kick RT spectrum of H2 must
+! reproduce the Casida (full TDHF/RPA) excitation energy AND oscillator
+! strength.  c_HF = 1 exercises the complete complex-exchange machinery
+! (K[Im P] via the general stored contraction) on every step.
+!
+! H2/STO-3G, R = 0.74 A: one singlet excitation (sigma_u, z-polarized).
+! Kick kappa = 1e-3 along z; 12000 steps of dt = 0.1 (T = 1200 au),
+! gamma = 0.005 (gamma*T = 6).
+!
+! Reference (v1.10.1, 1 thread, reference BLAS):
+!   SCF total energy:            -1.116780126821
+!   RT self-check |dE|:           ~4e-16
+!   Casida (printed above the RT section):
+!     state 1:  w = 0.930653 Ha (25.3244 eV),  f = 0.88575
+!   RT excitation table:
+!     state:    w = 0.93119  Ha (25.3389 eV),  f = 0.886151
+!   Agreement: dw = +5.4e-4 Ha, df = +0.05 %.
+!   The position residual is the O(w^3 dt^2) propagator PHASE error,
+!   verified by its exact dt^2 scaling (dt = 0.2 gives dw = +2.2e-3 =
+!   4x); the two flanking "(ringing?)"-flagged satellites are finite-
+!   trajectory truncation lobes at the exp(-gamma*T) level, correctly
+!   labeled by the analyzer.
+!   Post-kick energy conservation: max |E(t)-E(0)| ~ 2.4e-11 Ha over
+!   12000 steps -- with exact exchange this is a stringent implicit
+!   test of K[Im P] (an inconsistent antisymmetric exchange breaks
+!   conservation immediately).
+!   Kick-amplitude linearity: kappa = 1e-4 changes f by 5e-5 relative
+!   (the O(kappa^2) nonlinearity), positions unchanged.
+! ======================================================================
+%method  HF
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%scf_ptol 1e-9
+%tddft   3
+%rt_tddft 12000
+%rt_dt    0.1
+%rt_kick  0.001
+%rt_kick_dir z
+%rt_gamma 0.005
+%rt_print_every 3000
+%geom angstrom
+H  0.0 0.0 0.0
+H  0.0 0.0 0.74
+*end

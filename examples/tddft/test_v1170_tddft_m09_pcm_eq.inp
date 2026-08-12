@@ -1,0 +1,22 @@
+! TDDFT mode matrix 09/16 -- LR-PCM, EQUILIBRIUM solvation
+!
+! Same system as case 08 with the response kernel at the STATIC
+! permittivity instead of the optical one.  Equilibrium solvation
+! must lower the singlets further than nonequilibrium does; if cases
+! 08 and 09 ever produce identical numbers, %tddft_pcm is being
+! ignored.
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity singlet
+%pcm     cpcm
+%solvent water
+%tddft_pcm equilibrium
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

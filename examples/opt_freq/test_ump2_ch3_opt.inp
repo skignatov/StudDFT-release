@@ -1,0 +1,25 @@
+# UMP2 geometry optimization test for CH3 radical (planar, D3h).
+# Verifies that the geometry optimizer correctly dispatches the UMP2
+# analytical gradient (rather than silently falling through to the
+# pure-UHF branch, which was the v0.62.x behavior).
+#
+# Expected (StudDFT v0.63.0):
+#   Convergence in <= 8 RFO steps.
+#   Final E(UMP2/6-31G(d,p), frozen_core=auto): -39.69270453 Ha.
+#   Final MP2 correlation:                      -0.12825220 Ha.
+#   Optimized geometry: planar D3h, R(C-H) = 1.0743 Angstrom.
+#   <S^2> = 0.7612 (mild spin contamination, exact = 0.75).
+#
+%method        MP2
+%basis         6-31G(d,p)
+%job           opt
+%charge        0
+%mult          2
+%spin          unrestricted
+%print_time
+
+%geo
+C   0.000000   0.000000   0.000000
+H   0.000000   0.000000   1.080000
+H   1.020000   0.000000  -0.540000
+H  -1.020000   0.000000  -0.540000

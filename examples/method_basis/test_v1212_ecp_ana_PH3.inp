@@ -1,0 +1,34 @@
+! Oracle anchor, v1.21.2.  ECP: LANL2DZ with an effective core
+! potential, against ORCA 6.0.1.
+!
+! The pair of files _num and _ana differ ONLY in %ecp_method, and
+! that is the point: StudDFT implements the ECP integrals twice --
+! numerically, by radial-angular quadrature, and analytically, by
+! McMurchie-Davidson with Flores-Moreno angular projection.  Two
+! implementations of one quantity against one external reference.
+!
+! The paper reports the analytical route as the less accurate of
+! the two (MAD 13.8 against 4.2 uHa) and numerical is the default
+! for that reason.  The tolerances below reflect that: they are
+! not the same for the two files, because the two routes are not
+! equally good, and pretending otherwise would hide a change in
+! either.
+!
+! ECP integrals: analytical
+%method  HF
+%basis   LANL2DZ
+%ecp     LANL2DZ
+%ecp_method analytical
+%job     energy
+%charge  0
+%mult    1
+%spherical
+%scf_etol 1e-10
+%scf_ptol 1e-8
+%scf_diis_etol 1e-7
+%geom angstrom
+H       0.0000000000      0.0000000000      0.0000000000
+P       0.0000000000      0.0000000000      1.4200000000
+H       1.3505002531      0.0000000000      1.8588041320
+H      -0.6752501266      1.1695675270      1.8588041320
+*end

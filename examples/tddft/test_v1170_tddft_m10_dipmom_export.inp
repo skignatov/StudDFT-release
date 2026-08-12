@@ -1,0 +1,26 @@
+! TDDFT mode matrix 10/16 -- state dipoles, GMH analysis, MOLDEN export
+!
+! HeH+ / STO-3G, the smallest charge-transfer-like system.  Exercises
+! three things no other case touches:
+!   %tddft_dipmom  -- unrelaxed excited-state dipoles, transition
+!                     dipoles, and the Cave-Newton GMH coupling;
+!   %export_tddft  -- *_tddft_mo.molden and *_tddft_states.txt writers;
+!   a CHARGED system -- state dipoles are origin-dependent for ions,
+!                     which the output header must state.
+!
+! Numerically anchored independently in tests/test_v0871_heh_tddft_dip.inp
+! (hand-coded python RHF+CIS reference); here the point is that the
+! export files are produced and the analysis block runs.
+%method  HF
+%basis   sto-3g
+%job     energy
+%charge  1
+%mult    1
+%tddft   1
+%tddft_tda on
+%tddft_dipmom on
+%export_tddft on
+%geom angstrom
+He  0.0  0.0  0.0
+H   0.0  0.0  0.793765816355
+*end

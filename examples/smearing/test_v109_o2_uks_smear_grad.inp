@@ -1,0 +1,26 @@
+! Test v1.09.0 (3/4): smeared analytical UKS gradient, RELAXED
+! moment.  O2, %mult 1 input (the relaxed-moment grand-canonical
+! spin distribution moves the magnetization away from the seed),
+! HF/STO-3G, Gaussian sigma = 0.15 Ha.  Exercises the per-spin
+! fractional Pulay densities under the SINGLE shared-mu constraint.
+! Validated against Richardson-extrapolated central FD of F along
+! the bond: |FD_R - g| = 3e-9 Ha/bohr; the fixed-moment twin
+! (%smearing_moment fixed) validates to 2.7e-9.  Expected
+! (container reference):
+!   relaxed:  O1 gZ = -0.16184173,  O2 gZ = 0.16184173
+!   fixed:    O1 gZ = -0.15768495,  O2 gZ = 0.15768495
+%method  HF
+%basis   sto-3g
+%job     gradient
+%print_grad
+%scf_etol 1e-10
+%scf_maxiter 300
+%mult    1
+%spin    unrestricted
+%smearing gauss
+%smearing_sigma 0.15
+%smearing_moment relaxed
+*geometry angstrom
+ O   0.000000    0.000000    0.000000
+ O   0.000000    0.000000    1.300000
+*end

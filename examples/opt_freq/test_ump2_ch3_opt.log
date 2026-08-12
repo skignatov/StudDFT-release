@@ -1,0 +1,953 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:29:54.47
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\opt_freq
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_ump2_ch3_opt.inp
+
+ --- Input file echo ---------------------------------------
+   | # UMP2 geometry optimization test for CH3 radical (planar, D3h).
+   | # Verifies that the geometry optimizer correctly dispatches the UMP2
+   | # analytical gradient (rather than silently falling through to the
+   | # pure-UHF branch, which was the v0.62.x behavior).
+   | #
+   | # Expected (StudDFT v0.63.0):
+   | #   Convergence in <= 8 RFO steps.
+   | #   Final E(UMP2/6-31G(d,p), frozen_core=auto): -39.69270453 Ha.
+   | #   Final MP2 correlation:                      -0.12825220 Ha.
+   | #   Optimized geometry: planar D3h, R(C-H) = 1.0743 Angstrom.
+   | #   <S^2> = 0.7612 (mild spin contamination, exact = 0.75).
+   | #
+   | %method        MP2
+   | %basis         6-31G(d,p)
+   | %job           opt
+   | %charge        0
+   | %mult          2
+   | %spin          unrestricted
+   | %print_time
+   | 
+   | %geo
+   | C   0.000000   0.000000   0.000000
+   | H   0.000000   0.000000   1.080000
+   | H   1.020000   0.000000  -0.540000
+   | H  -1.020000   0.000000  -0.540000
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Optimization
+   Method:           MP2
+   Basis set:        6-31G(d,p)
+   Spin treatment:   Unrestricted
+   Charge:              0
+   Multiplicity:        2
+   Atoms:               4
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        50
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    C1         0.00000000   0.00000000   0.00000000
+    H2         0.00000000   0.00000000   1.08000000
+    H3         1.02000000   0.00000000  -0.54000000
+    H4        -1.02000000   0.00000000  -0.54000000
+
+ Setting up method...
+   Functional:       MP2
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            4
+   Number of shells:          15
+   Number of basis fns:       30
+   Primitive Gaussians:       30
+   Total electrons:            9
+   Alpha electrons:            5
+   Beta electrons:             4
+   Charge:                   0
+   Multiplicity:             2
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     6    1       1
+       2     1   s     3    1       2
+       3     1   s     1    1       3
+       4     1   p     3    3       4
+       5     1   p     1    3       7
+       6     1   d     1    6      10
+       7     2   s     3    1      16
+       8     2   s     1    1      17
+       9     2   p     1    3      18
+      10     3   s     3    1      21
+      11     3   s     1    1      22
+      12     3   p     1    3      23
+      13     4   s     3    1      26
+      14     4   s     1    1      27
+      15     4   p     1    3      28
+ =============================================
+   Point group: C2v   (atom-match deviation  2.36E-16 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing:  87.0 % contraction-first,  13.0 % per-primitive (by class census)
+   Frozen core (auto): 1 orbital(s).  Override with %frozen_core 0 to correlate all.
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.037 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =    28.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    62.8560207575
+     T max |el|  =    16.2075631736
+     T min diag  =     0.2419167000
+     T max diag  =    16.2075631736
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -172.5800053902
+     V max |el|  =    35.5597398365
+     V min diag  =   -35.5597398365
+     V max diag  =    -1.9651632094
+   Assembling H_core = T + V_nuc...
+     H trace     =  -109.7239846327
+     H max |el|  =    19.3521766629
+     H min diag  =   -19.3521766629
+     H max diag  =    -1.0318298760
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.010 s
+ =======================================================
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      6
+   Bonds:                           3
+   Angles:                          3
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   2.040904
+       1 -   3  R =   2.180976
+       1 -   4  R =   2.180976
+   Angles (degrees):
+       2 -   1 -   3  theta =   117.8973
+       2 -   1 -   4  theta =   117.8973
+       3 -   1 -   4  theta =   124.2055
+   Initial Hessian: Lindh diagonal model
+
+   Geometry Optimization (RFO / Internal Coordinates)
+   =========================================================================
+                                     max|g|    rms(g)    max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     660000 quartets/s  (  6 threads,     0.011 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   3 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   3 orbital(s) reassigned in beta channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   3 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   3 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   3 orbital(s) reassigned in beta channel
+   *** SCF iter: 6. Aufbau swap detected on alpha channel  (min max-overlap =  0.006; following Aufbau)
+   *** SCF iter: 6. Aufbau swap detected on beta channel  (min max-overlap =  0.006; following Aufbau)
+   *** Suspicious dE-only convergence at iter=  18   (|dE|,dP,|g|)= 5.551E-09 8.707E-06 2.230E-05
+   *** Suspicious dE-only convergence at iter=  19   (|dE|,dP,|g|)= 5.665E-10 2.107E-06 5.079E-06
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in   21 iter  (dE=-2.757E-12, dP= 2.876E-07, |g|= 4.896E-07)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017590001201
+     E(bb) [from t2bb]:         -0.006226836228
+     E(ab) [from t2ab]:         -0.104861283015
+     E(corr) [from t2s]:        -0.128678120444
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017590001201
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006226836228
+   Alpha-beta channel...
+     E(ab) =      -0.104861283015
+     Amplitude check OK, |dE| =   8.33E-17
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =   3.47E-17
+     tr(doob)+tr(dvvb) =   6.25E-17
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     726000 quartets/s  (  6 threads,     0.010 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+     max|Imat_AO_a|=   4.99E-02
+     max|Imat_AO_b|=   4.94E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+     JK direct:   6 OpenMP threads  (printed once; applies to every iteration)
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   2.182E-03
+        6   4.232E-06
+        8   8.053E-08
+     Converged in    8 iterations, max|R| =  8.053E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.66E-02
+     max|D_corr_b| =   2.80E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1    0.000000E+00    0.000000E+00    2.600984E-01
+     atom  2    0.000000E+00    0.000000E+00   -1.569798E+00
+     atom  3   -1.222802E+00    0.000000E+00    6.548497E-01
+     atom  4    1.222802E+00    0.000000E+00    6.548497E-01
+     atom  1   -2.691315E-15   -3.147301E-15   -4.716401E-01
+     atom  2   -1.270957E-14    2.638241E-15    3.502462E+00
+     atom  3    2.967700E+00    3.481971E-07   -1.515411E+00
+     atom  4   -2.967700E+00   -3.481971E-07   -1.515411E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1   -4.525135E-15    2.399376E-15    2.433272E-01
+     atom  2    1.286222E-14   -1.856831E-15   -1.934403E+00
+     atom  3   -1.703565E+00   -3.265295E-07    8.455380E-01
+     atom  4    1.703565E+00    3.265295E-07    8.455380E-01
+     atom  1   -3.155297E-16   -4.013126E-17    6.115652E-04
+     atom  2    1.322111E-16    3.333430E-18    4.678640E-03
+     atom  3    4.694910E-03   -5.103011E-10   -2.645102E-03
+     atom  4   -4.694910E-03    5.103011E-10   -2.645102E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -39.68427660  -3.97E+01  4.60E-02  2.22E-02  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     C1          0.00000000    0.00000000    0.00000000
+     H2          0.00000000    0.00000000    1.08000000
+     H3          1.02000000    0.00000000   -0.54000000
+     H4         -1.02000000    0.00000000   -0.54000000
+
+   --- Step    2 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 3. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 4. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 5. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** Suspicious dE-only convergence at iter=  11   (|dE|,dP,|g|)= 2.301E-09 5.916E-06 7.998E-06
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in   13 iter  (dE=-2.558E-12, dP= 3.148E-07, |g|= 6.753E-07)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     660000 quartets/s  (  6 threads,     0.011 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017601693411
+     E(bb) [from t2bb]:         -0.006288125349
+     E(ab) [from t2ab]:         -0.104499153179
+     E(corr) [from t2s]:        -0.128388971939
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017601693411
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006288125349
+   Alpha-beta channel...
+     E(ab) =      -0.104499153179
+     Amplitude check OK, |dE| =   0.00E+00
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =  -2.08E-17
+     tr(doob)+tr(dvvb) =  -6.94E-18
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1037143 quartets/s  (  6 threads,     0.007 s)
+     max|Imat_AO_a|=   4.94E-02
+     max|Imat_AO_b|=   4.92E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   1.809E-03
+        6   1.558E-06
+        8   3.871E-08
+     Converged in    8 iterations, max|R| =  3.871E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.70E-02
+     max|D_corr_b| =   2.66E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1    0.000000E+00    0.000000E+00    1.065204E-01
+     atom  2    6.779299E-15    0.000000E+00   -1.585503E+00
+     atom  3   -1.330291E+00    0.000000E+00    7.394915E-01
+     atom  4    1.330291E+00    0.000000E+00    7.394915E-01
+     atom  1   -1.095510E-13   -2.111648E-15   -2.061296E-01
+     atom  2    7.400529E-14   -5.949037E-16    3.538228E+00
+     atom  3    3.066555E+00   -4.264650E-11   -1.666049E+00
+     atom  4   -3.066555E+00    4.264920E-11   -1.666049E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1    1.089821E-13    2.686651E-15    1.109575E-01
+     atom  2   -7.596553E-14    1.121225E-16   -1.956450E+00
+     atom  3   -1.723012E+00    3.963498E-11    9.227463E-01
+     atom  4    1.723012E+00   -3.963778E-11    9.227463E-01
+     atom  1    4.380258E-16   -8.315824E-17    1.739455E-04
+     atom  2    1.408834E-16   -1.768899E-17    4.966621E-03
+     atom  3    4.657584E-03    5.788084E-14   -2.570283E-03
+     atom  4   -4.657584E-03   -5.777999E-14   -2.570283E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -39.69163755  -7.36E-03  1.79E-02  8.45E-03  1.07E-01  4.41E-02
+                                      no        no        no        no 
+     [geo0002]
+     C1          0.00000000    0.00000000   -0.00295294
+     H2         -0.00000000    0.00000000    1.07390607
+     H3          0.96315472    0.00000000   -0.53547657
+     H4         -0.96315472    0.00000000   -0.53547657
+
+   --- Step    3 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** Suspicious dE-only convergence at iter=  11   (|dE|,dP,|g|)= 6.476E-10 3.172E-06 4.624E-06
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in   13 iter  (dE=-8.100E-13, dP= 1.832E-07, |g|= 3.874E-07)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017618399500
+     E(bb) [from t2bb]:         -0.006324668161
+     E(ab) [from t2ab]:         -0.104277304968
+     E(corr) [from t2s]:        -0.128220372629
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017618399500
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006324668161
+   Alpha-beta channel...
+     E(ab) =      -0.104277304968
+     Amplitude check OK, |dE| =   5.55E-17
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =   3.47E-17
+     tr(doob)+tr(dvvb) =   6.25E-17
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     660000 quartets/s  (  6 threads,     0.011 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+     max|Imat_AO_a|=   4.90E-02
+     max|Imat_AO_b|=   4.90E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   1.692E-03
+        6   4.618E-07
+        8   2.893E-08
+     Converged in    8 iterations, max|R| =  2.893E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.71E-02
+     max|D_corr_b| =   2.57E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1   -4.418688E-14    0.000000E+00   -1.338099E-02
+     atom  2    2.450123E-14    0.000000E+00   -1.596108E+00
+     atom  3   -1.401375E+00    0.000000E+00    8.047447E-01
+     atom  4    1.401375E+00    0.000000E+00    8.047447E-01
+     atom  1    1.442631E-13   -5.218507E-15    1.118272E-03
+     atom  2   -1.245230E-13    6.004587E-15    3.565413E+00
+     atom  3    3.112706E+00    5.257066E-15   -1.783266E+00
+     atom  4   -3.112706E+00   -6.043146E-15   -1.783266E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1   -1.050722E-13    3.157029E-15    6.562970E-03
+     atom  2    9.747350E-14   -4.514251E-15   -1.974276E+00
+     atom  3   -1.720183E+00   -1.479097E-15    9.838567E-01
+     atom  4    1.720183E+00    2.836320E-15    9.838567E-01
+     atom  1    1.167102E-15    0.000000E+00   -2.357427E-04
+     atom  2   -3.709511E-16    0.000000E+00    5.141626E-03
+     atom  3    4.384636E-03    0.000000E+00   -2.452942E-03
+     atom  4   -4.384636E-03    0.000000E+00   -2.452942E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -39.69263144  -9.94E-04  5.94E-03  2.77E-03  7.07E-02  2.89E-02
+                                      no        no        no        no 
+     [geo0003]
+     C1          0.00000000    0.00000000   -0.00297351
+     H2         -0.00000000    0.00000000    1.07165925
+     H3          0.92572684    0.00000000   -0.53434287
+     H4         -0.92572684    0.00000000   -0.53434287
+
+   --- Step    4 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1210000 quartets/s  (  6 threads,     0.006 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** Suspicious dE-only convergence at iter=   6   (|dE|,dP,|g|)= 9.772E-09 3.371E-05 5.644E-05
+   *** Suspicious dE-only convergence at iter=   7   (|dE|,dP,|g|)= 2.771E-09 1.079E-05 2.332E-05
+   *** Suspicious dE-only convergence at iter=   8   (|dE|,dP,|g|)= 5.501E-10 4.232E-06 6.707E-06
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in   10 iter  (dE=-1.506E-12, dP= 1.543E-07, |g|= 3.152E-07)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017614197357
+     E(bb) [from t2bb]:         -0.006317021103
+     E(ab) [from t2ab]:         -0.104322641866
+     E(corr) [from t2s]:        -0.128253860327
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017614197357
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006317021103
+   Alpha-beta channel...
+     E(ab) =      -0.104322641866
+     Amplitude check OK, |dE| =   5.55E-17
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =   0.00E+00
+     tr(doob)+tr(dvvb) =  -6.94E-18
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1037143 quartets/s  (  6 threads,     0.007 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     660000 quartets/s  (  6 threads,     0.011 s)
+     max|Imat_AO_a|=   4.91E-02
+     max|Imat_AO_b|=   4.91E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   1.730E-03
+        6   2.891E-07
+        7   3.030E-08
+     Converged in    7 iterations, max|R| =  3.030E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.71E-02
+     max|D_corr_b| =   2.59E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1   -4.107825E-14    0.000000E+00    5.365821E-03
+     atom  2    2.434164E-14    0.000000E+00   -1.595411E+00
+     atom  3   -1.382806E+00    0.000000E+00    7.950224E-01
+     atom  4    1.382806E+00    0.000000E+00    7.950224E-01
+     atom  1    9.765452E-14   -3.898567E-15   -1.582947E-02
+     atom  2   -1.092892E-13    2.362755E-15    3.563601E+00
+     atom  3    3.092548E+00    2.348382E-15   -1.773886E+00
+     atom  4   -3.092548E+00   -8.125695E-16   -1.773886E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1   -4.971024E-14    1.039720E-15    1.012032E-02
+     atom  2    8.278607E-14   -6.370041E-16   -1.973233E+00
+     atom  3   -1.713823E+00   -4.027157E-16    9.815562E-01
+     atom  4    1.713823E+00    0.000000E+00    9.815562E-01
+     atom  1    6.775580E-16    0.000000E+00   -3.788676E-05
+     atom  2   -5.022206E-17    0.000000E+00    5.100434E-03
+     atom  3    4.433363E-03    0.000000E+00   -2.531274E-03
+     atom  4   -4.433363E-03    0.000000E+00   -2.531274E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4    -39.69270324  -7.18E-05  3.81E-04  1.94E-04  1.13E-02  5.08E-03
+                                      yes       yes       no        no 
+     [geo0004]
+     C1          0.00000000    0.00000000   -0.00092817
+     H2         -0.00000000    0.00000000    1.07355565
+     H3          0.93169566    0.00000000   -0.53631374
+     H4         -0.93169566    0.00000000   -0.53631374
+
+   --- Step    5 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1037143 quartets/s  (  6 threads,     0.007 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** Suspicious dE-only convergence at iter=   5   (|dE|,dP,|g|)= 9.150E-11 1.703E-06 8.087E-06
+   *** Suspicious dE-only convergence at iter=   6   (|dE|,dP,|g|)= 4.089E-11 1.009E-06 4.995E-06
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in    8 iter  (dE=-8.285E-12, dP= 4.360E-07, |g|= 2.285E-06)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017614368210
+     E(bb) [from t2bb]:         -0.006317328048
+     E(ab) [from t2ab]:         -0.104320657120
+     E(corr) [from t2s]:        -0.128252353378
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1037143 quartets/s  (  6 threads,     0.007 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017614368210
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006317328048
+   Alpha-beta channel...
+     E(ab) =      -0.104320657120
+     Amplitude check OK, |dE| =   0.00E+00
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =  -2.78E-17
+     tr(doob)+tr(dvvb) =  -6.94E-18
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1037143 quartets/s  (  6 threads,     0.007 s)
+     max|Imat_AO_a|=   4.91E-02
+     max|Imat_AO_b|=   4.91E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   1.728E-03
+        6   2.885E-07
+        7   2.962E-08
+     Converged in    7 iterations, max|R| =  2.962E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.71E-02
+     max|D_corr_b| =   2.59E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1   -3.552714E-14    0.000000E+00    1.479172E-03
+     atom  2    1.225409E-14    0.000000E+00   -1.595671E+00
+     atom  3   -1.382493E+00    0.000000E+00    7.970960E-01
+     atom  4    1.382493E+00    0.000000E+00    7.970960E-01
+     atom  1   -5.056285E-15   -2.914464E-15   -4.859741E-03
+     atom  2   -1.668941E-14    9.546617E-16    3.564788E+00
+     atom  3    3.089495E+00    3.460669E-15   -1.779964E+00
+     atom  4   -3.089495E+00   -1.500866E-15   -1.779964E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1    3.669764E-14    1.247807E-15    3.201196E-03
+     atom  2    6.069432E-15   -3.592904E-16   -1.974189E+00
+     atom  3   -1.711365E+00   -1.059151E-15    9.854937E-01
+     atom  4    1.711365E+00    1.706344E-16    9.854937E-01
+     atom  1    1.555328E-16    0.000000E+00   -1.467202E-05
+     atom  2   -1.012785E-16    0.000000E+00    5.102010E-03
+     atom  3    4.422656E-03    0.000000E+00   -2.543669E-03
+     atom  4   -4.422656E-03    0.000000E+00   -2.543669E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      5    -39.69270438  -1.14E-06  1.94E-04  7.03E-05  1.81E-03  9.54E-04
+                                      yes       yes       no        yes
+     [geo0005]
+     C1          0.00000000    0.00000000   -0.00032511
+     H2         -0.00000000    0.00000000    1.07406005
+     H3          0.93073958    0.00000000   -0.53686747
+     H4         -0.93073958    0.00000000   -0.53686747
+
+   --- Step    6 ---
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 1. MOM reorder:   2 orbital(s) reassigned in beta channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in alpha channel
+   *** SCF iter: 2. MOM reorder:   2 orbital(s) reassigned in beta channel
+   Checkpoint written: test_ump2_ch3_opt.chk
+   SCF converged in    7 iter  (dE=-3.119E-12, dP= 2.584E-07, |g|= 1.209E-06)
+   UMP2 analytical gradient (Stage 2: aa+bb only)
+     Basis functions:           30
+     Alpha occ / vir:          5 /  25
+     Beta  occ / vir:          4 /  26
+     Frozen core (a/b):       1 /   1
+     Correlated occ (a/b):    4 /   3
+   Step 1: ERI store + half-transforms...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Step 2: Building t2aa, t2bb, t2ab amplitudes...
+   Step 3: Energy cross-check from amplitudes...
+     E(aa) [from t2aa]:         -0.017614383284
+     E(bb) [from t2bb]:         -0.006317379450
+     E(ab) [from t2ab]:         -0.104320406015
+     E(corr) [from t2s]:        -0.128252168750
+   Basis functions:           30
+   Alpha occupied/virtual:   5 /  25
+   Beta  occupied/virtual:   4 /  26
+   Frozen core (a/b):       1 /   1
+   Correlated occ (a/b):    4 /   3
+   Computing and storing AO ERIs...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Alpha-alpha channel...
+   Batched (ov|ov) transform:     1 batch(es) of up to    25 ket virtuals
+     E(aa) =      -0.017614383284
+   Beta ket transform (batched, bb+ab)...
+   Batched (ov|ov) transform:     1 batch(es) of up to    26 ket virtuals
+   Beta-beta channel...
+     E(bb) =      -0.006317379450
+   Alpha-beta channel...
+     E(ab) =      -0.104320406015
+     Amplitude check OK, |dE| =   1.11E-16
+   Step 4: density intermediates (aa+bb+ab)...
+     tr(dooa)+tr(dvva) =   6.94E-18
+     tr(doob)+tr(dvvb) =   1.39E-17
+   Step 5: 2PDMs (aa, bb, ab) and Imat...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     806667 quartets/s  (  6 threads,     0.009 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     726000 quartets/s  (  6 threads,     0.010 s)
+     max|Imat_AO_a|=   4.91E-02
+     max|Imat_AO_b|=   4.91E-02
+   Step 6: Lagrangian L_ai_a, L_ai_b...
+   Step 7: Z-vector PCG (coupled alpha+beta)...
+     Iter     Max|R|  (coupled CPHF)
+        1   1.728E-03
+        6   2.883E-07
+        7   2.936E-08
+     Converged in    7 iterations, max|R| =  2.936E-08
+   Step 8: AO density corrections...
+     max|D_corr_a| =   1.71E-02
+     max|D_corr_b| =   2.59E-02
+   Step 9: energy-weighted density corrections...
+   Step 10: Q_total assembly...
+   Step 11: gradient assembly...
+     atom  1   -2.864375E-14    0.000000E+00    5.910173E-07
+     atom  2    1.561251E-14    0.000000E+00   -1.595846E+00
+     atom  3   -1.382059E+00    0.000000E+00    7.979228E-01
+     atom  4    1.382059E+00    0.000000E+00    7.979228E-01
+     atom  1    1.334991E-13   -1.803067E-15   -2.737051E-05
+     atom  2   -5.519604E-14   -8.480713E-18    3.565384E+00
+     atom  3    3.087745E+00   -1.179104E-15   -1.782678E+00
+     atom  4   -3.087745E+00    2.990651E-15   -1.782678E+00
+     UHF ERI gradient:   6 threads,    120 bra pairs
+     atom  1   -1.005810E-13    5.275898E-16    2.228095E-05
+     atom  2    4.006231E-14    0.000000E+00   -1.974641E+00
+     atom  3   -1.710107E+00    1.410828E-16    9.873094E-01
+     atom  4    1.710107E+00   -6.686727E-16    9.873094E-01
+     atom  1    4.789060E-16    0.000000E+00   -2.479245E-07
+     atom  2    1.552973E-16    0.000000E+00    5.101804E-03
+     atom  3    4.418273E-03    0.000000E+00   -2.550778E-03
+     atom  4   -4.418273E-03    0.000000E+00   -2.550778E-03
+   UMP2 gradient (Stage 2) computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      6    -39.69270452  -1.43E-07  4.75E-06  2.45E-06  6.76E-04  4.17E-04
+                                      yes       yes       yes       yes
+     [geo0006]
+     C1          0.00000000    0.00000000   -0.00000397
+     H2         -0.00000000    0.00000000    1.07431004
+     H3          0.93038187    0.00000000   -0.53715303
+     H4         -0.93038187    0.00000000   -0.53715303
+
+   ======================================================
+   Optimization converged in    6 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   C1         0.00000000   0.00000000  -0.00000751
+   H2        -0.00000000   0.00000000   2.03015175
+   H3         1.75816692   0.00000000  -1.01507212
+   H4        -1.75816692   0.00000000  -1.01507212
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   C1         0.00000000   0.00000000  -0.00000397
+   H2        -0.00000000   0.00000000   1.07431004
+   H3         0.93038187   0.00000000  -0.53715303
+   H4        -0.93038187   0.00000000  -0.53715303
+   -----------------------------------------------
+   Final energy:     -39.692704524142
+   Optimization time:      6.772 s
+
+   Point group after optimization: D3h  (was C2v)
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =    28.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     0.3333333333
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    62.8560207575
+     T max |el|  =    16.2075631736
+     T min diag  =     0.2419167000
+     T max diag  =    16.2075631736
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -175.6408033675
+     V max |el|  =    35.6304618044
+     V min diag  =   -35.6304618044
+     V max diag  =    -1.9838259635
+   Assembling H_core = T + V_nuc...
+     H trace     =  -112.7847826101
+     H max |el|  =    19.4228986308
+     H min diag  =   -19.4228986308
+     H max diag  =    -1.0504926301
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -49.412195162578
+     Nuclear repulsion:       9.719490638436
+     MP2 correlation:         0.000000000000
+     Total energy:          -39.692704524142
+
+   <S**2> =   0.761194   (exact =   0.750000)
+
+   --- Post-optimization PUMP2 single-point ---
+   (uses cached SCF MOs from optimizer; no extra SCF or UMP2)
+   --- PUMP2 (single-annihilation) ---
+   Spin s             :  0.5000
+   s(s+1)             :    0.750000
+   (s+1)(s+2)         :    3.750000
+   K = s(s+1)-(s+1)(s+2):   -3.000000
+   <S^2>_UHF          :    0.761194
+   Delta<S^2>         :    0.011194
+   Delta<S^2> from M  :  0.01119358 (SCF:   0.01119360)
+   PUMP2: building alpha-beta MO ERI block...
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   X contraction       :    0.0040082526 Ha
+   Conventional SCF:       7260 shell quartets,        1.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     907500 quartets/s  (  6 threads,     0.008 s)
+   Y_full (no t-amp)   :   -0.0089561200 Ha
+   Z_quad (t * int)    :   -0.0000997900 Ha
+   PUHF correction est :   -0.0029965541 Ha (= -Y_full/K_eff, integral form)
+   K_eff = K + Delta  :   -2.988806
+   PUMP2 correction    :   -0.0026821762 Ha
+   <R|R> cross-doubles :    0.0113188731
+   <R|R> alpha-singles :    0.0111310167
+   <R|R> beta-singles  :    0.0111310167
+   <R|R> total         :    0.0335809064
+   <S^4>_UHF (estimate):    0.612997
+   <S^2>_A             :    0.749958
+   PUMP2 correction:          -0.0026821762
+   PUMP2 correlation:         -0.0026821762
+   PUMP2 total energy:       -39.6953867003
+   <S^2>_A (PUMP2):        0.749958
+   Note: optimization was performed on the UMP2 surface;
+         the PUMP2 numbers above are reported at the UMP2 minimum.
+         To optimize directly on the PUMP2 surface, add
+         "%pump2 yes" to the input file (FD gradient).
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      C       6.383543   -0.383543
+       2      H       0.872154    0.127846
+       3      H       0.872152    0.127848
+       4      H       0.872152    0.127848
+   ------------------------------------------------
+   Total electrons:     9.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000    0.000000   -0.000038
+   Electronic (au):    -0.000000   -0.000000    0.000036
+   Total      (au):    -0.000000   -0.000000   -0.000002
+   |mu|       (au):     0.000002
+   |mu|    (Debye):     0.000004
+   ================================================
+   Section 7 time:      0.265 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      7.086 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:30:01.56
+
+
+ ==========================================================================================
+  TIMING PROFILE
+ ------------------------------------------------------------------------------------------
+  Stage                        Calls    Wall(s)     CPU(s)   %Wall
+ ------------------------------------------------------------------------------------------
+  Input & initialization           1       0.037      0.000     0.5
+  1e-integrals (S,T,V)             8       0.041      0.375     0.6
+  2e-integrals (J,K)              78       0.088      0.562     1.2
+  SCF iterations (*)               6       0.108      0.750     1.5
+  Optimizer work                   6       0.003      0.016     0.0
+  Properties & output              1       0.265      1.594     3.7
+  MP2 correlation                  7       0.674      4.031     9.5
+  MP2 gradient                     6       6.634     37.781    93.6
+ ------------------------------------------------------------------------------------------
+  Total program                            7.086     40.422   100.0
+   Other / unaccounted                    -0.656               -9.3
+ ------------------------------------------------------------------------------------------
+  (*) SCF time includes 2e-integrals and DFT XC contributions
+ ==========================================================================================
+

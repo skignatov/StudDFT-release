@@ -1,0 +1,49 @@
+! ======================================================================
+! test_v094_h2o_tddft_pcm -- TDDFT + PCM (LR solvent response)
+!
+! Water B3LYP/STO-3G in C-PCM water, 3 singlets + 3 triplets,
+! NONEQUILIBRIUM solvation (default): the response kernel is built at
+! the optical permittivity eps_inf = n^2 = 1.7756 (solvent table),
+! the ground state at the static eps = 78.3553.
+!
+! Reference (v0.94.0, 1 thread, reference BLAS; confirmed under the
+! v0.95.0 per-quartet HRR dispatch: ground state and all six
+! excitation energies reproduce at print precision.  The TRIPLET
+! per-state E_total values move in the 7th decimal with ERI
+! routing -- the finite-difference cross-spin kernel amplifies
+! last-bit input changes; the E_exc references below stand):
+!   PCM ground state:  Total energy  -75.281981388350
+!   LR-PCM solvent response: NONEQUILIBRIUM (eps_dyn = 1.7756)
+!   Singlets, E_exc (Ha):  0.438448   0.520641   0.542005
+!   Triplets, E_exc (Ha):  0.366400   0.449967   0.474500
+!
+! Physics checks encoded by these numbers:
+!   * the singlet kernel is STABILIZING relative to the pure
+!     orbital-shift picture (Kpcm diagonal < 0);
+!   * triplets carry NO direct solvent-response kernel (spin-summed
+!     transition charge density vanishes) -- they shift from the gas
+!     values (0.355902 / 0.438423 / 0.466438, test_v087) only through
+!     the PCM ground-state orbitals;
+!   * with %eps 1.00001 and %eps_optical 1.00001 all six excitation
+!     energies collapse to the gas values of test_v087 exactly at
+!     print precision;
+!   * %tddft_pcm equilibrium (kernel at the static eps) lowers the
+!     singlets further: 0.438295 / 0.520593 / 0.539968 Ha;
+!   * %tddft_selftest on cross-checks the assembled (A+B) column,
+!     INCLUDING the PCM kernel, against an independent AO-side
+!     response build to machine precision (~2e-14).
+! ======================================================================
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity both
+%pcm     cpcm
+%solvent water
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

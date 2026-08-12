@@ -1,0 +1,45 @@
+! Water TDDFT / B3LYP / STO-3G: excited-state regression  (v0.87.0)
+!
+! Full (RPA-type) linear-response TDDFT for the lowest 3 singlet and
+! 3 triplet states, with the kernel self-tests enabled.
+!
+! Reference values (1 thread; grid noise < 1e-4 eV):
+!
+!   Ground state:  E(B3LYP/STO-3G) = -75.276760984074 Ha
+!   (v0.95.0 per-quartet HRR dispatch routes STO-3G quartets
+!   contraction-first; %hrr_mode primitive reproduces the
+!   v0.87.0-v0.94.0 anchor -75.276760984109.)
+!
+!   Singlets (eV / f_osc):        Triplets (eV):
+!     S1  11.6432   0.00234         T1   9.6846
+!     S2  13.9648   0.00000         T2  11.9301
+!     S3  14.4913   0.06396         T3  12.6924
+!   S1 = HOMO(1b1) -> LUMO, S2 = HOMO -> LUMO+1 (dark), S3 = HOMO-1
+!   -> LUMO.  Every triplet must lie below its singlet partner, and
+!   the TDA variant of this input (%tddft_tda on) must give slightly
+!   HIGHER energies (S1 11.6974 / T1 9.7219 eV).
+!
+!   Self-tests (printed before the state tables):
+!     [selftest 1] singlet kernel route vs FD(V_xc)        ~ 1e-9
+!     [selftest 2] spin-resolved route vs FD(V_xc,a)       ~ 1e-4
+!     [selftest 4] cross-spin (f_ud) route vs FD           ~ 1e-4
+!     [selftest 3] is informational (tail-screening difference of the
+!                  two contraction machineries; O(0.1-1) is normal)
+!     [selftest]   (A+B) column vs CPKS-style build        ~ 1e-14
+!
+! The companion HF-limit checks (CIS/TDHF vs an independent hand
+! reference for H2/STO-3G) are documented in
+! BENCHMARK_NOTES_v0.87.0.md.
+%method  B3LYP
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity both
+%tddft_selftest on
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

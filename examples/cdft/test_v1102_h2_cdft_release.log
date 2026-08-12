@@ -1,0 +1,384 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:16:40:44.00
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\cdft
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_v1102_h2_cdft_release.inp
+
+ --- Input file echo ---------------------------------------
+   | ! v1.10.2 ladder STEP 5, part 2 of 2: the Cheng-Evans-Van Voorhis
+   | ! constraint-release protocol on the symmetric pair.
+   | !
+   | ! The reference SCF is the Becke-weight CDFT with +0.05 forced onto
+   | ! H1; at t = 0 the constraint is RELEASED (the RT Fock simply omits
+   | ! the constraint potential) and the polarization charge oscillates
+   | ! between the atoms.  ORACLE: the beat of q_H1(t) must equal
+   | ! 2 |H_AB(GMH)| = 0.930653 Ha (the companion GMH run).  Observed:
+   | !   dt = 0.2:  0.93251 Ha   (dt^2 propagator phase error)
+   | !   dt = 0.1:  0.93090 Ha   (+0.027 % from 2 H_AB)  <- this test
+   | ! Amplitude systematics checked separately: +0.02 and +0.10
+   | ! constraints shift the beat by < 0.03 % (mean-field anharmonicity).
+   | ! The t = 0 self-check E(0) = E_scf HOLDS (3e-12): the CDFT module
+   | ! reports the physical E_KS at the constrained density, exactly what
+   | ! the released (unconstrained) Fock reproduces.  Field-free release
+   | ! conserves E to 1.9e-9 Ha over 12000 steps.
+   | %method  HF
+   | %basis   sto-3g
+   | %job     energy
+   | %charge  0
+   | %mult    1
+   | %scf_ptol 1e-9
+   | %cdft    becke
+   | Hplus   1  charge  +0.05
+   | %cdft_tol 1.0e-7
+   | %rt_tddft 12000
+   | %rt_dt    0.1
+   | %rt_print_every 2000
+   | %rt_pc_maxiter 4
+   | %geom angstrom
+   | H  0.0 0.0 0.0
+   | H  0.0 0.0 0.74
+   | *end
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Single Point
+   Method:           HF
+   CDFT:             active (1 charge-constrained fragment(s), Becke)
+   CDFT reference:   RKS (restricted, closed shell)
+   CDFT level shift:  0.200 Ha (inner SCF)
+   Basis set:        sto-3g
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               2
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   RT-TDDFT:         12000 steps x   0.1000 au  (   29.0266 fs)
+     Propagator:     exponential midpoint (2nd-order Magnus)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    H1         0.00000000   0.00000000   0.00000000
+    H2         0.00000000   0.00000000   0.74000000
+
+ Setting up method...
+   Functional:       HF
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            2
+   Number of shells:           2
+   Number of basis fns:        2
+   Primitive Gaussians:        6
+   Total electrons:            2
+   Alpha electrons:            1
+   Beta electrons:             1
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     3    1       1
+       2     2   s     3    1       2
+ =============================================
+   Point group: D*h   (atom-match deviation  8.56E-17 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing: 100.0 % contraction-first,   0.0 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.003 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =     2.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =     1.5194094740
+     T max |el|  =     0.7597047370
+     T min diag  =     0.7597047370
+     T max diag  =     0.7597047370
+   Computing nuclear attraction integrals (V)...
+     V trace     =    -3.7613994268
+     V max |el|  =     1.8806997134
+     V min diag  =    -1.8806997134
+     V max diag  =    -1.8806997134
+   Assembling H_core = T + V_nuc...
+     H trace     =    -2.2419899528
+     H max |el|  =     1.1209949764
+     H min diag  =    -1.1209949764
+     H max diag  =    -1.1209949764
+
+   --- Matrix: S (overlap) ---
+       1.0000000   0.6599804
+       0.6599804   1.0000000
+
+   --- Matrix: T (kinetic) ---
+       0.7597047   0.2369940
+       0.2369940   0.7597047
+
+   --- Matrix: V (nuclear) ---
+      -1.8806997  -1.1964034
+      -1.1964034  -1.8806997
+
+   --- Matrix: H_core (T+V) ---
+      -1.1209950  -0.9594093
+      -0.9594093  -1.1209950
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.002 s
+ =======================================================
+
+ --- Building integration grid (CDFT/HF) ---
+   Grid               : standard (default)
+   Radial scheme      : Mura-Knowles Log3
+   Radial points/atom : 75
+   Angular scheme     : Lebedev, pruned (3 tiers, r/R_BS)
+   Angular sizes      : 110 / 302 / 590
+   Becke size adj.    : none (standard Becke)
+   Grid points (total): 32436
+
+   ============================================================
+   Constrained DFT (CDFT) -- charge constraints (Becke weights)
+   ============================================================
+     fragment        atoms   Z(eff)   q(target)   N(target,e)
+     Hplus               1      1.00      0.050       0.9500
+     outer (multiplier) loop: max 50 iters, tol  1.0E-07 electrons
+   ============================================================
+
+ --- Building CDFT constraint matrices W^c ---
+
+ --- Section 3: SCF ---
+
+   ------------------------------------------------------------
+   CDFT outer loop (damped Newton on V_c) -- RESTRICTED (RKS)
+   ------------------------------------------------------------
+   Conventional SCF:          6 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   CDFT inner-SCF level shift:   0.2000 Hartree (applied from iter 1)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.302E+268)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.591E+001)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   1.591E+001)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.591E+001)
+   DIIS: pruned  5 oldest vector(s) (B cond ratio   1.591E+001)
+   Checkpoint written: test_v1102_h2_cdft_release.chk
+   SCF converged in    7 iter  (dE= 0.000E+00, dP= 1.110E-16, |g|= 1.775E-16)
+    init      E(KS) =        -1.1167801268   max|dN| =   5.630E-02
+       Hplus            V=   0.000000  N=    1.00630  (target    0.95000, q= -0.00630)
+   Conventional SCF:          6 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   CDFT inner-SCF level shift:   0.2000 Hartree (applied from iter 1)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.325E+017)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.753E+296)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   1.626E+017)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   4.233E+293)
+   DIIS: pruned  5 oldest vector(s) (B cond ratio   2.014E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.586E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   5.017E+015)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   4.067E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.576E+018)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   2.248E+018)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   5.076E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.276E+018)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.188E+018)
+   Checkpoint written: test_v1102_h2_cdft_release.chk
+   SCF converged in   14 iter  (dE= 6.644E-11, dP= 1.261E-10, |g|= 1.832E-10)
+    outer   1   E(KS) =        -1.1137549023   max|dN| =   5.888E-03   (step  1.000)
+       Hplus            V=   0.097378  N=    0.94411  (target    0.95000, q=  0.05589)
+   Conventional SCF:          6 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   CDFT inner-SCF level shift:   0.2000 Hartree (applied from iter 1)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.514E+017)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   5.956E+016)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   7.747E+292)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.472E+017)
+   DIIS: pruned  5 oldest vector(s) (B cond ratio   1.157E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.820E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   6.788E+015)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   5.266E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.371E+018)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   1.595E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   5.149E+018)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   9.533E+016)
+   Checkpoint written: test_v1102_h2_cdft_release.chk
+   SCF converged in   13 iter  (dE=-2.558E-11, dP= 5.328E-11, |g|= 7.779E-11)
+    outer   2   E(KS) =        -1.1142995041   max|dN| =   1.760E-05   (step  1.000)
+       Hplus            V=   0.088157  N=    0.94998  (target    0.95000, q=  0.05002)
+   Conventional SCF:          6 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:       6000 quartets/s  (  6 threads,     0.001 s)
+   CDFT inner-SCF level shift:   0.2000 Hartree (applied from iter 1)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.928E+016)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.417E+289)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   6.963E+287)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   4.337E+016)
+   DIIS: pruned  5 oldest vector(s) (B cond ratio   1.364E+017)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   8.245E+015)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   2.855E+016)
+   DIIS: pruned  6 oldest vector(s) (B cond ratio   2.131E+015)
+   Checkpoint written: test_v1102_h2_cdft_release.chk
+   SCF converged in    9 iter  (dE=-3.176E-11, dP= 6.618E-11, |g|= 9.661E-11)
+    outer   3   E(KS) =        -1.1143010565   max|dN| =   8.368E-09   (step  1.000)
+       Hplus            V=   0.088130  N=    0.95000  (target    0.95000, q=  0.05000)
+   ------------------------------------------------------------
+   CDFT converged in 4 outer iterations (max|dN| <  1.000E-07)
+
+   CDFT final fragment charges:
+     fragment           N(e)     q(achieved)   q(target)   V(Ha)
+     Hplus              0.95000     0.05000      0.0500    0.088130
+   CDFT total energy (E_KS at constrained density):        -1.1143010565
+
+   Orbital energies (CDFT state, doubly occupied):
+        1:   -0.53512774   occ
+        2:    0.71581173   vir
+     HOMO =   -0.53512774   LUMO =    0.71581173   gap =   34.0398 eV
+
+ --- RT-TDDFT: Real-Time Propagation (v1.10.2, stage 3) ---
+   Conventional SCF:          6 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:          0 quartets/s  (  6 threads,     0.000 s)
+   Steps per trajectory:   12000
+   Time step:               0.1000 au   (total     29.02661 fs)
+   Propagator:          exponential midpoint (2nd-order Magnus, zheev)
+   Predictor-corrector: max  4 iterations, threshold  1.00E-09
+   JK build:            stored ERIs; exact exchange c_HF =  1.0000,
+                        K[Im P] via the general (image-explicit) contraction
+   CDFT constraint RELEASED at t = 0: field-free propagation of the
+   constrained SCF state (Cheng-Evans-Van Voorhis protocol); watch
+   the fragment populations q_A(t) and the beat table below.
+   Working space:       nmo =    2   nocc =    1
+
+   E(0), drive-free part:        -1.114301056477
+   Reference SCF energy:         -1.114301056470
+   Self-check |dE|:            7.039E-12  (must be ~SCF precision)
+   Dipole mu(0) (au):           0.00000000    0.00000000   -0.12328780
+
+     step      t(au)          E(Ha)            dE(Ha)     |dmu|(au)      dN_e     idem    P_ref
+        0      0.000     -1.114301056477   0.000E+00   0.000E+00  -7.77E-16  3.3E-16  1.00000
+     2000    200.000     -1.114301056792  -3.149E-10   2.071E-01   2.22E-15  1.1E-15  0.99209
+     4000    400.000     -1.114301057106  -6.285E-10   1.326E-01  -3.29E-14  1.6E-14  0.99426
+     6000    600.000     -1.114301057420  -9.424E-10   2.676E-02  -4.26E-14  2.1E-14  0.99865
+     8000    800.000     -1.114301057735  -1.257E-09   2.452E-01  -2.59E-14  1.3E-14  0.99127
+    10000   1000.000     -1.114301058050  -1.572E-09   5.414E-02  -1.34E-14  6.7E-15  0.99737
+    12000   1200.000     -1.114301058363  -1.886E-09   9.543E-02  -2.76E-14  1.4E-14  0.99563
+
+   Conservation summary (this trajectory):
+     max |E(t) - E(0)|      :    1.886E-09  Ha
+     max |N_e(t) - N_e|     :    7.372E-14  e
+     max idempotency error  :    3.675E-14
+     max |mu(t) - mu(gs)|   :    2.466E-01  au
+     PC iterations/step     :    4.000   (wall       0.71 s)
+   RT trajectory written to: test_v1102_h2_cdft_release_rt.dat
+   Populations written to:   test_v1102_h2_cdft_release_rt_pop.dat
+
+   Per-atom charge-mode decomposition (damped-FT amplitude, au;
+   sign = phase relative to 'Hplus', "-" means ANTI-phase, the transfer partner):
+
+        Damped FT-amplitudes for charge beating modes in RT-DFT propagation
+   -----------------------
+   Mode                1
+   Freq w,Ha      0.9309
+   Period,fs      0.1633
+   -----------------------
+   H1          + 10.9268
+   H2          - 10.9268
+   Hplus       +  6.9769
+   -----------------------
+     Mode selection: the up-to-10 tallest peaks (>= 5 % of the maximum) of the
+     AGGREGATE (all-columns-summed) damped spectrum on the %rt_wmin..%rt_wmax
+     grid, sorted by frequency; the full per-column spectra are in the
+     _pop_spectrum.dat file (weak or single-atom modes live there).
+     The mode frequencies are COMMON to all atoms (density normal modes);
+     only the per-atom weights and phase signs differ.
+   Charge spectra written to: test_v1102_h2_cdft_release_rt_pop_spectrum.dat
+
+   CDFT-release charge-transfer beat analysis (fragment 'Hplus'):
+     mean q_1 =    -0.006339   oscillation amplitude ~   5.634E-02 e
+     beat frequencies (damped-FT peaks of q_1(t) - <q_1>):
+          w(Ha)      w(eV)     rel. weight
+       0.93090    25.3311       1.0000
+     LADDER STEP 5: for a two-state donor-acceptor pair the beat must equal
+     Omega_R = sqrt(Delta^2 + 4 H_AB^2) (= 2 |H_AB| for a SYMMETRIC pair);
+     compare with the GMH couplings of %tddft_dipmom printed above.
+
+   Total Fock builds this section:    60002
+
+ --- Section 7: Output & Properties ---
+
+   Final energies:
+     Electronic energy:      -1.829405395529
+     Nuclear repulsion:       0.715104339058
+     Total energy:           -1.114301056470
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      H       0.911836    0.088164
+       2      H       1.088164   -0.088164
+   ------------------------------------------------
+   Total electrons:     2.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000    0.000000    1.398397
+   Electronic (au):     0.000000    0.000000   -1.521685
+   Total      (au):     0.000000    0.000000   -0.123288
+   |mu|       (au):     0.123288
+   |mu|    (Debye):     0.313366
+   ================================================
+   Section 7 time:      0.000 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      1.250 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:16:40:45.25
+

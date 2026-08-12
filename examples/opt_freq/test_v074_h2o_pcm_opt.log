@@ -1,0 +1,432 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:30:01.61
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\opt_freq
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_v074_h2o_pcm_opt.inp
+
+ --- Input file echo ---------------------------------------
+   | ! v0.74.x Stage 2.2a -- geometry optimization with PCM via FD gradient.
+   | !
+   | ! HF/STO-3G water in IEFPCM water (eps = 78.36).  Starting from the
+   | ! v0.73 reference geometry (slightly stretched O-H).  The optimizer
+   | ! is the internal-coords RFO with FD-PCM gradients at every step.
+   | !
+   | ! Reference (this commit):
+   | !   Steps to converge:  6  (max_geom_iter = 30 budget)
+   | !   Final energy:      -74.971153664988 Ha
+   | !   Final r(O-H):       0.9875 Angstrom
+   | !   Final angle H-O-H:  100.0 degrees
+   | !
+   | ! Tight-converge tolerance trips on max|g|, RMS|g|, max|dx|, RMS|dx|.
+   | ! Loosened grad_tol from the default 3e-4 to 1e-3 because the FD floor
+   | ! (~ 1e-7) plus the PCM switching noise floor make 3e-4 a strict
+   | ! target -- tightening would require either a smaller h (worsening
+   | ! round-off) or analytical gradients (Stage 2.2b).
+   | %method  HF
+   | %basis   sto-3g
+   | %job     opt
+   | %solvent water
+   | %geom_maxiter 30
+   | %grad_tol 1.0e-3
+   | %geom angstrom
+   | O  0.000000   0.000000   0.119262
+   | H  0.000000   0.755453  -0.477047
+   | H  0.000000  -0.755453  -0.477047
+   | *end
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Optimization
+   Method:           HF
+   Basis set:        sto-3g
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               3
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        30
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1         0.00000000   0.00000000   0.11926200
+    H2         0.00000000   0.75545300  -0.47704700
+    H3         0.00000000  -0.75545300  -0.47704700
+
+ Setting up method...
+   Functional:       HF
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            3
+   Number of shells:           5
+   Number of basis fns:        7
+   Primitive Gaussians:       15
+   Total electrons:           10
+   Alpha electrons:            5
+   Beta electrons:             5
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     3    1       1
+       2     1   s     3    1       2
+       3     1   p     3    3       3
+       4     2   s     3    1       6
+       5     3   s     3    1       7
+ =============================================
+   Point group: C2v   (atom-match deviation  1.75E-16 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing: 100.0 % contraction-first,   0.0 % per-primitive (by class census)
+
+ --- PCM gradient: analytical (Stage 2.2b, production default).
+     One PCM SCF + analytical-gradient build per call.
+
+ --- PCM activated: IEFPCM  (eps =   78.355)
+
+ --- PCM cavity ---
+   Model:                 IEFPCM
+   Solvent:               water (epsilon =    78.3553)
+   f(epsilon) = (eps-1)/eps =     0.9872
+   Bondi radius scaling:      1.2000
+   Lebedev points/sphere:    110
+   Switching width:           0.2000 bohr
+   Drop threshold:          1.00E-03
+
+   Per-atom van der Waals (scaled) radii:
+     idx   element          R_eff (bohr)   R_eff (A)
+      1   O                   3.4469      1.8240
+      2   H                   2.7212      1.4400
+      3   H                   2.7212      1.4400
+
+   Cavity discretization:
+     Tesserae:                159 kept of      330 total
+     Raw surface area:       335.4061 bohr^2
+     Effective area:         161.5550 bohr^2  (  48.167 %)
+                              45.2400 A^2
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.004 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =     7.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    38.9169309691
+     T max |el|  =    29.0031999455
+     T min diag  =     0.7597047370
+     T max diag  =    29.0031999455
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -113.6825880093
+     V max |el|  =    61.7181107408
+     V min diag  =   -61.7181107408
+     V max diag  =    -5.8171332941
+   Assembling H_core = T + V_nuc...
+     H trace     =   -74.7656570403
+     H max |el|  =    32.7149107952
+     H min diag  =   -32.7149107952
+     H max diag  =    -5.0574285571
+
+   --- Matrix: S (overlap) ---
+       1.0000000   0.2367039   0.0000000   0.0000000   0.0000000   0.0533246   0.0533246
+       0.2367039   1.0000000   0.0000000   0.0000000   0.0000000   0.4714249   0.4714249
+       0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   1.0000000   0.0000000   0.3073956  -0.3073956
+       0.0000000   0.0000000   0.0000000   0.0000000   1.0000000  -0.2426395  -0.2426395
+       0.0533246   0.4714249   0.0000000   0.3073956  -0.2426395   1.0000000   0.2528731
+       0.0533246   0.4714249   0.0000000  -0.3073956  -0.2426395   0.2528731   1.0000000
+
+   --- Matrix: T (kinetic) ---
+      29.0031999  -0.1680109   0.0000000   0.0000000   0.0000000  -0.0028456  -0.0028456
+      -0.1680109   0.8081280   0.0000000   0.0000000   0.0000000   0.1261374   0.1261374
+       0.0000000   0.0000000   2.5287312   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   2.5287312   0.0000000   0.2199793  -0.2199793
+       0.0000000   0.0000000   0.0000000   0.0000000   2.5287312  -0.1736384  -0.1736384
+      -0.0028456   0.1261374   0.0000000   0.2199793  -0.1736384   0.7597047   0.0087424
+      -0.0028456   0.1261374   0.0000000  -0.2199793  -0.1736384   0.0087424   0.7597047
+
+   --- Matrix: V (nuclear) ---
+     -61.7181107  -7.4433723   0.0000000   0.0000000   0.0190272  -1.7252954  -1.7252954
+      -7.4433723 -10.1374862   0.0000000   0.0000000   0.2242375  -3.8353606  -3.8353606
+       0.0000000   0.0000000  -9.9819244   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000 -10.1340764   0.0000000  -2.2223919   2.2223919
+       0.0190272   0.2242375   0.0000000   0.0000000 -10.0767238   1.8277217   1.8277217
+      -1.7252954  -3.8353606   0.0000000  -2.2223919   1.8277217  -5.8171333  -1.6162228
+      -1.7252954  -3.8353606   0.0000000   2.2223919   1.8277217  -1.6162228  -5.8171333
+
+   --- Matrix: H_core (T+V) ---
+     -32.7149108  -7.6113832   0.0000000   0.0000000   0.0190272  -1.7281411  -1.7281411
+      -7.6113832  -9.3293582   0.0000000   0.0000000   0.2242375  -3.7092232  -3.7092232
+       0.0000000   0.0000000  -7.4531932   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000  -7.6053452   0.0000000  -2.0024126   2.0024126
+       0.0190272   0.2242375   0.0000000   0.0000000  -7.5479926   1.6540834   1.6540834
+      -1.7281411  -3.7092232   0.0000000  -2.0024126   1.6540834  -5.0574286  -1.6074804
+      -1.7281411  -3.7092232   0.0000000   2.0024126   1.6540834  -1.6074804  -5.0574286
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.009 s
+ =======================================================
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      3
+   Bonds:                           2
+   Angles:                          1
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   1.818751
+       1 -   3  R =   1.818751
+   Angles (degrees):
+       2 -   1 -   3  theta =   103.4291
+   Initial Hessian: Lindh diagonal model
+
+   Geometry Optimization (RFO / Internal Coordinates)
+   =========================================================================
+                                     max|g|    rms(g)    max|dx|   rms(dx)
+   Stopping criteria:              1.00E-03  6.67E-04   4.00E-03  2.67E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   4.924E+006)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   9.378E+007)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.896E+009)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    8 iter  (dE=-4.974E-13, dP= 4.064E-08, |g|= 4.100E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -74.96935506  -7.50E+01  4.90E-02  2.18E-02  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1          0.00000000    0.00000000    0.11926200
+     H2          0.00000000    0.75545300   -0.47704700
+     H3          0.00000000   -0.75545300   -0.47704700
+
+   --- Step    2 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.354E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.947E+009)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.598E+006)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    7 iter  (dE=-5.684E-14, dP= 1.293E-08, |g|= 1.838E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -74.97032981  -9.75E-04  3.10E-02  1.43E-02  7.57E-02  3.17E-02
+                                      no        no        no        no 
+     [geo0002]
+     O1          0.00000000    0.00000000    0.15932401
+     H2          0.00000000    0.76330917   -0.49707801
+     H3          0.00000000   -0.76330917   -0.49707801
+
+   --- Step    3 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.312E+007)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.264E+007)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    7 iter  (dE=-8.100E-13, dP= 1.842E-08, |g|= 2.479E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -74.97114690  -8.17E-04  2.37E-03  9.98E-04  2.32E-02  1.23E-02
+                                      no        no        no        no 
+     [geo0003]
+     O1          0.00000000   -0.00000000    0.14705224
+     H2          0.00000000    0.75451110   -0.49094212
+     H3          0.00000000   -0.75451110   -0.49094212
+
+   --- Step    4 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.391E+008)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   2.594E+008)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    7 iter  (dE=-1.279E-13, dP= 3.040E-10, |g|= 9.709E-10)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4    -74.97114873  -1.84E-06  1.14E-03  7.02E-04  8.58E-03  5.07E-03
+                                      no        no        no        no 
+     [geo0004]
+     O1          0.00000000    0.00000000    0.14309755
+     H2          0.00000000    0.75905407   -0.48896478
+     H3          0.00000000   -0.75905407   -0.48896478
+
+   --- Step    5 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.420E+009)
+   DIIS: pruned  4 oldest vector(s) (B cond ratio   1.329E+007)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    7 iter  (dE=-2.842E-14, dP= 3.286E-11, |g|= 1.986E-10)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      5    -74.97115657  -7.84E-06  5.49E-05  2.63E-05  4.58E-03  2.52E-03
+                                      yes       yes       no        yes
+     [geo0005]
+     O1          0.00000000   -0.00000000    0.14478511
+     H2          0.00000000    0.75662924   -0.48980856
+     H3          0.00000000   -0.75662924   -0.48980856
+
+   --- Step    6 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.910E+007)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.439E+007)
+   Checkpoint written: test_v074_h2o_pcm_opt.chk
+   SCF converged in    7 iter  (dE=-1.421E-14, dP= 4.485E-11, |g|= 5.695E-11)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      6    -74.97115658  -2.66E-09  5.14E-06  2.45E-06  4.60E-05  2.50E-05
+                                      yes       yes       yes       yes
+     [geo0006]
+     O1          0.00000000    0.00000000    0.14480945
+     H2          0.00000000    0.75664784   -0.48982072
+     H3          0.00000000   -0.75664784   -0.48982072
+
+   ======================================================
+   Optimization converged in    6 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000   0.00000000   0.27365019
+   H2         0.00000000   1.42985719  -0.92562702
+   H3         0.00000000  -1.42985719  -0.92562702
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000   0.00000000   0.14480945
+   H2         0.00000000   0.75664784  -0.48982072
+   H3         0.00000000  -0.75664784  -0.48982072
+   -----------------------------------------------
+   Final energy:     -74.971156575592
+   Optimization time:      5.996 s
+
+   Point group after optimization: C2v  (unchanged)
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =     7.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    38.9169309691
+     T max |el|  =    29.0031999455
+     T min diag  =     0.7597047370
+     T max diag  =    29.0031999455
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -113.3640139188
+     V max |el|  =    61.6901429451
+     V min diag  =   -61.6901429451
+     V max diag  =    -5.7230584383
+   Assembling H_core = T + V_nuc...
+     H trace     =   -74.4470829498
+     H max |el|  =    32.6869429995
+     H min diag  =   -32.6869429995
+     H max diag  =    -4.9633537013
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -83.894346165048
+     Nuclear repulsion:       8.923189589456
+     Total energy:          -74.971156575592
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.360152   -0.360152
+       2      H       0.819924    0.180076
+       3      H       0.819924    0.180076
+   ------------------------------------------------
+   Total electrons:    10.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000    0.000000    0.337948
+   Electronic (au):     0.000000   -0.000000   -1.048617
+   Total      (au):     0.000000    0.000000   -0.710669
+   |mu|       (au):     0.710669
+   |mu|    (Debye):     1.806342
+   ================================================
+   Section 7 time:      0.002 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      6.013 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:30:07.62
+

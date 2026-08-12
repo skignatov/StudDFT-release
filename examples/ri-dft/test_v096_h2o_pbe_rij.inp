@@ -1,0 +1,34 @@
+! ======================================================================
+! test_v096_h2o_pbe_rij -- RI-J (density-fitting) Coulomb, pure DFT
+!
+! Water PBE/6-31G(d), C1, gas phase, %ri j with the shipped
+! def2-universal-JFIT auxiliary basis (Weigend 2006).
+!
+! Reference (v0.96.0, 1 thread, reference BLAS):
+!   RI-J total energy:      -76.327207229531
+!   conventional (%ri off): -76.327105003437
+!   dE(RI - exact) = -1.02e-4 Ha (34 uHa/atom -- the standard
+!   Coulomb-fitting accuracy class for def2-universal-JFIT).
+!   %ri_check on prints the first-iteration fitted-vs-exact J
+!   diagnostic: max|dJ| = 3.2e-4, dE_J = -3.0e-4 Ha at the SAD
+!   guess density.  NOTE (v0.96.1): the diagnostic builds the exact
+!   J by the DIRECT O(N^4) route and costs about as much as a full
+!   conventional 2e phase -- it is a VALIDATION instrument; drop
+!   %ri_check for production timings (found when user profiling on
+!   pyrrole/phenol showed "no speedup": the check itself was eating
+!   the entire saving).
+! The default %ri off leaves the conventional path untouched
+! (bit-exact regression battery).
+! ======================================================================
+%method  PBE
+%basis   6-31gd
+%job     energy
+%ri      j
+%ri_check on
+%charge  0
+%mult    1
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

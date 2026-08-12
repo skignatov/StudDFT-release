@@ -1,0 +1,36 @@
+! Oracle anchor, v1.21.0.  MP2 against ORCA 6.0.1 at the exact
+! geometry the reference used.
+!
+! ONE NON-DEFAULT KEY: %pump2 no.
+!
+! StudDFT reports the SPIN-PROJECTED energy by default when UMP2
+! is active; ORCA reports UMP2.  On CH3 the two differ by 2.8 mHa,
+! which is the size of the projection and not of any disagreement.
+! With %pump2 no they agree to 6e-9 Ha.  This is not an accuracy
+! setting -- without it the test compares two different quantities
+! and calls the difference an error.
+!
+! FROZEN CORE IS LEFT AT THE DEFAULT, and BeH2 and NaCl are absent
+! from the MP2 anchors because of it.  The two programs use
+! different core definitions: StudDFT freezes the noble-gas core,
+! ORCA uses its own per-element table which correlates all
+! electrons of Be and treats Na differently.  Forcing
+! %frozen_core 0 fixes those two and breaks the other nineteen --
+! MAD went from 0.02 to 1449 uHa.  Neither convention is wrong;
+! they are simply not the same, and the paper lists exactly these
+! two molecules as the MP2 maxima for the same reason.
+!
+%method  MP2
+%basis   cc-pVDZ
+%job     energy
+%charge  0
+%mult    1
+%spherical
+%pump2 no
+%scf_etol 1e-10
+%scf_ptol 1e-8
+%scf_diis_etol 1e-7
+%geom angstrom
+H  0. 0. 0.
+F  0. 0. 0.92
+*end

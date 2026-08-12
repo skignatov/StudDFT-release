@@ -1,0 +1,16 @@
+! Freq at the optimized BP86/6-31G(d,p) geometry (from h2o_dimer_bp86_631dp.log).
+! Previously with D3: frequencies were IDENTICAL to no-disp (D3 Hessian missing).
+! Now with the D3 FD-Hessian fix, they should differ by ~0.1-0.5 cm^-1.
+%method     BP86
+%basis      6-31G(d,p)
+%job        opt+freq
+%dispersion D3
+%grid       fine
+
+%geo
+ O   -1.407247   -0.152127    0.000000
+ H   -1.923268    0.673048    0.000000
+ H   -0.474821    0.166386    0.000000
+ O    1.380716    0.150805    0.000000
+ H    1.934009   -0.096882    0.764852
+ H    1.934009   -0.096882   -0.764852

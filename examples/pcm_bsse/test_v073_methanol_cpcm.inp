@@ -1,0 +1,23 @@
+! v0.73.0 PCM test 3:  methanol in water (HF/STO-3G, C-PCM).
+!
+! Different molecule than tests 1-2:  exercises a 6-atom system with
+! mixed elements (C, O, H) so the Bondi-radius lookup is non-trivial,
+! and the cavity has more spheres to taper across.  Methanol's larger
+! dipole moment (~1.7 D for the gas-phase molecule) should give a
+! noticeably stronger solvation than water in water on a molar basis,
+! though the comparison is geometry-dependent and not a strict test.
+!
+! Geometry: HF/STO-3G optimized methanol (literature, 1986 vintage).
+%method  HF
+%basis   sto-3g
+%job     energy
+%pcm     cpcm     ! v0.74+ default is iefpcm; v0.73 tests pin cpcm explicitly
+%solvent water
+%geom angstrom
+C   0.000000   0.000000   0.000000
+O   1.388000   0.000000   0.000000
+H  -0.354000   0.957000   0.367000
+H  -0.354000  -0.957000   0.367000
+H  -0.430000   0.000000  -1.020000
+H   1.700000   0.910000   0.000000
+*end

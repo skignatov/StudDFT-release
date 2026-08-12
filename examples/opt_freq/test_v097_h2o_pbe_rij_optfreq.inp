@@ -1,0 +1,29 @@
+! ======================================================================
+! test_v097_h2o_pbe_rij_optfreq -- RI-J analytical gradient:
+! optimization + semi-numerical frequencies on the FITTED surface.
+!
+! Water PBE/6-31G(d), %ri j (def2-universal-JFIT).
+!
+! Reference (v0.97.0, 1 thread, reference BLAS):
+!   Final energy:  -76.327908968223   (4 optimizer steps)
+!   Modes:  1660.79 / 3614.86 / 3746.18 cm^-1
+! Conventional opt+freq on the same route (%hess_method numerical):
+!   -76.327810167189; 1661.15 / 3615.68 / 3747.25 cm^-1
+!   -> fitted-vs-exact surface: dE = -99 uHa (33 uHa/atom),
+!      frequencies within 0.4-1.1 cm^-1 (the standard J-fitting
+!      class).  The analytic RI gradient matches central FD of the
+!      RI energies to 5e-8 (O) / 1.2e-7 (H) au; UKS to 2.8e-7.
+! The fitting tensor is rebuilt at every displaced geometry (PCM-
+! cavity pattern); a staleness guard error-stops loudly otherwise.
+! ======================================================================
+%method  PBE
+%basis   6-31gd
+%job     opt+freq
+%ri      j
+%charge  0
+%mult    1
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

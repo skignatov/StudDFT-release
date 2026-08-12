@@ -1,0 +1,26 @@
+! Oracle anchor, v1.21.0.  BASIS SERIES: the same method and the
+! same molecule in five different basis sets.
+!
+! HF is chosen deliberately.  With no exchange-correlation grid in
+! play, any disagreement can only come from the basis itself --
+! contraction coefficients, normalisation, the Cartesian/spherical
+! convention, the shell ordering.  A DFT functional would blur
+! exactly the thing this series is meant to isolate.
+!
+! No internal cross-check can do this: StudDFT agrees with its own
+! basis library by construction.
+!
+! Basis: cc-pVTZ
+%method  HF
+%basis   cc-pVTZ
+%job     energy
+%charge  0
+%mult    1
+%spherical
+%scf_etol 1e-10
+%scf_ptol 1e-8
+%scf_diis_etol 1e-7
+%geom angstrom
+H  0. 0. 0.
+F  0. 0. 0.92
+*end

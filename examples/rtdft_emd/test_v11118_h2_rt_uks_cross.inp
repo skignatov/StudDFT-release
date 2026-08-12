@@ -1,0 +1,17 @@
+! v1.11.18 cross oracle: H2 RT kick, UNRESTRICTED reference (must match RKS).
+%method  PBE
+%basis   3-21g
+%grid    1
+%job     energy
+%spin    unrestricted
+%scf_ptol 1e-9
+%rt_tddft 200
+%rt_dt    0.05
+%rt_kick  1.0e-3
+%rt_kick_dir z
+%rt_pc_maxiter 6
+%rt_print_every 100
+%geom
+H 0.0 0.0 0.0
+H 0.0 0.0 1.4
+*end

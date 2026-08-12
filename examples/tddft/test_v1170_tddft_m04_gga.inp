@@ -1,0 +1,17 @@
+! TDDFT mode matrix 04/16 -- pure GGA kernel  (BP86)
+!
+! Still c_hf = 0, but the kernel now carries the gradient (sigma)
+! terms.  Together with case 03 this separates "the LDA kernel works"
+! from "the GGA gradient terms work" -- they fail independently.
+%method  BP86
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+%tddft   3
+%tddft_multiplicity singlet
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

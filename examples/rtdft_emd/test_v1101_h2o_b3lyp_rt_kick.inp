@@ -1,0 +1,50 @@
+! ======================================================================
+! test_v1101_h2o_b3lyp_rt_kick -- RT-TDDFT ladder step 3 for a GLOBAL
+! HYBRID: complex exchange (c_HF = 0.2) and the XC quadrature drive the
+! same trajectory; the kick spectrum must reproduce the Casida B3LYP
+! states.  Kick along y (b2 states) -- the strongest transition of the
+! spectrum plus a weaker neighbor that probes the Lorentzian-overlap
+! systematics.
+!
+! H2O/B3LYP/STO-3G, %grid 1 (SAME grid in the Casida kernel and the RT
+! propagation -- consistent two-road comparison), kick kappa = 1e-3,
+! 5000 steps of dt = 0.2 (T = 1000 au), gamma = 0.006 (gamma*T = 6),
+! %rt_pc_maxiter 4 (dt = 0.2 + strong kick wants ~3-4 PC iterations).
+!
+! Reference (v1.10.1, 1 thread, reference BLAS; ~2 min propagation):
+!   SCF total energy (grid 1):   -75.296239718632
+!   RT self-check |dE|:           ~3e-14
+!   Casida y-polarized states:
+!     state 4:  w = 0.657841 Ha,  f = 0.06172
+!     state 5:  w = 0.791973 Ha,  f = 0.94430
+!   RT peaks (kick along y):
+!     w = 0.65805 Ha,  f-contribution = 0.063842   (dw = +2.1e-4,
+!         df = +3.4 % -- the tail of the 15x stronger neighbor at
+!         gamma/separation ~ 0.045 adds (gamma/D)^2-class height;
+!         documented Lorentzian-overlap systematics)
+!     w = 0.79195 Ha,  f-contribution = 0.944004   (dw = -2.3e-5 Ha,
+!         df = -0.03 % -- the hybrid oracle lands)
+!   Post-kick energy conservation: max |E(t)-E(0)| ~ 9.2e-11 Ha over
+!   5000 steps with complex K + XC.
+! ======================================================================
+%method  B3LYP
+%basis   sto-3g
+%grid    1
+%job     energy
+%charge  0
+%mult    1
+%scf_ptol 1e-9
+%tddft   6
+%rt_tddft 5000
+%rt_dt    0.2
+%rt_kick  0.001
+%rt_kick_dir y
+%rt_gamma 0.006
+%rt_pc_maxiter 4
+%rt_wmax  1.2
+%rt_print_every 2500
+%geom angstrom
+O    0.000000    0.000000    0.117300
+H    0.000000    0.757200   -0.469200
+H    0.000000   -0.757200   -0.469200
+*end

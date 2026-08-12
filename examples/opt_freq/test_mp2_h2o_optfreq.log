@@ -1,0 +1,1433 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:29:23.20
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\opt_freq
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_mp2_h2o_optfreq.inp
+
+ --- Input file echo ---------------------------------------
+   | # Test: H2O RMP2/6-31G OPT + FREQ pathway (v0.65.0)
+   | #
+   | # Starts from a slightly distorted geometry; the optimizer should
+   | # drive it back to the MP2/6-31G minimum, after which the analytical
+   | # RMP2 Hessian is built and frequencies printed.  Reference values
+   | # (at the optimized minimum) are the same as test_mp2_h2o_freq.inp:
+   | #   bend            1662.56 cm^-1
+   | #   sym stretch     3657.90 cm^-1
+   | #   asym stretch    3834.22 cm^-1
+   | #
+   | %method  MP2
+   | %basis   6-31G
+   | %frozen_core 0
+   | %job     optfreq
+   | %charge  0
+   | %mult    1
+   | %geom_maxiter 15
+   | %print_time
+   | 
+   | *geometry angstrom
+   | O   0.000000   0.000000   0.100000
+   | H   0.000000   0.780000  -0.450000
+   | H   0.000000  -0.780000  -0.450000
+   | *end
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Opt + Freq
+   Method:           MP2
+   Basis set:        6-31G
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               3
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        15
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1         0.00000000   0.00000000   0.10000000
+    H2         0.00000000   0.78000000  -0.45000000
+    H3         0.00000000  -0.78000000  -0.45000000
+
+ Setting up method...
+   Functional:       MP2
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            3
+   Number of shells:           9
+   Number of basis fns:       13
+   Primitive Gaussians:       22
+   Total electrons:           10
+   Alpha electrons:            5
+   Beta electrons:             5
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     6    1       1
+       2     1   s     3    1       2
+       3     1   s     1    1       3
+       4     1   p     3    3       4
+       5     1   p     1    3       7
+       6     2   s     3    1      10
+       7     2   s     1    1      11
+       8     3   s     3    1      12
+       9     3   s     1    1      13
+ =============================================
+   Point group: C2v   (atom-match deviation  1.81E-16 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing:  96.1 % contraction-first,   3.9 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.004 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =    13.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    49.7122241037
+     T max |el|  =    29.5401397978
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -158.5866935216
+     V max |el|  =    62.5901094157
+     V min diag  =   -62.5901094157
+     V max diag  =    -4.7556130618
+   Assembling H_core = T + V_nuc...
+     H trace     =  -108.8744694179
+     H max |el|  =    33.0499696179
+     H min diag  =   -33.0499696179
+     H max diag  =    -4.5136963618
+
+   --- Matrix: S (overlap) ---
+       1.0000000   0.2336899   0.1672798   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0354582   0.0692362   0.0354582   0.0692362
+       0.2336899   1.0000000   0.7636408   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.2511460   0.3815124   0.2511460   0.3815124
+       0.1672798   0.7636408   1.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.4293807   0.6854450   0.4293807   0.6854450
+       0.0000000   0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.5015206   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.5015206   0.0000000   0.2366869   0.1207412  -0.2366869  -0.1207412
+       0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.5015206  -0.1668946  -0.0851380  -0.1668946  -0.0851380
+       0.0000000   0.0000000   0.0000000   0.5015206   0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000   0.5015206   0.0000000   0.0000000   1.0000000   0.0000000   0.4776308   0.3926397  -0.4776308  -0.3926397
+       0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.5015206   0.0000000   0.0000000   1.0000000  -0.3367910  -0.2768614  -0.3367910  -0.2768614
+       0.0354582   0.2511460   0.4293807   0.0000000   0.2366869  -0.1668946   0.0000000   0.4776308  -0.3367910   1.0000000   0.6582920   0.0438750   0.2103421
+       0.0692362   0.3815124   0.6854450   0.0000000   0.1207412  -0.0851380   0.0000000   0.3926397  -0.2768614   0.6582920   1.0000000   0.2103421   0.4961903
+       0.0354582   0.2511460   0.4293807   0.0000000  -0.2366869  -0.1668946   0.0000000  -0.4776308  -0.3367910   0.0438750   0.2103421   1.0000000   0.6582920
+       0.0692362   0.3815124   0.6854450   0.0000000  -0.1207412  -0.0851380   0.0000000  -0.3926397  -0.2768614   0.2103421   0.4961903   0.6582920   1.0000000
+
+   --- Matrix: T (kinetic) ---
+      29.5401398  -2.1854027   0.1312825   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000  -0.0219734   0.0215860  -0.0219734   0.0215860
+      -2.1854027   1.7112110   0.4800478   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0229410   0.1106872   0.0229410   0.1106872
+       0.1312825   0.4800478   0.4050087   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.1442925   0.1621633   0.1442925   0.1621633
+       0.0000000   0.0000000   0.0000000   4.2518771   0.0000000   0.0000000   0.5472432   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000   4.2518771   0.0000000   0.0000000   0.5472432   0.0000000   0.1870891   0.0694197  -0.1870891  -0.0694197
+       0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   4.2518771   0.0000000   0.0000000   0.5472432  -0.1319218  -0.0489498  -0.1319218  -0.0489498
+       0.0000000   0.0000000   0.0000000   0.5472432   0.0000000   0.0000000   0.6750145   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000   0.5472432   0.0000000   0.0000000   0.6750145   0.0000000   0.3494652   0.1721794  -0.3494652  -0.1721794
+       0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.5472432   0.0000000   0.0000000   0.6750145  -0.2464178  -0.1214086  -0.2464178  -0.1214086
+      -0.0219734   0.0229410   0.1442925   0.0000000   0.1870891  -0.1319218   0.0000000   0.3494652  -0.2464178   1.3956783   0.2597351  -0.0427890   0.0197270
+       0.0215860   0.1106872   0.1621633   0.0000000   0.0694197  -0.0489498   0.0000000   0.1721794  -0.1214086   0.2597351   0.2419167   0.0197270   0.0639559
+      -0.0219734   0.0229410   0.1442925   0.0000000  -0.1870891  -0.1319218   0.0000000  -0.3494652  -0.2464178  -0.0427890   0.0197270   1.3956783   0.2597351
+       0.0215860   0.1106872   0.1621633   0.0000000  -0.0694197  -0.0489498   0.0000000  -0.1721794  -0.1214086   0.0197270   0.0639559   0.2597351   0.2419167
+
+   --- Matrix: V (nuclear) ---
+     -62.5901094  -5.1829843  -5.5038998   0.0000000   0.0000000   0.0257614   0.0000000   0.0000000   0.0035499  -1.1227964  -2.2490182  -1.1227964  -2.2490182
+      -5.1829843 -11.6396911  -7.8733004   0.0000000   0.0000000   0.1751529   0.0000000   0.0000000   0.1119148  -2.4077589  -3.7506255  -2.4077589  -3.7506255
+      -5.5038998  -7.8733004  -7.6749548   0.0000000   0.0000000   0.1651463   0.0000000   0.0000000   0.2321582  -3.0715156  -4.5477859  -3.0715156  -4.5477859
+       0.0000000   0.0000000   0.0000000 -12.6861115   0.0000000   0.0000000  -4.2730421   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000 -12.8024126   0.0000000   0.0000000  -4.3786831   0.0000000  -2.0557676  -1.0036406   2.0557676   1.0036406
+       0.0257614   0.1751529   0.1651463   0.0000000   0.0000000 -12.7439371   0.0000000   0.0000000  -4.3255674   1.4743930   0.7830197   1.4743930   0.7830197
+       0.0000000   0.0000000   0.0000000  -4.2730421   0.0000000   0.0000000  -5.2488341   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000  -4.3786831   0.0000000   0.0000000  -5.4882885   0.0000000  -2.8922273  -1.9059354   2.8922273   1.9059354
+       0.0035499   0.1119148   0.2321582   0.0000000   0.0000000  -4.3255674   0.0000000   0.0000000  -5.3678922   2.0679363   1.4737491   2.0679363   1.4737491
+      -1.1227964  -2.4077589  -3.0715156   0.0000000  -2.0557676   1.4743930   0.0000000  -2.8922273   2.0679363  -6.4166180  -3.8274363  -0.3620893  -1.4217584
+      -2.2490182  -3.7506255  -4.5477859   0.0000000  -1.0036406   0.7830197   0.0000000  -1.9059354   1.4737491  -3.8274363  -4.7556131  -1.4217584  -2.7909638
+      -1.1227964  -2.4077589  -3.0715156   0.0000000   2.0557676   1.4743930   0.0000000   2.8922273   2.0679363  -0.3620893  -1.4217584  -6.4166180  -3.8274363
+      -2.2490182  -3.7506255  -4.5477859   0.0000000   1.0036406   0.7830197   0.0000000   1.9059354   1.4737491  -1.4217584  -2.7909638  -3.8274363  -4.7556131
+
+   --- Matrix: H_core (T+V) ---
+     -33.0499696  -7.3683870  -5.3726173   0.0000000   0.0000000   0.0257614   0.0000000   0.0000000   0.0035499  -1.1447698  -2.2274322  -1.1447698  -2.2274322
+      -7.3683870  -9.9284802  -7.3932526   0.0000000   0.0000000   0.1751529   0.0000000   0.0000000   0.1119148  -2.3848180  -3.6399383  -2.3848180  -3.6399383
+      -5.3726173  -7.3932526  -7.2699461   0.0000000   0.0000000   0.1651463   0.0000000   0.0000000   0.2321582  -2.9272232  -4.3856226  -2.9272232  -4.3856226
+       0.0000000   0.0000000   0.0000000  -8.4342344   0.0000000   0.0000000  -3.7257989   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000  -8.5505355   0.0000000   0.0000000  -3.8314399   0.0000000  -1.8686784  -0.9342209   1.8686784   0.9342209
+       0.0257614   0.1751529   0.1651463   0.0000000   0.0000000  -8.4920600   0.0000000   0.0000000  -3.7783242   1.3424711   0.7340700   1.3424711   0.7340700
+       0.0000000   0.0000000   0.0000000  -3.7257989   0.0000000   0.0000000  -4.5738196   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   0.0000000  -3.8314399   0.0000000   0.0000000  -4.8132740   0.0000000  -2.5427621  -1.7337560   2.5427621   1.7337560
+       0.0035499   0.1119148   0.2321582   0.0000000   0.0000000  -3.7783242   0.0000000   0.0000000  -4.6928777   1.8215185   1.3523405   1.8215185   1.3523405
+      -1.1447698  -2.3848180  -2.9272232   0.0000000  -1.8686784   1.3424711   0.0000000  -2.5427621   1.8215185  -5.0209397  -3.5677012  -0.4048783  -1.4020314
+      -2.2274322  -3.6399383  -4.3856226   0.0000000  -0.9342209   0.7340700   0.0000000  -1.7337560   1.3523405  -3.5677012  -4.5136964  -1.4020314  -2.7270079
+      -1.1447698  -2.3848180  -2.9272232   0.0000000   1.8686784   1.3424711   0.0000000   2.5427621   1.8215185  -0.4048783  -1.4020314  -5.0209397  -3.5677012
+      -2.2274322  -3.6399383  -4.3856226   0.0000000   0.9342209   0.7340700   0.0000000   1.7337560   1.3523405  -1.4020314  -2.7270079  -3.5677012  -4.5136964
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.004 s
+ =======================================================
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      3
+   Bonds:                           2
+   Angles:                          1
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   1.803575
+       1 -   3  R =   1.803575
+   Angles (degrees):
+       2 -   1 -   3  theta =   109.6225
+   Initial Hessian: Lindh diagonal model
+
+   Geometry Optimization (RFO / Internal Coordinates)
+   =========================================================================
+                                     max|g|    rms(g)    max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.039E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.580E+008)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.026E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.503E+009)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   12 iter  (dE=-1.563E-13, dP= 1.483E-08, |g|= 4.260E-08)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.128248375119
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+     JK direct:   6 OpenMP threads  (printed once; applies to every iteration)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.218E-03
+        6   2.376E-07
+        7   5.538E-09
+     Converged in    7 iterations, max|R| =  5.538E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    2.313687E-16   -1.610279E-02
+     atom  2    0.000000E+00   -1.251221E-02    8.051397E-03
+     atom  3    0.000000E+00    1.251221E-02    8.051397E-03
+   MP2 gradient computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -76.11348368  -7.61E+01  2.06E-02  1.16E-02  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1          0.00000000    0.00000000    0.10000000
+     H2          0.00000000    0.78000000   -0.45000000
+     H3          0.00000000   -0.78000000   -0.45000000
+
+   --- Step    2 ---
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.239E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.621E+009)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in    9 iter  (dE=-5.969E-13, dP= 3.667E-08, |g|= 9.801E-08)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130864029122
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.478E-03
+        6   3.108E-07
+        7   7.541E-09
+     Converged in    7 iterations, max|R| =  7.541E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -1.695150E-16   -1.512040E-02
+     atom  2    0.000000E+00   -1.232746E-02    7.560201E-03
+     atom  3    0.000000E+00    1.232746E-02    7.560201E-03
+   MP2 gradient computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -76.11398408  -5.00E-04  9.37E-03  5.11E-03  5.39E-02  2.60E-02
+                                      no        no        no        no 
+     [geo0002]
+     O1          0.00000000    0.00000000    0.10744220
+     H2          0.00000000    0.80851778   -0.45372110
+     H3          0.00000000   -0.80851778   -0.45372110
+
+   --- Step    3 ---
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   7.594E+009)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in    8 iter  (dE=-4.121E-13, dP= 6.416E-08, |g|= 1.043E-07)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130137555372
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.421E-03
+        6   2.864E-07
+        7   6.959E-09
+     Converged in    7 iterations, max|R| =  6.959E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    1.962948E-16   -1.574002E-02
+     atom  2    0.000000E+00   -1.224161E-02    7.870010E-03
+     atom  3    0.000000E+00    1.224161E-02    7.870010E-03
+   MP2 gradient computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -76.11421108  -2.27E-04  6.80E-04  3.82E-04  2.49E-02  1.18E-02
+                                      no        no        no        no 
+     [geo0003]
+     O1          0.00000000   -0.00000000    0.10960802
+     H2          0.00000000    0.79535379   -0.45480401
+     H3          0.00000000   -0.79535379   -0.45480401
+
+   --- Step    4 ---
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in    7 iter  (dE=-1.265E-12, dP= 8.836E-08, |g|= 1.911E-07)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071143479
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -5.393906E-17   -1.575249E-02
+     atom  2    0.000000E+00   -1.225018E-02    7.876245E-03
+     atom  3    0.000000E+00    1.225018E-02    7.876245E-03
+   MP2 gradient computed.
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4    -76.11421195  -8.72E-07  1.81E-05  9.79E-06  1.04E-03  5.52E-04
+                                      yes       yes       yes       yes
+     [geo0004]
+     O1          0.00000000   -0.00000000    0.10928186
+     H2          0.00000000    0.79480189   -0.45464093
+     H3          0.00000000   -0.79480189   -0.45464093
+
+   ======================================================
+   Optimization converged in    4 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000  -0.00000000   0.20651279
+   H2         0.00000000   1.50195790  -0.85914685
+   H3         0.00000000  -1.50195790  -0.85914685
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000  -0.00000000   0.10928186
+   H2         0.00000000   0.79480189  -0.45464093
+   H3         0.00000000  -0.79480189  -0.45464093
+   -----------------------------------------------
+   Final energy:     -76.114211949734
+   Optimization time:      0.359 s
+
+   Point group after optimization: C2v  (unchanged)
+
+ --- Section 6: Hessian & Frequencies ---
+   Computing overlap integrals (S)...
+     S trace     =    13.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    49.7122241037
+     T max |el|  =    29.5401397978
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -158.1443574622
+     V max |el|  =    62.5672101186
+     V min diag  =   -62.5672101186
+     V max diag  =    -4.7082657545
+   Assembling H_core = T + V_nuc...
+     H trace     =  -108.4321333584
+     H max |el|  =    33.0270703207
+     H min diag  =   -33.0270703207
+     H max diag  =    -4.4663490545
+   Method: Analytical RMP2 Hessian (FD of grad)
+   Analytical RMP2 Hessian and frequencies (v0.65.0)
+   Atoms:                    3
+   Hessian dimension:        9
+   Basis functions:         13
+   Frozen core orbitals:     0
+   Gradient evaluations:    18
+   FD step (bohr):        5.00E-03
+   SCF E tolerance:       1.00E-11
+   SCF P tolerance:       1.00E-09
+   Backend: FD of analytical MP2 gradient
+
+   Running reference SCF...
+   Nuclear repulsion energy:          9.0209737650
+   Initial Fock matrix:       core Hamiltonian
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+
+   Starting SCF iterations...
+   ------------------------------------------------------------------------
+    Iter       E(total)         dE          max(dP)     ||FPS-SPF||  DIIS
+   ------------------------------------------------------------------------
+      1      -69.6053419800    5.625E+01    3.474E+00    2.566E+00   no
+      2      -70.8745265109   -1.269E+00    3.474E+00    2.367E+00   yes
+      3      -75.8749571984   -5.000E+00    7.072E-02    5.004E-01   yes
+      4      -75.9782024761   -1.032E-01    2.258E-02    9.728E-02   yes
+      5      -75.9839329713   -5.730E-03    4.114E-03    1.530E-02   yes
+      6      -75.9841193685   -1.864E-04    2.082E-03    4.656E-03   yes
+      7      -75.9841395233   -2.015E-05    3.487E-04    1.764E-03   yes
+      8      -75.9841407807   -1.257E-06    5.963E-05    1.665E-04   yes
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.111E+009)
+      9      -75.9841408053   -2.461E-08    1.473E-05    3.701E-05   yes
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+     10      -75.9841408062   -9.133E-10    1.772E-06    2.855E-06   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+     11      -75.9841408063   -1.128E-11    1.142E-07    3.083E-07   yes
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.893E+007)
+     12      -75.9841408063   -4.263E-14    1.910E-08    4.434E-08   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+     13      -75.9841408063    0.000E+00    3.300E-09    7.358E-09   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+     14      -75.9841408063    0.000E+00    4.424E-10    1.001E-09   yes
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.073E+008)
+     15      -75.9841408063    0.000E+00    1.046E-10    2.224E-10   yes
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 0.000E+00, dP= 1.046E-10, |g|= 2.224E-10)
+   ----------------------------------------------------------
+
+   Final energies:
+     Electronic energy:     -85.005114571275
+     Nuclear repulsion:       9.020973765020
+     Total energy:          -75.984140806254
+
+   Orbital energies:
+        1:  -20.56006572 occ
+        2:   -1.34206294 occ
+        3:   -0.70831223 occ
+        4:   -0.54888675 occ
+        5:   -0.49796725 occ
+        6:    0.20043306 vir
+        7:    0.29608879 vir
+        8:    1.07909587 vir
+        9:    1.14125367 vir
+       10:    1.16639773 vir
+       11:    1.21052758 vir
+       12:    1.37996229 vir
+       13:    1.68018315 vir
+   Reference SCF energy:     -75.984140806254
+
+   Computing MP2 Hessian by central-FD of analytical gradient...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.110E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.894E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.073E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071501070
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1   -7.390942E-05    8.577665E-16   -1.575246E-02
+     atom  2    3.695471E-05   -1.225006E-02    7.876228E-03
+     atom  3    3.695471E-05    1.225006E-02    7.876228E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.110E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.894E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.073E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071501070
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    7.390942E-05    7.722772E-16   -1.575246E-02
+     atom  2   -3.695471E-05   -1.225006E-02    7.876228E-03
+     atom  3   -3.695471E-05    1.225006E-02    7.876228E-03
+   MP2 gradient computed.
+     coord   1/  9  done  (cumulative      0.2 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.110E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.044E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.219E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.870E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.749E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.781E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.574E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 1.421E-14, dP= 1.036E-10, |g|= 2.269E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071094889
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.845E-07
+        7   7.023E-09
+     Converged in    7 iterations, max|R| =  7.023E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    2.492604E-05   -1.575270E-02
+     atom  2    0.000000E+00   -1.226278E-02    7.891484E-03
+     atom  3    0.000000E+00    1.223786E-02    7.861218E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.110E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.044E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.219E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.870E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.749E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.781E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.575E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.036E-10, |g|= 2.269E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071094889
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.845E-07
+        7   7.023E-09
+     Converged in    7 iterations, max|R| =  7.023E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -2.492604E-05   -1.575270E-02
+     atom  2    0.000000E+00   -1.223786E-02    7.861218E-03
+     atom  3    0.000000E+00    1.226278E-02    7.891484E-03
+   MP2 gradient computed.
+     coord   2/  9  done  (cumulative      0.4 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   7.902E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.914E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.248E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.957E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.814E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.077E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.870E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE=-8.527E-14, dP= 1.045E-10, |g|= 2.237E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130224175637
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.432E-03
+        6   2.878E-07
+        7   7.036E-09
+     Converged in    7 iterations, max|R| =  7.036E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    2.539744E-16   -1.581187E-02
+     atom  2    0.000000E+00   -1.219843E-02    7.905935E-03
+     atom  3    0.000000E+00    1.219843E-02    7.905935E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.324E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.179E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.192E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.833E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.081E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.893E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.318E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.044E-10, |g|= 2.208E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.129918985353
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.395E-03
+        6   2.816E-07
+        7   6.782E-09
+     Converged in    7 iterations, max|R| =  6.782E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    1.051676E-16   -1.569361E-02
+     atom  2    0.000000E+00   -1.230200E-02    7.846807E-03
+     atom  3    0.000000E+00    1.230200E-02    7.846807E-03
+   MP2 gradient computed.
+     coord   3/  9  done  (cumulative      0.6 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.111E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.893E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.073E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 1.421E-14, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071308774
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    3.695452E-05   -8.225423E-08   -1.575244E-02
+     atom  2   -3.886751E-05   -1.225009E-02    7.876205E-03
+     atom  3    1.912988E-06    1.225018E-02    7.876230E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.111E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.893E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.072E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 0.000E+00, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071308774
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1   -3.695452E-05   -8.225424E-08   -1.575244E-02
+     atom  2    3.886751E-05   -1.225009E-02    7.876205E-03
+     atom  3   -1.912988E-06    1.225018E-02    7.876230E-03
+   MP2 gradient computed.
+     coord   4/  9  done  (cumulative      0.8 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.020E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.992E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.236E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.917E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.851E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.013E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.890E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE=-2.842E-14, dP= 1.040E-10, |g|= 2.235E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130162688958
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.422E-03
+        6   2.874E-07
+        7   6.978E-09
+     Converged in    7 iterations, max|R| =  6.978E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -1.232793E-05   -1.569647E-02
+     atom  2    0.000000E+00   -1.224642E-02    7.840756E-03
+     atom  3    0.000000E+00    1.225875E-02    7.855711E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.202E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.100E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.204E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.859E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.935E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.843E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.999E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE=-2.842E-14, dP= 1.046E-10, |g|= 2.235E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.129979590490
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.406E-03
+        6   2.819E-07
+        7   6.854E-09
+     Converged in    7 iterations, max|R| =  6.854E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    1.259724E-05   -1.580888E-02
+     atom  2    0.000000E+00   -1.225417E-02    7.912096E-03
+     atom  3    0.000000E+00    1.224157E-02    7.896785E-03
+   MP2 gradient computed.
+     coord   5/  9  done  (cumulative      1.0 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.217E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.112E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.206E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.860E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.983E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.906E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.121E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE=-2.842E-14, dP= 1.044E-10, |g|= 2.222E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.129994980258
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     345000 quartets/s  (  6 threads,     0.003 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.405E-03
+        6   2.831E-07
+        7   6.849E-09
+     Converged in    7 iterations, max|R| =  6.849E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    3.512656E-05   -1.572292E-02
+     atom  2    0.000000E+00   -1.229367E-02    7.846414E-03
+     atom  3    0.000000E+00    1.225854E-02    7.876501E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.006E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.980E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.234E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.922E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.851E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.999E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.902E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.044E-10, |g|= 2.236E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130147574767
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.423E-03
+        6   2.863E-07
+        7   6.976E-09
+     Converged in    7 iterations, max|R| =  6.976E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -3.499763E-05   -1.578204E-02
+     atom  2    0.000000E+00   -1.220683E-02    7.906022E-03
+     atom  3    0.000000E+00    1.224182E-02    7.876021E-03
+   MP2 gradient computed.
+     coord   6/  9  done  (cumulative      1.2 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:    1035000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.111E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.893E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.072E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 0.000E+00, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071308774
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    3.695452E-05    8.225424E-08   -1.575244E-02
+     atom  2    1.912988E-06   -1.225018E-02    7.876230E-03
+     atom  3   -3.886751E-05    1.225009E-02    7.876205E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.111E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.046E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.220E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.893E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.940E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.976E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.074E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 0.000E+00, dP= 1.046E-10, |g|= 2.224E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130071308774
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.414E-03
+        6   2.847E-07
+        7   6.910E-09
+     Converged in    7 iterations, max|R| =  6.910E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1   -3.695452E-05    8.225424E-08   -1.575244E-02
+     atom  2   -1.912988E-06   -1.225018E-02    7.876230E-03
+     atom  3    3.886751E-05    1.225009E-02    7.876205E-03
+   MP2 gradient computed.
+     coord   7/  9  done  (cumulative      1.4 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.202E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.100E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.204E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.859E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.935E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.843E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.999E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 5.684E-14, dP= 1.046E-10, |g|= 2.235E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.129979590490
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.406E-03
+        6   2.819E-07
+        7   6.854E-09
+     Converged in    7 iterations, max|R| =  6.854E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -1.259724E-05   -1.580888E-02
+     atom  2    0.000000E+00   -1.224157E-02    7.896785E-03
+     atom  3    0.000000E+00    1.225417E-02    7.912096E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.020E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.992E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.236E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.917E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.851E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   7.013E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.893E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE=-1.421E-14, dP= 1.040E-10, |g|= 2.235E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130162688958
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.422E-03
+        6   2.874E-07
+        7   6.978E-09
+     Converged in    7 iterations, max|R| =  6.978E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    1.232793E-05   -1.569647E-02
+     atom  2    0.000000E+00   -1.225875E-02    7.855711E-03
+     atom  3    0.000000E+00    1.224642E-02    7.840756E-03
+   MP2 gradient computed.
+     coord   8/  9  done  (cumulative      1.6 s)
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.217E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.112E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.206E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.860E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.983E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.906E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   9.121E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 2.842E-14, dP= 1.044E-10, |g|= 2.222E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.129994980258
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.405E-03
+        6   2.831E-07
+        7   6.849E-09
+     Converged in    7 iterations, max|R| =  6.849E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00   -3.512656E-05   -1.572292E-02
+     atom  2    0.000000E+00   -1.225854E-02    7.876501E-03
+     atom  3    0.000000E+00    1.229367E-02    7.846414E-03
+   MP2 gradient computed.
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   8.006E+009)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   5.980E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.234E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   4.922E+007)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.851E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   6.999E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.901E+008)
+   Checkpoint written: test_mp2_h2o_optfreq.chk
+   SCF converged in   15 iter  (dE= 4.263E-14, dP= 1.044E-10, |g|= 2.236E-10)
+   MP2 Gradient (analytical, Z-vector)
+   Basis functions:     13  Correlated occ:    5  Virtual:    8
+   Step 1: MO integral transformation...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 2: Amplitudes and MP2 energy...
+     MP2 correlation energy:      -0.130147574767
+   Step 3: Unrelaxed MP2 density...
+   Step 4: 2PDM, Imat, Lagrangian (Fock response)...
+   Conventional SCF:       1035 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     517500 quartets/s  (  6 threads,     0.002 s)
+   Step 5: Solving Z-vector equation...
+     Z-vector PCG iterations:
+     Iter     Max|R|
+        1   3.423E-03
+        6   2.863E-07
+        7   6.976E-09
+     Converged in    7 iterations, max|R| =  6.976E-09
+   Step 6: Forming relaxed AO densities...
+   Step 8: Assembling gradient...
+     ERI gradient:   6 threads,     45 bra pairs
+   DEBUG (RHF): 2PDM grad contribution alone:
+     atom  1    0.000000E+00    3.499763E-05   -1.578204E-02
+     atom  2    0.000000E+00   -1.224182E-02    7.876021E-03
+     atom  3    0.000000E+00    1.220683E-02    7.906022E-03
+   MP2 gradient computed.
+     coord   9/  9  done  (cumulative      1.8 s)
+   FD loop complete.
+
+   Cartesian Hessian (Ha/Bohr^2):
+                     1           2           3           4           5           6
+     1       -0.000007   -0.000000    0.000000    0.000004    0.000000   -0.000000
+     2       -0.000000    0.687928   -0.000000   -0.000000   -0.343964    0.244054
+     3        0.000000   -0.000000    0.373114   -0.000000    0.166971   -0.186557
+     4        0.000004   -0.000000   -0.000000   -0.000007    0.000000   -0.000000
+     5        0.000000   -0.343964    0.166971    0.000000    0.374735   -0.205512
+     6       -0.000000    0.244054   -0.186557   -0.000000   -0.205512    0.179849
+     7        0.000004   -0.000000   -0.000000    0.000003    0.000000    0.000000
+     8        0.000000   -0.343964   -0.166971    0.000000   -0.030770   -0.038542
+     9       -0.000000   -0.244054   -0.186557   -0.000000    0.038542    0.006709
+ 
+                     7           8           9
+     1        0.000004    0.000000   -0.000000
+     2       -0.000000   -0.343964   -0.244054
+     3       -0.000000   -0.166971   -0.186557
+     4        0.000003    0.000000   -0.000000
+     5        0.000000   -0.030770    0.038542
+     6        0.000000   -0.038542    0.006709
+     7       -0.000007   -0.000000   -0.000000
+     8       -0.000000    0.374735    0.205512
+     9       -0.000000    0.205512    0.179849
+     Projected out  6 TR modes.
+
+   Vibrational Frequency Analysis
+   ======================================================
+ 
+   Mode   Freq (cm^-1)   IR int (km/mol)   Type
+   ----   -----------   ---------------   ------
+     1         -0.00                   TR      
+     2         -0.00                   TR      
+     3         -0.00                   TR      
+     4          0.00                   TR      
+     5          0.00                   TR      
+     6          0.00                   TR      
+     7       1662.65         85.3578   vib     
+     8       3657.00          0.9283   vib     
+     9       3833.18         20.0258   vib     
+ 
+   Vibrational modes:    3
+   TR modes:             6
+ 
+   ZPVE:       4576.41 cm^-1
+              0.020852 Eh
+               13.0846 kcal/mol
+               54.7460 kJ/mol
+
+   Normal Modes (Cartesian displacements):
+
+   Mode   1:     1662.65 cm^-1,  IR:    85.3578 km/mol
+     Atom       dx         dy         dz
+       1  -0.000000   0.000000  -0.075284
+       2   0.000000   0.374376   0.597502
+       3  -0.000000  -0.374376   0.597502
+
+   Mode   2:     3657.00 cm^-1,  IR:     0.9283 km/mol
+     Atom       dx         dy         dz
+       1  -0.000000   0.000000  -0.043281
+       2  -0.000000  -0.617307   0.343505
+       3   0.000000   0.617307   0.343505
+
+   Mode   3:     3833.18 cm^-1,  IR:    20.0258 km/mol
+     Atom       dx         dy         dz
+       1   0.000000  -0.072471  -0.000000
+       2   0.000000   0.575179  -0.408097
+       3  -0.000000   0.575179   0.408097
+   Hessian written to: test_mp2_h2o_optfreq.hess
+   Molden file written to: test_mp2_h2o_optfreq.molden
+   Hessian & Frequencies time:      1.832 s
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =    13.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    49.7122241037
+     T max |el|  =    29.5401397978
+     T min diag  =     0.2419167000
+     T max diag  =    29.5401397978
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -158.1443574622
+     V max |el|  =    62.5672101186
+     V min diag  =   -62.5672101186
+     V max diag  =    -4.7082657545
+   Assembling H_core = T + V_nuc...
+     H trace     =  -108.4321333584
+     H max |el|  =    33.0270703207
+     H min diag  =   -33.0270703207
+     H max diag  =    -4.4663490545
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -85.135185714754
+     Nuclear repulsion:       9.020973765020
+     MP2 correlation:         0.000000000000
+     Total energy:          -76.114211949734
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.809197   -0.809197
+       2      H       0.595402    0.404598
+       3      H       0.595402    0.404598
+   ------------------------------------------------
+   Total electrons:    10.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000   -0.000000   -0.066191
+   Electronic (au):    -0.000000   -0.000000   -0.937971
+   Total      (au):    -0.000000   -0.000000   -1.004163
+   |mu|       (au):     1.004163
+   |mu|    (Debye):     2.552327
+   ================================================
+   Section 7 time:      0.002 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      2.202 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:29:25.41
+
+
+ ==========================================================================================
+  TIMING PROFILE
+ ------------------------------------------------------------------------------------------
+  Stage                        Calls    Wall(s)     CPU(s)   %Wall
+ ------------------------------------------------------------------------------------------
+  Input & initialization           1       0.004      0.000     0.2
+  1e-integrals (S,T,V)             7       0.016      0.094     0.7
+  2e-integrals (J,K)             344       0.066      0.281     3.0
+  SCF iterations (*)              23       0.088      0.453     4.0
+  Optimizer work                   4       0.002      0.000     0.1
+  Properties & output              1       0.002      0.000     0.1
+  MP2 gradient                    22       2.039     12.203    92.6
+  MP2 Hessian total (**)           1       1.830     10.891    83.1
+ ------------------------------------------------------------------------------------------
+  Total program                            2.202     13.047   100.0
+   Other / unaccounted                     0.073                3.3
+ ------------------------------------------------------------------------------------------
+  (*) SCF time includes 2e-integrals and DFT XC contributions
+  (**) MP2 Hessian total includes 6N analytical-grad evaluations
+ ==========================================================================================
+

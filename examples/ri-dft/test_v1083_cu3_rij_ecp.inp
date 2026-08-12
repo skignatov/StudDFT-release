@@ -1,0 +1,25 @@
+! Test v1.08.3: RI-J with the heavy-element def2-universal-JFIT
+! extension (K..Rn, shipped decontracted -- see the header of
+! basis_data/def2-universal-jfit.dat for why).  Cu3 doublet
+! PBE/LANL2DZ ECP, SAD, Fermi smearing 0.01.
+! Expected (container reference):
+!   [with %ri_check on]  dE_J ~ -4.9e-4 Ha at the SAD density
+!   Total energy (F=E-TS):  -588.438494612200
+!   vs conventional (%ri off): -588.437946904   -> dE(RI - exact)
+!   = -5.5e-4 Ha (0.18 mHa/atom); Pt2 analogue: 14.5 uHa/atom.
+%method  pbe
+%basis   lanl2dz
+%ecp     lanl2dz
+%job     energy
+%ecp_method   analytical
+%initial_guess  sad
+%scf_maxiter    300
+%ri j
+%smearing       fermi
+%smearing_sigma 0.01
+%charge 0
+%mult   2
+%geo
+Cu   0.000000    1.360000    0.000000
+Cu   1.177800   -0.680000    0.000000
+Cu  -1.177800   -0.680000    0.000000

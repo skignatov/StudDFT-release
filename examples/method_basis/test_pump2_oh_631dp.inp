@@ -1,0 +1,33 @@
+# Test: OH radical PUMP2 single-point energy / 6-31G(d,p)
+# Open-shell doublet (5 alpha / 4 beta electrons).
+#
+# Reference (Gaussian g09, frozen_core=auto):
+#   UMP2  energy : -75.5320851 Ha
+#   <S^2> (UMP2) :  0.7552
+#   PUMP2 energy : -75.5335707 Ha
+#   <S^2>_A      :  0.7500
+#   PUMP2 correction = -1.4856 mHa
+#
+# Current StudDFT formula = (2/K_eff)*X_cross (Schlegel 1986 Hylleraas form,
+# cross-doubles only).  This system has very small spin contamination
+# (Delta<S^2> = 0.0052), so the cross-doubles term dominates and the
+# residual against g09 PMP2-0 is ~3e-5 Ha.  See PUMP2_FORMULA.md for the
+# discussion of higher-order singles/same-spin contributions that are
+# not yet implemented.
+#
+# StudDFT v0.63.x output (cross-doubles only):
+#   PUMP2 correction = -1.5120 mHa     (residual: -2.6e-5 Ha vs g09)
+#
+%method  MP2
+%basis   6-31G(d,p)
+%job     energy
+%charge  0
+%mult    2
+%spin    unrestricted
+%pump2   yes
+%frozen_core 1
+
+*geometry angstrom
+O   0.000000   0.000000   0.000000
+H   0.000000   0.000000   0.969000
+*end

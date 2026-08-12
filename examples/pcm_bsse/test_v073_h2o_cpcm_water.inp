@@ -1,0 +1,23 @@
+! v0.73.0 PCM test 1:  water in water (HF/STO-3G, C-PCM).
+!
+! Purpose:  smoke test of the full Stage 1 pipeline -- cavity
+! discretization, charge solver, SCF coupling, energy.  Reference for
+! the SCF total in vacuum on this geometry (test_v073_no_pcm_regression):
+!   E_HF      = -74.963919012725 Ha
+! and water/water solvation energy is expected on the order of
+! ~ -10 kcal/mol = -0.0159 Ha at HF/STO-3G; experimental Delta_G_solv
+! for water in water is -6.3 kcal/mol but a minimal-basis HF/CPCM
+! number can easily disagree by several kcal/mol.  The point of this
+! test is the SIGN of the polarization free energy (G_pol < 0) and
+! the consistency of the diagnostics (sum(q) close to zero for a
+! neutral solute, by Gauss's law).
+%method  HF
+%basis   sto-3g
+%job     energy
+%pcm     cpcm     ! v0.74+ default is iefpcm; v0.73 tests pin cpcm explicitly
+%solvent water
+%geom angstrom
+O  0.000000   0.000000   0.119262
+H  0.000000   0.755453  -0.477047
+H  0.000000  -0.755453  -0.477047
+*end

@@ -1,0 +1,25 @@
+# Test: NaCl RMP2 / LANL2DZ-ECP analytical Hessian and frequencies (v0.65.0)
+#
+# Diatomic with effective core potentials on BOTH atoms (Na: 10-electron
+# core via LANL2; Cl: 10-electron core via LANL2).  Validates that the
+# MP2 Hessian extension correctly handles the ECP gradient term in the
+# inner compute_mp2_gradient (which dispatches on mol%necp > 0 to invoke
+# ecp_gradient_analytical_md at every FD step).
+#
+# Starting from R(Na-Cl) = 2.36 A (close to MP2 minimum).
+# Expected: 1 vibrational mode around 360 cm^-1 (experiment 363 cm^-1
+# for gas-phase NaCl).
+#
+%method  MP2
+%basis   LANL2DZ
+%ecp     LANL2DZ
+%frozen_core 0
+%job     freq
+%charge  0
+%mult    1
+%print_time
+
+*geometry angstrom
+Na   0.000   0.000   0.000
+Cl   0.000   0.000   2.360
+*end

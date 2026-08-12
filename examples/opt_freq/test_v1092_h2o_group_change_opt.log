@@ -1,0 +1,399 @@
+
+ =======================================================
+                     S t u d D F T
+          Educational Quantum Chemistry Program
+                Version 1.25.3 (2026-08-03)
+                     Full Edition
+     Stanislav K. Ignatov, UNN, Nizhny Novgorod, 2026
+ =======================================================
+  HF / DFT / MP2  |  RHF/UHF  |  RKS/UKS  |  ECP
+  Geometry Optimization  |  Hessian & Frequencies
+ =======================================================
+
+ Date:05/08/2026                        Time:17:34:45.57
+
+ Host           : Q10
+ Work directory : D:\Projects\StudDFT\StudDFT-release\examples\opt_freq
+ OpenMP enabled:   6 threads
+
+ --- Section 1: Input & Setup ---
+
+ Reading input from: test_v1092_h2o_group_change_opt.inp
+
+ --- Input file echo ---------------------------------------
+   | ! Test v1.09.2 (2/2): always-on point-group detection and the
+   | ! post-optimization re-detection / change notice.
+   | ! A deliberately distorted water seed (Cs -- any triatomic is at
+   | ! least planar) optimizes back toward the C2v minimum; with the
+   | ! LOOSened %symmetry_tol below, the optimizer's residual asymmetry
+   | ! (~1e-2 bohr at the default convergence thresholds) falls inside
+   | ! the detection tolerance and the group change is reported:
+   | !   startup:  "Point group: Cs"
+   | !   post-opt: "Point group after optimization: C2v  (was Cs)"
+   | ! With the default %symmetry_tol (1e-3 bohr) the same run honestly
+   | ! reports Cs (unchanged): recovering the EXACT group needs the
+   | ! residual asymmetry below the tolerance.  The re-detection itself
+   | ! runs for EVERY optimization job, with no keyword required.
+   | %method  HF
+   | %basis   sto-3g
+   | %job     opt
+   | %symmetry_tol 0.08
+   | *geometry angstrom
+   |  O   0.000000    0.000000    0.121300
+   |  H   0.000000    0.900000   -0.429200
+   |  H   0.000000   -0.620000   -0.489200
+   | *end
+ -----------------------------------------------------------
+
+ Input parsed successfully.
+
+   Job type:         Optimization
+   Method:           HF
+   Basis set:        sto-3g
+   Spin treatment:   Restricted
+   Charge:              0
+   Multiplicity:        1
+   Atoms:               3
+   Angular functions: Cartesian
+   SCF converger:    DIIS
+   SCF max iter:        150
+   SCF level shift:  AUTO  (activates 0.2 Ha after 100 non-converged iters)
+   Geom max iter:        50
+   Initial Hessian:  diag  (Lindh diagonal model)
+
+   Molecular Geometry (Angstroems):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+    O1         0.00000000   0.00000000   0.12130000
+    H2         0.00000000   0.90000000  -0.42920000
+    H3         0.00000000  -0.62000000  -0.48920000
+
+ Setting up method...
+   Functional:       HF
+   Class:            Hartree-Fock
+   HF exchange:      100.00 %
+
+ Building molecule...
+   Molecule built successfully.
+
+ =============================================
+  MOLECULE SUMMARY
+ =============================================
+   Number of atoms:            3
+   Number of shells:           5
+   Number of basis fns:        7
+   Primitive Gaussians:       15
+   Total electrons:           10
+   Alpha electrons:            5
+   Beta electrons:             5
+   Charge:                   0
+   Multiplicity:             1
+
+   Shell details:
+   Shell  Atom  L  NPrim  NBF  IBF_start
+   -----------------------------------------------
+       1     1   s     3    1       1
+       2     1   s     3    1       2
+       3     1   p     3    3       3
+       4     2   s     3    1       6
+       5     3   s     3    1       7
+ =============================================
+   Point group: Cs   (atom-match deviation  0.00E+00 bohr)
+
+ --- ERI kernels: per-class HRR dispatch (auto, v0.95.0)
+     quartet routing: 100.0 % contraction-first,   0.0 % per-primitive (by class census)
+
+ Initializing precomputed tables...
+   Precomputed tables initialized.
+     LMAX_WORK     =   6
+     BOYS_NMAX     =  28
+     BOYS_NGRID    =   5000
+     TABLE_SIZE    =   58
+
+ =======================================================
+  Section 1 complete. Ready for integral evaluation.
+  Section 1 time:      0.020 s
+ =======================================================
+
+ --- Section 2: One-Electron Integrals ---
+
+   Computing overlap integrals (S)...
+     S trace     =     7.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    38.9169309691
+     T max |el|  =    29.0031999455
+     T min diag  =     0.7597047370
+     T max diag  =    29.0031999455
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -113.7620455693
+     V max |el|  =    61.7282041956
+     V min diag  =   -61.7282041956
+     V max diag  =    -5.4862501187
+   Assembling H_core = T + V_nuc...
+     H trace     =   -74.8451146002
+     H max |el|  =    32.7250042500
+     H min diag  =   -32.7250042500
+     H max diag  =    -4.7265453817
+
+   --- Matrix: S (overlap) ---
+       1.0000000   0.2367039   0.0000000   0.0000000   0.0000000   0.0427670   0.0662693
+       0.2367039   1.0000000   0.0000000   0.0000000   0.0000000   0.4129802   0.5335896
+       0.0000000   0.0000000   1.0000000   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   1.0000000   0.0000000   0.3052171  -0.3004496
+       0.0000000   0.0000000   0.0000000   0.0000000   1.0000000  -0.1866911  -0.2958459
+       0.0427670   0.4129802   0.0000000   0.3052171  -0.1866911   1.0000000   0.2491628
+       0.0662693   0.5335896   0.0000000  -0.3004496  -0.2958459   0.2491628   1.0000000
+
+   --- Matrix: T (kinetic) ---
+      29.0031999  -0.1680109   0.0000000   0.0000000   0.0000000  -0.0073549   0.0052927
+      -0.1680109   0.8081280   0.0000000   0.0000000   0.0000000   0.0866702   0.1748025
+       0.0000000   0.0000000   2.5287312   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0000000   0.0000000   0.0000000   2.5287312   0.0000000   0.1831687  -0.2532117
+       0.0000000   0.0000000   0.0000000   0.0000000   2.5287312  -0.1120382  -0.2493319
+      -0.0073549   0.0866702   0.0000000   0.1831687  -0.1120382   0.7597047   0.0079135
+       0.0052927   0.1748025   0.0000000  -0.2532117  -0.2493319   0.0079135   0.7597047
+
+   --- Matrix: V (nuclear) ---
+     -61.7282042  -7.4457615   0.0000000   0.0024849   0.0198487  -1.3795219  -2.1529502
+      -7.4457615 -10.1443975   0.0000000   0.0192723   0.2296801  -3.2646689  -4.4744418
+       0.0000000   0.0000000  -9.9870871   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0024849   0.0192723   0.0000000 -10.1372864  -0.0321338  -2.1268362   2.2581909
+       0.0198487   0.2296801   0.0000000  -0.0321338 -10.0895375   1.3648943   2.3067339
+      -1.3795219  -3.2646689   0.0000000  -2.1268362   1.3648943  -5.4862501  -1.5920454
+      -2.1529502  -4.4744418   0.0000000   2.2581909   2.3067339  -1.5920454  -6.1892827
+
+   --- Matrix: H_core (T+V) ---
+     -32.7250043  -7.6137724   0.0000000   0.0024849   0.0198487  -1.3868768  -2.1476575
+      -7.6137724  -9.3362696   0.0000000   0.0192723   0.2296801  -3.1779987  -4.2996393
+       0.0000000   0.0000000  -7.4583559   0.0000000   0.0000000   0.0000000   0.0000000
+       0.0024849   0.0192723   0.0000000  -7.6085552  -0.0321338  -1.9436676   2.0049791
+       0.0198487   0.2296801   0.0000000  -0.0321338  -7.5608063   1.2528562   2.0574021
+      -1.3868768  -3.1779987   0.0000000  -1.9436676   1.2528562  -4.7265454  -1.5841319
+      -2.1476575  -4.2996393   0.0000000   2.0049791   2.0574021  -1.5841319  -5.4295780
+
+ =======================================================
+  Section 2 complete. S, T, V, H_core computed.
+  Section 2 time:      0.004 s
+ =======================================================
+
+ --- Section 5: Geometry Optimization ---
+   Internal Coordinates Summary
+   ================================================
+   Total internal coordinates:      3
+   Bonds:                           2
+   Angles:                          1
+   Dihedrals:                       0
+   ================================================
+   Bonds (bohr):
+       1 -   2  R =   1.993684
+       1 -   3  R =   1.644290
+   Angles (degrees):
+       2 -   1 -   3  theta =   103.9896
+   Initial Hessian: Lindh diagonal model
+
+   Geometry Optimization (RFO / Internal Coordinates)
+   =========================================================================
+                                     max|g|    rms(g)    max|dx|   rms(dx)
+   Stopping criteria:              4.50E-04  3.00E-04   1.80E-03  1.20E-03
+   =========================================================================
+   --- Step    1 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   3.127E+009)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   1.182E+009)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   5.487E+008)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    9 iter  (dE=-1.677E-12, dP= 1.607E-07, |g|= 3.019E-07)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      1    -74.93912584  -7.49E+01  2.14E-01  1.11E-01  0.00E+00  0.00E+00
+                                      no        no        yes       yes
+     [geo0001]
+     O1          0.00000000    0.00000000    0.12130000
+     H2          0.00000000    0.90000000   -0.42920000
+     H3          0.00000000   -0.62000000   -0.48920000
+
+   --- Step    2 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.793E+008)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   3.493E+008)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   6.780E+008)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    9 iter  (dE=-1.279E-13, dP= 2.154E-08, |g|= 3.554E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      2    -74.96112398  -2.20E-02  8.43E-02  4.01E-02  6.40E-02  3.40E-02
+                                      no        no        no        no 
+     [geo0002]
+     O1          0.00000000    0.03385864    0.13988131
+     H2          0.00000000    0.89376743   -0.42339743
+     H3          0.00000000   -0.64762607   -0.51358388
+
+   --- Step    3 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   2.733E+008)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   4.290E+008)
+   DIIS: pruned  3 oldest vector(s) (B cond ratio   8.385E+008)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    9 iter  (dE= 0.000E+00, dP= 1.892E-08, |g|= 3.004E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      3    -74.96465409  -3.53E-03  2.73E-02  1.56E-02  1.04E-01  4.53E-02
+                                      no        no        no        no 
+     [geo0003]
+     O1          0.00000000    0.06246557    0.15646487
+     H2          0.00000000    0.83856662   -0.42177736
+     H3          0.00000000   -0.62103219   -0.53178751
+
+   --- Step    4 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   6.451E+006)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.127E+009)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    7 iter  (dE=-4.547E-13, dP= 8.664E-08, |g|= 1.447E-07)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      4    -74.96589106  -1.24E-03  2.69E-03  1.26E-03  5.70E-02  2.64E-02
+                                      no        no        no        no 
+     [geo0004]
+     O1          0.00000000    0.06112854    0.15492582
+     H2          0.00000000    0.86874066   -0.41941373
+     H3          0.00000000   -0.64986920   -0.53261209
+
+   --- Step    5 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  2 oldest vector(s) (B cond ratio   8.878E+008)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    7 iter  (dE=-1.421E-14, dP= 1.701E-08, |g|= 3.506E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      5    -74.96590521  -1.41E-05  1.04E-03  6.22E-04  7.33E-03  4.08E-03
+                                      no        no        no        no 
+     [geo0005]
+     O1          0.00000000    0.06126343    0.15785551
+     H2          0.00000000    0.86485962   -0.42101360
+     H3          0.00000000   -0.64612306   -0.53394191
+
+   --- Step    6 ---
+   Conventional SCF:        120 shell quartets,        0.0 MB
+     ERI precompute:   6 OpenMP threads
+     ERI throughput:     120000 quartets/s  (  6 threads,     0.001 s)
+   Level shift mode: AUTO  (will activate 0.20 Ha if not converged in 100 iters)
+   DIIS: pruned  1 oldest vector(s) (B cond ratio   1.404E+009)
+   Checkpoint written: test_v1092_h2o_group_change_opt.chk
+   SCF converged in    7 iter  (dE= 0.000E+00, dP= 2.269E-08, |g|= 4.046E-08)
+     ERI gradient:   6 threads,     15 bra pairs
+
+   OptStep     Energy       dE       max|g|    rms(g)    max|dx|   rms(dx)
+      6    -74.96590689  -1.68E-06  3.48E-04  1.98E-04  1.78E-03  9.36E-04
+                                      yes       yes       yes       yes
+     [geo0006]
+     O1          0.00000000    0.06178580    0.15691553
+     H2          0.00000000    0.86503173   -0.42032151
+     H3          0.00000000   -0.64681753   -0.53369402
+
+   ======================================================
+   Optimization converged in    6 steps.
+
+   Optimized Geometry (Bohr):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000   0.11675824   0.29652738
+   H2         0.00000000   1.63467306  -0.79429254
+   H3         0.00000000  -1.22230798  -1.00853553
+   -----------------------------------------------
+
+   Optimized Geometry (Angstrom):
+   -----------------------------------------------
+    Atom      X            Y            Z
+   -----------------------------------------------
+   O1         0.00000000   0.06178580   0.15691553
+   H2         0.00000000   0.86503173  -0.42032151
+   H3         0.00000000  -0.64681753  -0.53369402
+   -----------------------------------------------
+   Final energy:     -74.965906893133
+   Optimization time:      0.063 s
+
+   Point group after optimization: C2v  (was Cs)
+
+ --- Section 7: Output & Properties ---
+   Computing overlap integrals (S)...
+     S trace     =     7.0000000000
+     S max |el|  =     1.0000000000
+     S min diag  =     1.0000000000
+     S max diag  =     1.0000000000
+   Computing kinetic energy integrals (T)...
+     T trace     =    38.9169309691
+     T max |el|  =    29.0031999455
+     T min diag  =     0.7597047370
+     T max diag  =    29.0031999455
+   Computing nuclear attraction integrals (V)...
+     V trace     =  -113.3410808003
+     V max |el|  =    61.6882458963
+     V min diag  =   -61.6882458963
+     V max diag  =    -5.7154329691
+   Assembling H_core = T + V_nuc...
+     H trace     =   -74.4241498313
+     H max |el|  =    32.6850459507
+     H min diag  =   -32.6850459507
+     H max diag  =    -4.9557282321
+   Reusing SCF from last optimization step.
+
+   Final energies:
+     Electronic energy:     -83.873274625370
+     Nuclear repulsion:       8.907367732237
+     Total energy:          -74.965906893133
+
+   Mulliken Population Analysis
+   ================================================
+    Atom    Element    Population     Charge
+   ------------------------------------------------
+       1      O       8.330486   -0.330486
+       2      H       0.834692    0.165308
+       3      H       0.834822    0.165178
+   ------------------------------------------------
+   Total electrons:    10.000000
+   ================================================
+
+   Electric Dipole Moment
+   ================================================
+   Nuclear    (au):     0.000000    1.346431    0.569391
+   Electronic (au):    -0.000000   -1.296167   -1.239840
+   Total      (au):    -0.000000    0.050264   -0.670449
+   |mu|       (au):     0.672330
+   |mu|    (Debye):     1.708894
+   ================================================
+   Section 7 time:      0.001 s
+
+ =======================================================
+  StudDFT run completed.
+  Wall time:      0.090 seconds
+ =======================================================
+
+
+ Date:05/08/2026                        Time:17:34:45.66
+

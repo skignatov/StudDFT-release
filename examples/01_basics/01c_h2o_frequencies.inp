@@ -1,0 +1,34 @@
+! ============================================================
+! 01c  Vibrational frequencies and the IR spectrum
+! ============================================================
+! Optimization followed by a Hessian.  A frequency calculation
+! is only meaningful AT a stationary point, which is why the
+! two steps are chained with %job opt+freq -- never compute
+! frequencies at a guessed geometry.
+!
+! WHAT TO LOOK AT:
+!   * 3N-6 = 3 vibrations, and 6 modes at ~0 labelled TR.
+!     Those six are the translations and rotations; they come
+!     out near zero as a check on the Hessian, not as physics.
+!   * the three modes, in order: bend ~1700, symmetric stretch
+!     ~3800, antisymmetric stretch ~3900 cm^-1.
+!   * IR intensities: the bend and the antisymmetric stretch
+!     are strong, the symmetric stretch is weak.  Intensity
+!     follows the DIPOLE DERIVATIVE, not the displacement.
+!   * ZPVE, the zero-point energy -- already ~13 kcal/mol for
+!     one water molecule.
+!
+! Harmonic frequencies from HF are systematically ~10 % too
+! high (experiment: 1595, 3657, 3756 cm^-1).  Most of that is
+! the missing correlation, some is the harmonic approximation
+! itself.  Compare with 03c, which uses a functional.
+%method  HF
+%basis   6-31G(d)
+%job     opt+freq
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

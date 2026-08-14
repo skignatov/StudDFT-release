@@ -1,0 +1,28 @@
+! ============================================================
+! 01b  Geometry optimization
+! ============================================================
+! The same molecule, now allowed to relax.  The starting
+! geometry is deliberately distorted (O-H stretched to 1.10 A,
+! angle opened to 115 deg) so that you can watch it come back.
+!
+! WHAT TO LOOK AT:
+!   * the optimizer table: max|g| must fall monotonically.
+!     It is the GRADIENT, not the energy, that tells you the
+!     structure has converged -- the energy is flat near a
+!     minimum and stops changing long before the geometry does.
+!   * the final structure: r(OH) ~ 0.99 A, angle ~ 100 deg.
+!
+! HF/STO-3G gets the bond length ~3 % too long and the angle
+! ~4 deg too small (experiment: 0.958 A, 104.5 deg).  That is
+! the expected quality of a minimal basis, not a program error;
+! example 02a shows what fixes it.
+%method  HF
+%basis   sto-3g
+%job     opt
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1500000
+ H   0.0000000   0.9300000  -0.5500000
+ H   0.0000000  -0.9300000  -0.5500000

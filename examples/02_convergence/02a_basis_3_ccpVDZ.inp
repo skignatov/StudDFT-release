@@ -1,0 +1,40 @@
+! ============================================================
+! 02a  Basis-set convergence  (run all four, in order)
+! ============================================================
+! The SAME molecule and the SAME method, four basis sets.
+! This is the single most important habit in the subject: a
+! number from a quantum-chemistry program is meaningless until
+! you know how it moves with the basis.
+!
+! Collect "Total energy" from all four runs:
+!
+!    basis        functions   E (Eh)          dE vs previous
+!    STO-3G             7      -74.963018          --
+!    6-31G(d)          19      -76.010505       -1.047
+!    cc-pVDZ           25      -76.027113       -0.017
+!    cc-pVTZ           65      -76.057681       -0.031
+!
+! TWO THINGS TO NOTICE:
+!   * the energy falls MONOTONICALLY.  It must: the
+!     variational principle guarantees that enlarging the
+!     basis can only lower an HF energy.  If you ever see it
+!     rise, something is wrong.
+!   * it is still falling at cc-pVTZ.  The HF limit for water
+!     is about -76.067 Eh, so even the largest basis here is
+!     ~6 mEh short.  Absolute energies converge slowly;
+!     differences converge much faster, which is why chemistry
+!     is done with differences.
+!
+! Try the same series with %job opt and watch r(OH) converge
+! to ~0.940 A -- geometries settle by cc-pVDZ, long before
+! energies do.
+%method  HF
+%basis   cc-pVDZ
+%job     energy
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

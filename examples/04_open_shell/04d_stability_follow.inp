@@ -1,0 +1,43 @@
+! ============================================================
+! 04d  Following an instability down
+! ============================================================
+! The same stretched H2 as 04c, but with %stability follow
+! instead of check.
+!
+! The difference matters.  "check" diagnoses and stops;
+! "follow" rotates the orbitals along the most negative
+! eigenvector, rebuilds the density and re-converges the SCF,
+! repeating until that channel is positive definite.
+!
+! WHAT TO LOOK AT: only the INTERNAL (real singlet) channel is
+! followed.  On this system that channel was already stable,
+! so nothing happens and the run simply confirms it -- which
+! is the honest outcome, and worth seeing.  The external
+! triplet instability is reported again and left alone, for
+! the reason given in 04c.
+!
+! TO SEE "follow" DO SOMETHING, you need a case with an
+! internal instability: a symmetry-broken solution of a
+! conjugated ring, or a transition-metal complex trapped in an
+! excited configuration.  Those are beyond a five-second
+! example, but the mechanics are the same as here.
+!
+! %stability_maxcycle caps the rotate-and-reconverge loop.
+! %stability_step is the rotation amplitude; the default 0.35
+! rad is a compromise between escaping a narrow attractor and
+! landing somewhere unrelated.  If the energy RISES after a
+! rotation the run says so -- the usual cause is a fixed
+! %level_shift pulling the SCF straight back into the basin
+! it came from.
+%method  HF
+%basis   6-31G
+%job     energy
+%charge  0
+%mult    1
+%stability          follow
+%stability_maxcycle 10
+%stability_step     0.35
+
+%geo
+ H   0.0  0.0  0.0
+ H   0.0  0.0  2.5

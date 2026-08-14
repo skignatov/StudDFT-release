@@ -1,0 +1,57 @@
+! ============================================================
+! 04c  Is your SCF solution actually a minimum?
+! ============================================================
+! H2 with the bond stretched to 2.5 A -- well past the point
+! where example 05a showed the RHF curve going wrong.  Here we
+! ask WHY, and get a quantitative answer instead of a graph.
+!
+! A converged SCF has found a STATIONARY point of the energy
+! with respect to orbital rotations.  Nothing in the DIIS
+! procedure checks that it is a MINIMUM.  A stability analysis
+! computes the second derivative -- the orbital Hessian -- and
+! reports its lowest eigenvalue in each of four channels.
+!
+! WHAT TO LOOK AT.  The four Seeger-Pople channels:
+!
+!   singlet (A+B)  real internal      +0.406  stable
+!   singlet (A-B)  complex internal   +0.058  stable
+!   triplet (A+B)  real EXTERNAL      -0.323  UNSTABLE
+!   triplet (A-B)  complex external   +0.058  stable
+!
+! "Internal" means: is there a lower RESTRICTED solution?  No.
+! Within the closed-shell manifold this really is a minimum,
+! which is why the SCF converged happily and gave no warning.
+!
+! "External" means: is there a lower UNRESTRICTED solution?
+! Yes, by a wide margin.  This is the triplet instability of
+! stretched RHF, and it is the same physics as the Coulson-
+! Fischer point in 05a, now expressed as a negative curvature
+! rather than as a wrongly shaped curve.
+!
+! Note that the program REPORTS the external instability but
+! does not follow it: descending that direction means changing
+! the spin treatment of the whole calculation, which is a
+! decision for you, not for the optimizer.  Act on it by
+! adding %spin unrestricted and re-running.
+!
+! WHEN TO USE THIS IN PRACTICE.  Any of:
+!   * a stretched or breaking bond,
+!   * a diradical, a transition-metal centre, a charge-transfer
+!     state,
+!   * an energy that moves when you change %level_shift or the
+!     initial guess,
+!   * a TDDFT run that returns a NEGATIVE excitation energy --
+!     that is the response equations finding the descent
+!     direction the SCF missed.
+!
+! The cost is comparable to one TDDFT calculation.
+%method  HF
+%basis   6-31G
+%job     energy
+%charge  0
+%mult    1
+%stability check
+
+%geo
+ H   0.0  0.0  0.0
+ H   0.0  0.0  2.5

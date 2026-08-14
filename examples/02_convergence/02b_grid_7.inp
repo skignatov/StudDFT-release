@@ -1,0 +1,48 @@
+! ============================================================
+! 02b  Integration-grid convergence  (run all three)
+! ============================================================
+! DFT, unlike HF, evaluates part of the energy by NUMERICAL
+! QUADRATURE on a grid of points around the nuclei.  The grid
+! is an approximation with its own error, independent of the
+! basis set, and it is the one beginners forget.
+!
+! Run grids 1, 3 and 7 and collect TWO numbers from each:
+!
+!    grid   points   Integrated N_e      E (Eh)
+!      1      8250   9.99993792        -76.464125
+!      3     64398   10.00000097       -76.464212
+!      7     61578   10.00000002       -76.464213
+!
+! Note that grid 7 has FEWER points than grid 3 here and is
+! still the more accurate of the two: what matters is how the
+! points are placed, not how many there are.  Grid 3 uses the
+! Mura-Knowles radial map, grid 7 the Euler-Maclaurin one with
+! a different pruning scheme.
+!
+! HOW TO READ IT.  "Integrated N_e" is the number of electrons
+! recovered by integrating the density on the grid.  The exact
+! answer is known in advance -- here 10 -- so this one number
+! measures the quadrature error with no reference calculation
+! and no ambiguity.  Make a habit of glancing at it.
+!
+! A deviation of 1e-3 electrons or worse means the grid is too
+! coarse for what you are doing, and energy DIFFERENCES will
+! be noisy even if the total energy looks fine.  Grid error is
+! also the reason a DFT geometry optimization can stall or a
+! frequency can come out slightly imaginary: the quadrature
+! makes the surface faintly bumpy.
+!
+! Rule of thumb: grid 3 (the default) for exploration, grid 6
+! or better for frequencies and for anything involving weak
+! interactions.
+%method  BP86
+%basis   6-311++G(2d,2p)
+%job     energy
+%grid    7
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

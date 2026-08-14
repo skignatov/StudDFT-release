@@ -1,2 +1,0 @@
-call sd test_v069_h2o_b3lyp_scan.inp
-call sd test_v1190_b3lyp_hooh_scanopt.inp

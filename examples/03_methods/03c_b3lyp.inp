@@ -1,0 +1,37 @@
+! ============================================================
+! 03c  A hybrid functional
+! ============================================================
+! Section 03 is ONE molecule at ONE geometry through several
+! methods, so the numbers are directly comparable.  Run all of
+! them and tabulate:
+!
+!    method            E (Eh)        r(OH) after opt   nu(bend)
+!    HF              -76.0107          0.947 A          1826
+!    SVWN  (LDA)     -76.0684          0.974 A          1668
+!    BP86  (GGA)     -76.4361          0.973 A          1620
+!    B3LYP (hybrid)  -76.4090          0.965 A          1713
+!    MP2             -76.1990          0.964 A          1735
+!    experiment          --            0.958 A          1595
+!
+! WHAT THE TABLE SAYS:
+!   * HF bonds are too SHORT and too STIFF -- no correlation
+!     means no long-range attraction between electrons.
+!   * LDA overbinds badly; the GGA correction fixes most of it.
+!   * the hybrid, which mixes in exact exchange, lands closest
+!     to experiment for the geometry.
+!   * DFT total energies are NOT comparable to HF or MP2 ones:
+!     each functional has its own zero.  Only differences
+!     within one method mean anything -- this is why the
+!     energy column is the least useful column in the table.
+!   * MP2 is the only method here that converges systematically
+!     to the exact answer as the basis grows; DFT does not.
+%method  B3LYP
+%basis   6-31G(d)
+%job     opt+freq
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

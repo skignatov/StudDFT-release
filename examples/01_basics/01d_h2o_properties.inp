@@ -1,0 +1,33 @@
+! ============================================================
+! 01d  What else the wavefunction tells you
+! ============================================================
+! One energy, but with the property output switched on.
+!
+! WHAT TO LOOK AT:
+!   * ORBITAL ENERGIES.  The HOMO energy is an estimate of
+!     minus the ionization potential (Koopmans' theorem).
+!     Here e_HOMO ~ -0.50 Eh = -13.6 eV against an experimental
+!     IP of 12.6 eV -- a fair estimate, and it works because
+!     two errors cancel: neglect of orbital relaxation (raises
+!     it) and neglect of correlation (lowers it).
+!   * the LUMO energy from HF is NOT an electron affinity;
+!     with a diffuse basis it drifts towards zero.  Do not
+!     read chemistry into it.
+!   * POPULATION ANALYSIS.  Mulliken charges are basis-set
+!     dependent -- run this with cc-pVTZ and watch them move
+!     substantially while the dipole moment barely does.  The
+!     dipole is an observable; a partial charge is not.
+!   * DIPOLE MOMENT: ~2.2 D here against 1.85 D experimental.
+!     HF overpolarizes.
+%method  HF
+%basis   6-31G(d)
+%job     energy
+%charge  0
+%mult    1
+%print_mo     on
+%pop_analysis on
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

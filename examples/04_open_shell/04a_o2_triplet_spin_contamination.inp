@@ -1,0 +1,41 @@
+! ============================================================
+! 04a  Open-shell O2: <S^2> and what "converged" does not mean
+! ============================================================
+! Molecular oxygen has a TRIPLET ground state -- two unpaired
+! electrons in the degenerate pi* pair.  It is the standard
+! demonstration that a closed-shell picture of a stable
+! molecule can be simply wrong.
+!
+! WHAT TO LOOK AT:
+!   * <S^2> printed at the end.  The exact value for a pure
+!     triplet is S(S+1) = 2.000.  UHF gives ~2.03 here: the
+!     single determinant is contaminated by higher spin
+!     states.  Below ~2.05 this is usually tolerable; much
+!     above it, the wavefunction is not the state you asked
+!     for and energies are not trustworthy.
+!   * the bond length, ~1.16 A HF against 1.21 A experimental.
+!
+! NOW THE POINT OF THIS EXAMPLE.  Re-run it with
+!     %uks_occupation auto
+! (the default) instead of STRICT.  AUTO holds the occupation
+! pattern fixed to the initial guess for the first few SCF
+! iterations, which helps a difficult open-shell system keep
+! its intended state -- but when the guess ordering is wrong
+! it locks the SCF into the WRONG state, and the answer then
+! depends on the initial guess and on any level shift.
+! On O2 the two settings can differ by a full Hartree.
+!
+! The lesson generalizes: an SCF that "converged" has found A
+! stationary point of the energy, not necessarily the LOWEST
+! one.  For open-shell and charge-transfer systems, check.
+! %stability check is the systematic way to do it.
+%method  HF
+%basis   6-31G(d,p)
+%job     opt+freq
+%charge  0
+%mult    3
+%uks_occupation strict
+
+%geo
+ O   0.0   0.0   0.00
+ O   0.0   0.0   1.21

@@ -1,0 +1,34 @@
+! ============================================================
+! 02c  Two independent routes to the same Hessian  (run both)
+! ============================================================
+! Second derivatives can be obtained two ways:
+!   analytical -- solve the coupled-perturbed SCF equations
+!   numerical  -- finite differences of the analytical gradient
+! They are different code paths through different mathematics
+! and they should agree.  Running both is the cheapest
+! independent check available on a frequency calculation, and
+! it costs you nothing but a second run.
+!
+! EXPECTED: the two agree to a few tenths of a cm^-1 on the
+! stiff modes.  Soft modes -- anything below ~100 cm^-1 -- are
+! the ones to watch: their force constants are small, so a
+! fixed absolute error in the Hessian is a large RELATIVE
+! error there.  For weakly bound complexes the two routes can
+! differ by several cm^-1 on the softest modes.
+!
+! The numerical route costs 6N SCF+gradient evaluations, so it
+! is the slower of the two, but it needs no CPSCF and is
+! therefore the fallback whenever the analytical route is
+! unavailable or suspect.
+%method  BP86
+%basis   6-31G(d)
+%job     opt+freq
+%hess_method numerical
+%grid    fine
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

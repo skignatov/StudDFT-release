@@ -1,0 +1,27 @@
+! ============================================================
+! 01a  Your first calculation: one energy
+! ============================================================
+! Water at a fixed, sensible geometry.  HF/STO-3G is the
+! smallest calculation that is still a real one: it runs in
+! well under a second.
+!
+! WHAT TO LOOK AT in the output, in order:
+!   Section 1  the basis: 7 functions, 5 occupied orbitals
+!   Section 3  the SCF table -- watch dE fall by ~an order of
+!              magnitude per iteration once DIIS engages
+!   Section 7  Total energy, about -74.96 Eh
+!
+! The total energy of a molecule is a large negative number
+! and is NOT itself meaningful: only DIFFERENCES between
+! energies computed the same way mean anything.  Every other
+! example in this set is ultimately a difference.
+%method  HF
+%basis   sto-3g
+%job     energy
+%charge  0
+%mult    1
+
+%geo
+ O   0.0000000   0.0000000   0.1173000
+ H   0.0000000   0.7572000  -0.4692000
+ H   0.0000000  -0.7572000  -0.4692000

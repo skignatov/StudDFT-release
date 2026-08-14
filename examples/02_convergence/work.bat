@@ -1,0 +1,9 @@
+call sd 02a_basis_1_sto3g.inp
+call sd 02a_basis_2_631Gd.inp
+call sd 02a_basis_3_ccpVDZ.inp
+call sd 02a_basis_4_ccpVTZ.inp
+call sd 02b_grid_1.inp
+call sd 02b_grid_3.inp
+call sd 02b_grid_7.inp
+call sd 02c_hessian_analytical.inp
+call sd 02c_hessian_numerical.inp

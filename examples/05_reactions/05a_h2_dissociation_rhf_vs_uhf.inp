@@ -1,0 +1,42 @@
+! ============================================================
+! 05a  H2 dissociation: where the restricted picture breaks
+! ============================================================
+! A rigid scan of the H-H distance from 0.5 to 3.0 A.  This is
+! the classic failure of restricted Hartree-Fock and it is
+! worth seeing once with your own numbers.
+!
+! WHAT TO LOOK AT: plot the scan energies against r.
+!   * near equilibrium (0.74 A) the curve is fine.
+!   * at large r the RHF curve flattens out FAR TOO HIGH --
+!     about 0.2 Eh above 2 x E(H atom).  RHF forces the two
+!     electrons to share one spatial orbital, so at infinite
+!     separation it still describes a mixture that is half
+!     H(.)H(.) and half H(+)H(-).  The ionic half is what
+!     costs the 0.2 Eh.
+!   * the curve has the wrong SHAPE, not just the wrong
+!     offset, so any property derived from it at long range --
+!     a bond energy, a barrier for a dissociating bond -- is
+!     wrong too.
+!
+! THE FIX, and the second half of the exercise: re-run with
+!     %spin unrestricted
+! added.  Below ~1.2 A nothing changes -- the UHF solution IS
+! the RHF one there.  Beyond the Coulson-Fischer point the UHF
+! solution breaks symmetry, the two electrons localize on
+! opposite atoms, and the curve goes correctly to 2 x E(H).
+! The price is <S^2> drifting from 0 to 1: the dissociated UHF
+! state is half singlet, half triplet.
+!
+! There is no free lunch here.  Getting both the shape and the
+! spin right needs a multireference method.
+%method  HF
+%basis   6-31G(d,p)
+%job     scan
+
+%gz
+H1
+H2 H1 0.74
+
+%scan
+R 2 from 0.50 to 3.00 step 0.10
+*end

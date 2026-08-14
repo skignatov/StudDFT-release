@@ -1,0 +1,65 @@
+! ============================================================
+! 08a  Density fitting (RI-J): what it buys and what it costs
+! ============================================================
+! Pyrrole, PBE/cc-pVDZ, 100 basis functions.  Run BOTH files
+! and compare.
+!
+! The Coulomb matrix J needs the four-index integrals (mn|ls),
+! of which there are O(N^4).  Density fitting expands the
+! density in an auxiliary basis, so J is built from three- and
+! two-index integrals instead: O(N^3), with a much smaller
+! prefactor.  Exchange cannot be fitted so cheaply, which is
+! why RI-J helps pure functionals most and hybrids less.
+!
+! MEASURED HERE (1 core, reference BLAS):
+!
+!                        conventional     RI-J
+!    2e-integrals (J,K)     11.72 s      0.09 s     130x
+!    total wall             39.5  s      28.8 s     1.37x
+!    total energy      -209.920245  -209.920442
+!
+! THREE THINGS THE TABLE TEACHES:
+!
+!  1. The Coulomb stage really does collapse -- 130-fold.  If
+!     you only look at that line, RI looks miraculous.
+!
+!  2. The WALL TIME improves by 1.37x, not by 130x.  Once J is
+!     free, the XC quadrature and the diagonalizations dominate,
+!     and RI-J does nothing for either.  This is Amdahl's law
+!     in one table: speeding up a stage can never save more
+!     time than that stage was taking.  Always profile before
+!     optimizing -- %print_time is there for exactly this.
+!
+!  3. The energy changes by 2.0e-4 Ha = 0.12 kcal/mol, about
+!     20 uHa per atom.  That is the accuracy class of the
+!     def2-universal-JFIT auxiliary basis, and it is a
+!     SYSTEMATIC offset, not noise: it largely cancels in
+!     energy differences between similar structures, which is
+!     why RI-J is safe for geometries and reaction energies
+!     and less so for a single absolute number.
+!
+! %ri_check on prints a fitted-vs-exact J diagnostic, but it
+! builds the exact J by the O(N^4) route to do so -- it costs
+! about as much as the conventional run it is meant to replace.
+! Use it to validate, never in a timing measurement.
+!
+! THIS FILE: conventional, no fitting.
+%method  PBE
+%basis   cc-pVDZ
+%job     energy
+%grid    fine
+%print_time
+%charge  0
+%mult    1
+
+%geo
+ C   -0.71390000    1.11450000    0.00000000
+ C    0.71390000    1.11450000    0.00000000
+ C    1.12490000   -0.20860000    0.00000000
+ C   -1.12490000   -0.20860000    0.00000000
+ N    0.00000000   -1.00250000    0.00000000
+ H   -1.36930000    1.97440000    0.00000000
+ H    1.36930000    1.97440000    0.00000000
+ H    2.13120000   -0.59440000    0.00000000
+ H   -2.13120000   -0.59440000    0.00000000
+ H    0.00000000   -2.01120000    0.00000000

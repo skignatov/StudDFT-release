@@ -1,6 +1,6 @@
 ### StudDFT
 
-This is the new release (v.1.29.6) of scientific-educational quantum chemistry program StudDFT.
+This is the new release (v.1.29.8) of scientific-educational quantum chemistry program StudDFT.
 
 Older StudDFT version 0.82.1 is stored as well for the compatibility with the original article: 
 S.K. Ignatov "StudDFT: A compact quantum chemistry program for educational and research purposes", Zhurn.Fiz.Khimii (rus.), (accepted in June, 2026)

@@ -1,6 +1,6 @@
 ### StudDFT
 
-This is the new release (v.1.29.6) of scientific-educational quantum chemistry program StudDFT.
+This is the new release (v.1.29.8) of scientific-educational quantum chemistry program StudDFT.
 
 ### Features (see full list in StudDFT_Short_Manual_<version>.pdf)
 - RHF/UHF, RKS/UKS, MP2/UMP2/PUMP2 calculations

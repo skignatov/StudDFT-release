@@ -18,7 +18,7 @@ Full features list see in `StudDFT_Short_Manual_<version>.pdf`
 1. Download StudDFT archive from github to your current directory. In your browser, click on tar.gz file to get inside and then click the button 'Download raw file'. 
    From the linux console, you can use wget (or curl) command with 'raw github address':
 
-    wget https://github.com/skignatov/StudDFT-release/raw/refs/heads/main/v.1.25.3/linux/studdft_v1_29_8-FE-openblas_static.tar.gz 
+    wget https://github.com/skignatov/StudDFT-release/raw/refs/heads/main/v.1.29.8/linux/studdft_v1_29_8-FE-openblas_static.tar.gz 
 
 2.  Untar the archive to the specified `existing` directory (e.g. to /home/student):
 

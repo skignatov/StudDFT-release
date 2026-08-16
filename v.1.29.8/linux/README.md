@@ -18,16 +18,16 @@ Full features list see in `StudDFT_Short_Manual_<version>.pdf`
 1. Download StudDFT archive from github to your current directory. In your browser, click on tar.gz file to get inside and then click the button 'Download raw file'. 
    From the linux console, you can use wget (or curl) command with 'raw github address':
 
-    wget https://github.com/skignatov/StudDFT-release/raw/refs/heads/main/v.1.25.3/linux/studdft_v1_25_3-FE-openblas_static.tar.gz 
+    wget https://github.com/skignatov/StudDFT-release/raw/refs/heads/main/v.1.25.3/linux/studdft_v1_29_8-FE-openblas_static.tar.gz 
 
 2.  Untar the archive to the specified `existing` directory (e.g. to /home/student):
 
-   `tar -xzvf studdft_v1_25_3-FE-openblas_static.tar.gz -C /home/student`
+   `tar -xzvf studdft_v1_29_8-FE-openblas_static.tar.gz -C /home/student`
 
-   The directory /home/student/studdft_v1_25_3-openblas_static will appear. 
+   The directory /home/student/studdft_v1_29_8-openblas_static will appear. 
    You can rename it to the shorter name if you wish:
 
-   `mv /home/student/studdft_v1_25_3-openblas_static  /home/student/studdft`
+   `mv /home/student/studdft_v1_29_8-openblas_static  /home/student/studdft`
 
 3. Go to the new directory and add the execute permissions for two files: studdft (the program executable itself) and sdft (the running script):
 

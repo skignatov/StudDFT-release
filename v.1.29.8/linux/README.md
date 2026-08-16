@@ -11,7 +11,7 @@ Linux (Ubuntu 22) version, compiled with gfortran v.11, static build with OpenLA
 - Analytical energy gradients and Hessians
 - Energy level smearing for better SCF convergence
 - RI-DFT, TD-DFT, CDFT, RT-TDDFT, Ehrenfest MD (FullEdition)
-Full features list see in `Short_Manual_<version>.pdf`
+Full features list see in `StudDFT_Short_Manual_<version>.pdf`
 
 ## Start calculations (Linux)
 
@@ -62,7 +62,7 @@ Full features list see in `Short_Manual_<version>.pdf`
       `set OMP_STACKSIZE=64M`       <-- set reasonable OMP stack size (32M, 64M, 128M ...)
 
 ## Documentation
-See `Short Manual_v_1_17_1.pdf` for the keyword list of StudDFT.
+See `StudDFT_Short_Manual_<version>.pdf` for the keyword list of StudDFT.
 See `../docs/` for additional documentation.
 See `../examples/` for sample inputs.
 Download and unpack `tests` to check the test results for 50+ molecules with various methods.

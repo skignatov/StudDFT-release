@@ -22,12 +22,12 @@ Full features list see in `StudDFT_Short_Manual_<version>.pdf`
 
 2.  Untar the archive to the specified `existing` directory (e.g. to /home/student):
 
-   `tar -xzvf studdft_v1_29_8-FE-openblas_static.tar.gz -C /home/student`
+    `tar -xzvf studdft_v1_29_8-FE-openblas_static.tar.gz -C /home/student`
 
-   The directory /home/student/studdft_v1_29_8-openblas_static will appear. 
-   You can rename it to the shorter name if you wish:
+     The directory /home/student/studdft_v1_29_8-openblas_static will appear. 
+     You can rename it to the shorter name if you wish:
 
-   `mv /home/student/studdft_v1_29_8-openblas_static  /home/student/studdft`
+    `mv /home/student/studdft_v1_29_8-openblas_static  /home/student/studdft`
 
 3. Go to the new directory and add the execute permissions for two files: studdft (the program executable itself) and sdft (the running script):
 
